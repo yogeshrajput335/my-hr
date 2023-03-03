@@ -13,13 +13,17 @@ import { environment } from 'src/environment/environment';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsersComponent } from './components/users/users.component';
+import { AppLayoutComponent } from './layout/app-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     LoginComponent,
-    DashboardComponent
+    AppLayoutComponent,
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
