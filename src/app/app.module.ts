@@ -15,6 +15,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppLayoutComponent } from './layout/app-layout.component';
     LoginComponent,
     AppLayoutComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
