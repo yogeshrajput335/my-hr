@@ -5,3 +5,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Reference Links
 
 * https://www.positronx.io/setup-angular-fire-library-in-angular-project/ 
+
+** CRUD **
+* https://www.bezkoder.com/angular-13-firebase-crud/

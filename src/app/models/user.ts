@@ -1,7 +1,7 @@
 export interface User {
-    $key: string;
-    username: string;
-    name: string;
-    email: string
-    mobileNumber: Number;
+    key?: string | null;
+    username?: string;
+    name?: string;
+    email?: string;
+    mobileNumber?: Number;
  }

@@ -9,41 +9,67 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
-  usersRef: AngularFireList<any> | undefined;
-  userRef: AngularFireObject<any> | undefined;
-  constructor(private db: AngularFireDatabase) {}
-  // Create User
-  AddUser(u: User) {
-    this.usersRef?.push({
-      username: u.username,
-      name: u.name,
-      email: u.email,
-      mobileNumber: u.mobileNumber,
-    });
+  private dbPath = '/users';
+
+  tutorialsRef: AngularFireList<User>;
+
+  constructor(private db: AngularFireDatabase) {
+    this.tutorialsRef = db.list(this.dbPath);
   }
-  // Fetch Single User Object
-  GetUser(id: string) {
-    this.userRef = this.db.object('users/' + id);
-    return this.userRef;
+
+  getAll(): AngularFireList<User> {
+    return this.tutorialsRef;
   }
-  // Fetch Users List
-  GetUsersList() {
-    this.usersRef = this.db.list('users');
-    debugger
-    return this.usersRef;
+
+  create(tutorial: User): any {
+    return this.tutorialsRef.push(tutorial);
   }
-  // Update User Object
-  UpdateUser(student: User) {
-    this.userRef?.update({
-      username: student.username,
-      name: student.name,
-      email: student.email,
-      mobileNumber: student.mobileNumber,
-    });
+
+  update(key: string, value: any): Promise<void> {
+    return this.tutorialsRef.update(key, value);
   }
-  // Delete User Object
-  DeleteUser(id: string) {
-    this.userRef = this.db.object('users/' + id);
-    this.userRef.remove();
+
+  delete(key: string): Promise<void> {
+    return this.tutorialsRef.remove(key);
   }
+
+  deleteAll(): Promise<void> {
+    return this.tutorialsRef.remove();
+  }
+  // usersRef: AngularFireList<any> | undefined;
+  // userRef: AngularFireObject<any> | undefined;
+  // constructor(private db: AngularFireDatabase) {}
+  // // Create User
+  // AddUser(u: User) {
+  //   this.usersRef?.push({
+  //     username: u.username,
+  //     name: u.name,
+  //     email: u.email,
+  //     mobileNumber: u.mobileNumber,
+  //   });
+  // }
+  // // Fetch Single User Object
+  // GetUser(id: string) {
+  //   this.userRef = this.db.object('users/' + id);
+  //   return this.userRef;
+  // }
+  // // Fetch Users List
+  // GetUsersList() {
+  //   this.usersRef = this.db.list('users');
+  //   return this.usersRef;
+  // }
+  // // Update User Object
+  // UpdateUser(student: User) {
+  //   this.userRef?.update({
+  //     username: student.username,
+  //     name: student.name,
+  //     email: student.email,
+  //     mobileNumber: student.mobileNumber,
+  //   });
+  // }
+  // // Delete User Object
+  // DeleteUser(id: string) {
+  //   this.userRef = this.db.object('users/' + id);
+  //   this.userRef.remove();
+  // }
 }
