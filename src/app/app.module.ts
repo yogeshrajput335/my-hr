@@ -16,6 +16,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { JobsComponent } from './components/jobs/jobs.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     AppLayoutComponent,
     DashboardComponent,
     UsersComponent,
-    ProfileComponent
+    ProfileComponent,
+    JobsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
