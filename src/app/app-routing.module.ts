@@ -7,6 +7,7 @@ import { UsersComponent } from './components/users/users.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { LandingComponent } from './landing/landing.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
+import { CandidateComponent } from './components/candidate/candidate.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -14,10 +15,11 @@ const routes: Routes = [
   {
     path: '', component: AppLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'users', component: UsersComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'jobs',component:JobsComponent }
+      { path: 'dashboard',component: DashboardComponent },
+      { path: 'users',    component: UsersComponent },
+      { path: 'profile',  component: ProfileComponent },
+      { path: 'jobs',     component: JobsComponent },
+      { path:'candidate', component: CandidateComponent }
     ]
   },
 ];
