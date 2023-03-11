@@ -18,8 +18,8 @@ import { AppLayoutComponent } from './layout/app-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JobsComponent } from './components/jobs/jobs.component';
-
 import {TableModule} from 'primeng/table';
+import { CandidateComponent } from './components/candidate/candidate.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import {TableModule} from 'primeng/table';
     DashboardComponent,
     UsersComponent,
     ProfileComponent,
-    JobsComponent
+    JobsComponent,
+    CandidateComponent
   ],
   imports: [
     BrowserModule,

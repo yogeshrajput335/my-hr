@@ -1,134 +1,25 @@
-<div class="content-area user-profile" style="background-color: #fcfcfc">
-  &nbsp;
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1 profiel-container">
-        <form action="" method="">
-          <div class="profile-header">
-            <h3>
-              <b>BUILD</b> YOUR CANDIDATE PROFILE <br />
-              <small>This information will let us know more about you.</small>
-            </h3>
-            <hr />
-          </div>
-
-          <div class="clear">
-            <div class="col-sm-3 col-sm-offset-1">
-              <div class="picture-container">
-                <div class="picture">
-                  <img
-                    src="assets/img/avatar.png"
-                    class="picture-src"
-                    id="wizardPicturePreview"
-                    title=""
-                  />
-                  <input type="file" id="wizard-picture" />
-                </div>
-                <h6>Choose Picture</h6>
-              </div>
-            </div>
-
-            <div class="col-sm-3 padding-top-25">
-              <div class="form-group">
-                <label>First Name <small>(required)</small></label>
-                <input
-                  name="firstname"
-                  type="text"
-                  class="form-control"
-                  placeholder="Siri..."
-                />
-              </div>
-              <div class="form-group">
-                <label>Last Name <small>(required)</small></label>
-                <input
-                  name="lastname"
-                  type="text"
-                  class="form-control"
-                  placeholder="Prakash..."
-                />
-              </div>
-
-              <div class="form-group">
-                <label>CandidateId <small>(required)</small></label>
-                <input
-                  name="CandidateId"
-                  type="number"
-                  class="form-control"
-                  placeholder="12"
-                />
-              </div>
-              <div class="form-group">
-                <label>Age <small>(required)</small></label>
-                <input
-                  name="Age"
-                  type="number"
-                  class="form-control"
-                  placeholder="20"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="clear">
-            <br />
-            <hr />
-            <br />
-            <div class="col-sm-5 col-sm-offset-1">
-              <div class="form-group">
-                <label>School :</label>
-                <input name="School" type="text" class="form-control" />
-              </div>
-              <div class="form-group">
-                <label>College :</label>
-                <input name="College" type="text" class="form-control" />
-              </div>
-              <div class="form-group">
-                <label>Coaching :</label>
-                <input name="Coaching" type="text" class="form-control" />
-              </div>
-            </div>
-
-            <div class="col-sm-5">
-              <div class="form-group">
-                <label>Public email :</label>
-                <input
-                  name="p-email"
-                  type="email"
-                  class="form-control"
-                />
-              </div>
-              <div class="form-group">
-                <label>Phone :</label>
-                <input
-                  name="Phone"
-                  type="text"
-                  class="form-control"
-               />
-              </div>
-              <div class="form-group">
-                <label>Library :</label>
-                <input
-                  name="Library"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-5 col-sm-offset-1">
-            <br />
-            <input
-              type="button"
-              class="btn btn-finish btn-primary"
-              name="finish"
-              value="Finish"
-            />
-          </div>
-          <br />
-        </form>
-      </div>
-    </div>
-    
-  </div>
-</div>
+<p-table [value]="Candidate" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped">
+<ng-template pTemplate="header">
+      <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Tech</th>
+          <th>Visa</th>
+          <th>Rate</th>
+          <th>Date</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-candidate>
+      <tr>
+          <td>{{candidate.name}}</td>
+          <td>{{candidate.phone}}</td>
+          <td>{{candidate.email}}</td>
+          <td>{{candidate.tech}}</td>
+          <td>{{candidate.visa}}</td>
+          <td>{{candidate.rate}}</td>
+          <td>{{candidate.date}}</td>
+        </tr>
+  </ng-template>
+</p-table>
+<button (click)="create()"> create</button>
