@@ -19,6 +19,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JobsComponent } from './components/jobs/jobs.component';
 
+import {TableModule} from 'primeng/table';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

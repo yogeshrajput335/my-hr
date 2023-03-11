@@ -9,7 +9,6 @@ import { UserService } from 'src/app/services/users.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  title = 'my-hr';
   Users: User[];
 
   constructor(
@@ -17,7 +16,6 @@ export class UsersComponent implements OnInit {
     ){ }
 
     ngOnInit() {
-      //this.dataState();
       this.userService.getAll().snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -31,16 +29,6 @@ export class UsersComponent implements OnInit {
     create() {   
       this.userService.create({username:'test',name:'name',email:'test@test.com',mobileNumber:121212}).then(() => {
         console.log('Created new item successfully!');
-      });  
-      // this.userService.GetStudentsList().valueChanges().subscribe(data => {
-      //   this.preLoader = false;
-      //   if(data.length <= 0){
-      //     this.hideWhenNoStudent = false;
-      //     this.noData = true;
-      //   } else {
-      //     this.hideWhenNoStudent = true;
-      //     this.noData = false;
-      //   }
-      // })
+      });
     }
 }
