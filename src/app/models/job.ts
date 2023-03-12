@@ -1,6 +1,6 @@
-export class Job{
-    id?: string
-    jobName:string;
-    appliedDate:number;
-    status: boolean;
+export interface Job{
+    name?:string;
+    desc?:string;
+    startdate?:number;
+    enddate?:number;
 }

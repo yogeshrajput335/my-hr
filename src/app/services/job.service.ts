@@ -1,39 +1,40 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject,
+} from '@angular/fire/compat/database';
 import { Job } from '../models/job';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class jobService {
-  private jobCollection = 'job';
+  private dbPath = '/jobs';
+  tutorialsRef: AngularFireList<Job>;
 
-  constructor(private angularFireStore: AngularFirestore) {}
-
-  getJob() {
-    return this.angularFireStore
-      .collection(this.jobCollection)
-      .snapshotChanges();
+  constructor( private db: AngularFireDatabase ) {
+     this.tutorialsRef = db.list(this.dbPath);
   }
 
-  createJob(job: any) {
-    return this.angularFireStore.collection(this.jobCollection).add(job);
+  getAll(): AngularFireList<Job> {
+    return this.tutorialsRef;
   }
 
-//   deleteMaterialDispatch(id: any) {
-//     return this.angularFireStore
-//       .collection(this.materialdispatchCollection)
-//       .doc(id)
-//       .delete();
-//   }
+  create(tutorial: Job): any {
+    return this.tutorialsRef.push(tutorial);
+  }
 
-//   updateMaterialDispatch(material: any) {
-//     return this.angularFireStore
-//       .collection(this.materialdispatchCollection)
-//       .doc(material.id)
-//       .update({
-//         name: material.name!,
-//         quantity: material.quantity!,
-//         status: material.status!,
-//       });
-//   }
+  update(key: string, value: any): Promise<void> {
+    return this.tutorialsRef.update(key, value);
+  }
+
+  delete(key: string): Promise<void> {
+    return this.tutorialsRef.remove(key);
+  }
+
+  deleteAll(): Promise<void> {
+    return this.tutorialsRef.remove();
+  }
 }
