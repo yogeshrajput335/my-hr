@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     public userService: UserService
-    ){ }
+  ){ }
 
     ngOnInit() {
       this.userService.getAll().snapshotChanges().pipe(
