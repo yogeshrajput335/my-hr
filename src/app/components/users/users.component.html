@@ -1,19 +1,33 @@
-<p-table [value]="Users" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile Number</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-        <tr>
-            <td>{{user.username}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.mobileNumber}}</td>
-        </tr>
-    </ng-template>
-</p-table>
-<button (click)="create()"> create</button>
+<div class="card">
+    <h5>Users</h5>
+        <p-table #dt [columns]="cols" [value]="Users" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+        [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+        selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom">CSV</button>
+                <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+                <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button>
+                <p-button icon="pi pi-plus"></p-button>
+            </div>
+        </ng-template>    
+        <ng-template pTemplate="header">
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.mobileNumber}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <button (click)="create()"> create</button>
+</div>
