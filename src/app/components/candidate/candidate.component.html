@@ -1,25 +1,73 @@
-<p-table [value]="Candidate" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped">
-<ng-template pTemplate="header">
+<div class="card">
+  <h5>Jobs</h5>
+  <p-table
+    #dt
+    [columns]="cols"
+    [value]="Candidate"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="p-datatable-striped"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    selectionMode="multiple"
+    [(selection)]="selectedProducts"
+    [exportHeader]="'customExportHeader'"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-file"
+          (click)="dt.exportCSV()"
+          class="mr-2"
+          pTooltip="CSV"
+          tooltipPosition="bottom"
+        >
+          CSV
+        </button>
+        <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+          <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-filter"
+          (click)="dt.exportCSV({ selectionOnly: true })"
+          class="p-button-info ml-auto"
+          pTooltip="Selection Only"
+          tooltipPosition="bottom"
+        >
+          Selected Row CSV
+        </button>
+        <p-button icon="pi pi-plus"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
       <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Tech</th>
-          <th>Visa</th>
-          <th>Rate</th>
-          <th>Date</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Tech</th>
+        <th>Visa</th>
+        <th>Rate</th>
+        <th>Date</th>
       </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-candidate>
+    </ng-template>
+    <ng-template pTemplate="body" let-candidate>
       <tr>
-          <td>{{candidate.name}}</td>
-          <td>{{candidate.phone}}</td>
-          <td>{{candidate.email}}</td>
-          <td>{{candidate.tech}}</td>
-          <td>{{candidate.visa}}</td>
-          <td>{{candidate.rate}}</td>
-          <td>{{candidate.date}}</td>
-        </tr>
-  </ng-template>
-</p-table>
-<button (click)="create()"> create</button>
+        <td>{{ candidate.name }}</td>
+        <td>{{ candidate.phone }}</td>
+        <td>{{ candidate.email }}</td>
+        <td>{{ candidate.tech }}</td>
+        <td>{{ candidate.visa }}</td>
+        <td>{{ candidate.rate }}</td>
+        <td>{{ candidate.date }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button (click)="create()">create</button>
+</div>
