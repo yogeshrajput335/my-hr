@@ -12,6 +12,7 @@ export class UsersComponent implements OnInit {
   Users: User[];
   selectedProducts: User[];
   cols: any[];
+  display = false;
   constructor(
     public userService: UserService
   ){ }

@@ -21,6 +21,8 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import { CandidateComponent } from './components/candidate/candidate.component';
+import {SidebarModule} from 'primeng/sidebar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -45,6 +48,7 @@ import { CandidateComponent } from './components/candidate/candidate.component';
     ReactiveFormsModule,
     TableModule,
     ButtonModule,
+    SidebarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
