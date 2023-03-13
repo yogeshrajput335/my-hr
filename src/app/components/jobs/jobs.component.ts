@@ -13,12 +13,20 @@ declare var dataTableInit: any;
 export class JobsComponent implements OnInit {
 
   Jobs: Job[];
-
+  cols: any[];
+  selectedProducts: Job[];
   constructor(
     private jobservice: jobService
     ) {}
 
   ngOnInit():void {
+    this.cols = [
+      { field: 'name', header: 'name', customExportHeader: 'NAME' },
+      { field: 'desc', header: 'desc' },
+      { field: 'startdate', header: 'startdate' },
+      { field: 'enddate', header: 'enddate' }
+  ];
+
     this.jobservice.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
