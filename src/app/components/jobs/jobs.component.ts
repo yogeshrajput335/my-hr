@@ -15,6 +15,8 @@ export class JobsComponent implements OnInit {
   Jobs: Job[];
   cols: any[];
   selectedProducts: Job[];
+  display = false;
+  
   constructor(
     private jobservice: jobService
     ) {}
@@ -42,6 +44,8 @@ export class JobsComponent implements OnInit {
       console.log('Created new item successfully!');
     });
   }
+  
+
 }
 
 
