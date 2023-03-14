@@ -14,9 +14,11 @@ export class JobsComponent implements OnInit {
 
   Jobs: Job[];
   cols: any[];
+  job:Job = {name:'',desc:'',startdate:'',enddate:''};
   selectedProducts: Job[];
   display = false;
-  
+  sibebarHeader = "Add Job";
+  selectedKey=''
   constructor(
     private jobservice: jobService
     ) {}
@@ -40,9 +42,34 @@ export class JobsComponent implements OnInit {
     });
 }
   create() {   
-    this.jobservice.create({name:'aee',desc:'xyz',startdate:10/3/2021,enddate:20/4/2021 }).then(() => {
-      console.log('Created new item successfully!');
-    });
+    if(this.sibebarHeader == 'Edit Job'){
+      this.jobservice.update(this.selectedKey,this.job).then(() => {
+        console.log('Updated job successfully!');
+        this.display = false;
+        this.job = {name:'',desc:'',startdate:'',enddate:''}
+      });
+    }
+    else{
+      this.jobservice.create(this.job).then(() => {
+        console.log('Created new job successfully!');
+        this.display = false;
+        this.job = {name:'',desc:'',startdate:'',enddate:''}
+      });
+    }
+  }
+  delete(key:any){
+    this.jobservice.delete(key);
+  }
+  AddJob(){
+    this.display = true;
+    this.sibebarHeader = 'Add Job'
+  }
+  edit(key:string,job:Job){
+    this.display = true;
+    this.sibebarHeader = 'Edit Job'
+    this.job = job;
+    this.selectedKey = key;
+
   }
   
 

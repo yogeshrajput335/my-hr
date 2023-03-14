@@ -9,7 +9,7 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
       <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
       <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
        <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button>
-      <p-button icon="pi pi-plus" (click)="display = true" icon="pi pi-plus"></p-button>
+      <p-button icon="pi pi-plus" (click)="AddJob()" icon="pi pi-plus"></p-button>
   </div>
 </ng-template>
   <ng-template pTemplate="header">
@@ -18,6 +18,7 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
           <th>Desc</th>
           <th>StartDate</th>
           <th>EndDate</th>
+          <th></th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-Jobs>
@@ -26,30 +27,33 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
           <td>{{Jobs.desc}}</td>
           <td>{{Jobs.startdate}}</td>
           <td>{{Jobs.enddate}}</td>
+          <td>
+            <button (click)="edit(Jobs.key,Jobs)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+            <button (click)="delete(Jobs.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+          </td>
       </tr>
   </ng-template>
 </p-table>
-<button (click)="create()"> create</button>
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
-  Content
+  <h3>{{sibebarHeader}}</h3>
   <div class="form-group">
     <label> Name <small>(required)</small></label>
-    <input name="name" type="text" class="form-control" placeholder="Andrew...">
+    <input name="name" type="text" class="form-control" [(ngModel)]="job.name">
 </div>
 <div class="form-group">
-  <label> Desc <small>(required)</small></label>
-  <input name="desc" type="text" class="form-control" placeholder="bc...">
+  <label> Desc</label>
+  <input name="desc" type="text" class="form-control" [(ngModel)]="job.desc">
 </div>
 <div class="form-group">
-  <label> startdate<small>(required)</small></label>
-  <input name="startdate" type="text" class="form-control" placeholder="10/12/2013">
+  <label> startdate</label>
+  <input name="startdate" type="text" class="form-control" [(ngModel)]="job.startdate">
 </div>
 <div class="form-group">
-  <label> enddate <small>(required)</small></label>
-  <input name="enddate" type="text" class="form-control" placeholder="11/12/2014">
+  <label> enddate</label>
+  <input name="enddate" type="text" class="form-control" [(ngModel)]="job.enddate">
 </div>
 
-  <button (click)="create()" icon="pi pi-arrow-right"> create</button>
+  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
 </p-sidebar>
 

@@ -16,7 +16,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobsComponent } from './components/jobs/jobs.component';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
@@ -45,6 +45,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    FormsModule,
     ReactiveFormsModule,
     TableModule,
     ButtonModule,
