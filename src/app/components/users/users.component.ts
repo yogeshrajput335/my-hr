@@ -10,9 +10,12 @@ import { UserService } from 'src/app/services/users.service';
 })
 export class UsersComponent implements OnInit {
   Users: User[];
+  user:User = {username:'',name:'',email:'',mobileNumber:''};
   selectedProducts: User[];
   cols: any[];
   display = false;
+  sibebarHeader = "Add Job";
+  selectedKey=''
   constructor(
     public userService: UserService
   ){ }
@@ -37,8 +40,33 @@ export class UsersComponent implements OnInit {
       });
     }
     create() {   
-      this.userService.create({username:'test',name:'name',email:'test@test.com',mobileNumber:121212}).then(() => {
+      if(this.sibebarHeader == 'Edit User'){
+        this.userService.update(this.selectedKey,this.user).then(() => {
+          console.log('Updated job successfully!');
+          this.display = false;
+          this.user = {username:'', name:'',email:'',mobileNumber:''}
+        });
+      }
+      else{
+      this.userService.create({username:'test',name:'name',email:'test@test.com',mobileNumber:''}).then(() => {
         console.log('Created new item successfully!');
+        this.display = false;
+        this.user = {username:'', name:'',email:'',mobileNumber:''}
       });
+    }
+    }
+    AddUser(){
+      this.display = true;
+      this.sibebarHeader = 'Add User'
+    }
+    edit(key:string,user:User){
+      this.display = true;
+      this.sibebarHeader = 'Edit User'
+      this.user = user;
+      this.selectedKey = key;
+  
+    }
+    delete(key:any){
+      this.userService.delete(key);
     }
 }

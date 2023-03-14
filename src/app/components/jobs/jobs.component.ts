@@ -69,7 +69,6 @@ export class JobsComponent implements OnInit {
     this.sibebarHeader = 'Edit Job'
     this.job = job;
     this.selectedKey = key;
-
   }
   
 

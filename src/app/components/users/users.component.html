@@ -9,7 +9,7 @@
                 <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
                  <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button>
-                <p-button icon="pi pi-plus" (click)="display = true"></p-button>
+                <p-button icon="pi pi-plus" (click)="AddUser()" icon="pi pi-plus"></p-button>
             </div>
         </ng-template>    
         <ng-template pTemplate="header">
@@ -26,6 +26,10 @@
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.mobileNumber}}</td>
+                    <td>
+                        <button (click)="edit(user.key,user)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button (click)="delete(user.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
@@ -35,3 +39,24 @@
     Content
     <button (click)="create()"> create</button>
 </p-sidebar>
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+    <h3>{{sibebarHeader}}</h3>
+    <div class="form-group">
+      <label> Username <small>(required)</small></label>
+      <input name="Username" type="text" class="form-control" [(ngModel)]="user.username">
+  </div>
+  <div class="form-group">
+    <label> Name</label>
+    <input name="name" type="text" class="form-control" [(ngModel)]="user.name">
+  </div>
+  <div class="form-group">
+    <label> Email</label>
+    <input name="email" type="text" class="form-control" [(ngModel)]="user.email">
+  </div>
+  <div class="form-group">
+    <label> mobileNumber</label>
+    <input name="mobileNumber" type="text" class="form-control" [(ngModel)]="user.mobileNumber">
+  </div>
+  
+    <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-sidebar>

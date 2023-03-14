@@ -1,9 +1,9 @@
 export class candidate{
     name?:string;
-    phone?:number;
+    phone?:string;
     email?:string;
     tech?:string;
     visa?:string;
-    rate?:number;
-    date?:number;
+    rate?:string;
+    date?:string;
 } 

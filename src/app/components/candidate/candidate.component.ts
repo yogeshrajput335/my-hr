@@ -10,11 +10,13 @@ declare var dataTableInit: any;
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit{
-  
+display = false;  
 Candidate:candidate[];
 cols:any;
 selectedProducts:candidate[];
-
+sibebarHeader = "Add Candidate";
+selectedKey=''
+candidate:candidate = {name:'',phone:'',email:'',tech:'',visa:'',rate:'',date:''};
   constructor(
     public candidateService:candidateService
   ){ }
@@ -28,8 +30,7 @@ selectedProducts:candidate[];
       { field: 'visa', header: 'visa' },
       { field: 'rate', header: 'rate' },
       { field: 'date', header: 'date' },
-
-  ];
+    ];
 
     this.candidateService.getAll().snapshotChanges().pipe(
       map(changes =>
@@ -42,8 +43,30 @@ selectedProducts:candidate[];
     });
   }
   create() {   
-    this.candidateService.create({name:'test',phone:8792795552, email:'test@test.com',tech:'c',visa:'dd', rate:100, date:19/9/2022}).then(() => {
+    if(this.sibebarHeader == 'Edit Candidate'){
+      this.candidateService.update(this.selectedKey,this.candidate).then(() => {
+        console.log('Updated job successfully!');
+        this.display = false;
+        this.candidate = {name:'', phone:'',email:'',tech:'',visa:'',rate:'',date:''}
+      });
+    }
+    else{
+    this.candidateService.create({name:'test',phone:'', email:'test@test.com',tech:'c',visa:'dd', rate:'', date:''}).then(() => {
       console.log('Created new item successfully!');
     });
+    }
+  }
+  AddCandidate(){
+    this.display = true;
+    this.sibebarHeader = 'Add Candidate'
+  }
+  edit(key:string,candidate:candidate){
+    this.display = true;
+    this.sibebarHeader = 'Edit Candidate'
+    this.candidate = candidate;
+    this.selectedKey = key;
+  }
+  delete(key:any){
+    this.candidateService.delete(key);
   }
 }
