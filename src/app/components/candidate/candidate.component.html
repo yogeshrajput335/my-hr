@@ -1,5 +1,5 @@
 <div class="card">
-  <h5>Jobs</h5>
+  <h5>Candidate</h5>
   <p-table
     #dt
     [columns]="cols"
@@ -43,7 +43,7 @@
         >
           Selected Row CSV
         </button>
-        <p-button icon="pi pi-plus"></p-button>
+        <p-button icon="pi pi-plus" (click)="AddCandidate()" icon="pi pi-plus"></p-button>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -55,6 +55,7 @@
         <th>Visa</th>
         <th>Rate</th>
         <th>Date</th>
+        <th>Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-candidate>
@@ -66,8 +67,42 @@
         <td>{{ candidate.visa }}</td>
         <td>{{ candidate.rate }}</td>
         <td>{{ candidate.date }}</td>
+        <td>{{ candidate.actions}}</td>
+        <td>
+          <button (click)="edit(candidate.key,candidate)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+          <button (click)="delete(candidate.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+        </td>
       </tr>
     </ng-template>
   </p-table>
   <button (click)="create()">create</button>
 </div>
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+  <h3>{{sibebarHeader}}</h3>
+  <div class="form-group">
+    <label> Name <small>(required)</small></label>
+    <input name="name" type="text" class="form-control" [(ngModel)]="candidate.name">
+</div>
+<div class="form-group">
+  <label> Phone</label>
+  <input name="phone" type="text" class="form-control" [(ngModel)]="candidate.phone">
+</div>
+<div class="form-group">
+  <label> Email</label>
+  <input name="email" type="text" class="form-control" [(ngModel)]="candidate.email">
+</div>
+<div class="form-group">
+  <label> Tech</label>
+  <input name="tech" type="text" class="form-control" [(ngModel)]="candidate.tech">
+</div>
+<div class="form-group">
+  <label> Visa</label>
+  <input name="visa" type="text" class="form-control" [(ngModel)]="candidate.visa">
+</div>
+<div class="form-group">
+  <label> rate </label>
+  <input name="rate" type="text" class="form-control" [(ngModel)]="candidate.rate">
+</div>
+
+  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+</p-sidebar>
