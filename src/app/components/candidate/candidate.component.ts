@@ -11,17 +11,17 @@ declare var dataTableInit: any;
 })
 export class CandidateComponent implements OnInit{
 display = false;  
-Candidate:candidate[];
 cols:any;
 selectedProducts:candidate[];
 sibebarHeader = "Add Candidate";
 selectedKey=''
 candidate:candidate = {name:'',phone:'',email:'',tech:'',visa:'',rate:'',date:''};
+Candidates: candidate[];
   constructor(
     public candidateService:candidateService
   ){ }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.cols = [
       { field: 'name', header: 'name', customExportHeader: 'NAME' },
       { field: 'phone', header: 'phone' },
@@ -39,7 +39,7 @@ candidate:candidate = {name:'',phone:'',email:'',tech:'',visa:'',rate:'',date:''
         )
       )
     ).subscribe(data => {
-      this.Candidate = data;
+      this.Candidates = data;
     });
   }
   create() {   
@@ -51,8 +51,10 @@ candidate:candidate = {name:'',phone:'',email:'',tech:'',visa:'',rate:'',date:''
       });
     }
     else{
-    this.candidateService.create({name:'test',phone:'', email:'test@test.com',tech:'c',visa:'dd', rate:'', date:''}).then(() => {
+    this.candidateService.create(this.candidate).then(() => {
       console.log('Created new item successfully!');
+      this.display=false;
+      this.candidate={ name:'', phone:'',email:'',tech:'',visa:'',rate:'',date:'' }
     });
     }
   }

@@ -8,7 +8,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { LandingComponent } from './landing/landing.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
-
+import { AssetComponent } from './components/Asset/asset.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -19,7 +19,8 @@ const routes: Routes = [
       { path: 'users',    component: UsersComponent },
       { path: 'profile',  component: ProfileComponent },
       { path: 'jobs',     component: JobsComponent },
-      { path:'candidate', component: CandidateComponent }
+      { path: 'candidate', component: CandidateComponent },
+      { path: 'asset',     component:AssetComponent}
     ]
   },
 ];
