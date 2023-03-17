@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/users.service';
+declare var dataTableInit:any;
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
+
 export class UsersComponent implements OnInit {
   Users: User[];
   user:User = {username:'',name:'',email:'',mobileNumber:''};
@@ -20,15 +22,13 @@ export class UsersComponent implements OnInit {
     public userService: UserService
   ){ }
 
-    ngOnInit() {
+    ngOnInit():void {
       this.cols = [
         { field: 'username', header: 'Username', customExportHeader: 'USERNAME' },
         { field: 'name', header: 'Name' },
         { field: 'email', header: 'Email' },
         { field: 'mobileNumber', header: 'Mobile Number' }
     ];
-
-
       this.userService.getAll().snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit {
         });
       }
       else{
-      this.userService.create({username:'test',name:'name',email:'test@test.com',mobileNumber:''}).then(() => {
+      this.userService.create(this.user).then(() => {
         console.log('Created new item successfully!');
         this.display = false;
         this.user = {username:'', name:'',email:'',mobileNumber:''}
@@ -64,7 +64,6 @@ export class UsersComponent implements OnInit {
       this.sibebarHeader = 'Edit User'
       this.user = user;
       this.selectedKey = key;
-  
     }
     delete(key:any){
       this.userService.delete(key);

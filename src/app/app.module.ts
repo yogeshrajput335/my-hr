@@ -23,6 +23,7 @@ import {ButtonModule} from 'primeng/button';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import {SidebarModule} from 'primeng/sidebar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AssetComponent } from './components/Asset/asset.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     UsersComponent,
     ProfileComponent,
     JobsComponent,
-    CandidateComponent
+    CandidateComponent,
+    AssetComponent,
   ],
   imports: [
     BrowserModule,

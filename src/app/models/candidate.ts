@@ -1,4 +1,5 @@
 export class candidate{
+    key?: string | null;
     name?:string;
     phone?:string;
     email?:string;

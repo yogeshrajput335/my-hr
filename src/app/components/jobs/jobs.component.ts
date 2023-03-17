@@ -11,7 +11,6 @@ declare var dataTableInit: any;
   styleUrls: ['./jobs.component.scss'],
 })
 export class JobsComponent implements OnInit {
-
   Jobs: Job[];
   cols: any[];
   job:Job = {name:'',desc:'',startdate:'',enddate:''};

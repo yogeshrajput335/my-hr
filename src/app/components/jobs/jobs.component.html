@@ -18,7 +18,7 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
           <th>Desc</th>
           <th>StartDate</th>
           <th>EndDate</th>
-          <th></th>
+          <th>Actions</th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-Jobs>
@@ -27,6 +27,8 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
           <td>{{Jobs.desc}}</td>
           <td>{{Jobs.startdate}}</td>
           <td>{{Jobs.enddate}}</td>
+          <td>{{Jobs.actions}}</td>
+
           <td>
             <button (click)="edit(Jobs.key,Jobs)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
             <button (click)="delete(Jobs.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
