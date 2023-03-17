@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { jobService } from 'src/app/services/job.service';
-
+import {MenuItem} from 'primeng/api';
 declare var dataTableInit: any;
 
 @Component({
@@ -11,6 +11,9 @@ declare var dataTableInit: any;
   styleUrls: ['./jobs.component.scss'],
 })
 export class JobsComponent implements OnInit {
+  es: any;
+  value: Date;
+  date2: Date;
   Jobs: Job[];
   cols: any[];
   job:Job = {name:'',desc:'',startdate:'',enddate:''};
@@ -18,9 +21,19 @@ export class JobsComponent implements OnInit {
   display = false;
   sibebarHeader = "Add Job";
   selectedKey=''
+  jobService: any;
+  
   constructor(
     private jobservice: jobService
     ) {}
+    confirm() {
+      this.jobService.confirm({
+          message: 'Are you sure that you want to perform this action?',
+          accept: () => {
+              //Actual logic to perform a confirmation
+          }
+      });
+  }
 
   ngOnInit():void {
     this.cols = [
@@ -29,6 +42,7 @@ export class JobsComponent implements OnInit {
       { field: 'startdate', header: 'startdate' },
       { field: 'enddate', header: 'enddate' }
   ];
+
 
     this.jobservice.getAll().snapshotChanges().pipe(
       map(changes =>
@@ -58,6 +72,7 @@ export class JobsComponent implements OnInit {
   }
   delete(key:any){
     this.jobservice.delete(key);
+    message: 'Are you sure that you want to perform this action?'
   }
   AddJob(){
     this.display = true;
@@ -69,8 +84,11 @@ export class JobsComponent implements OnInit {
     this.job = job;
     this.selectedKey = key;
   }
-  
+
 
 }
 
 
+let today = new Date();
+let month = today.getMonth();
+let year = today.getFullYear();
