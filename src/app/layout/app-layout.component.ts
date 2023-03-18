@@ -8,7 +8,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class AppLayoutComponent {
   title = 'my-hr';
+  userDetails:any ;
   constructor(
     public authService: AuthService
-  ) { }
+  ) { 
+    this.userDetails = JSON.parse(localStorage.getItem('user')!)
+  }
 }

@@ -21,7 +21,6 @@ export class AuthService {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
-        debugger
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -112,7 +111,6 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
-    debugger
     const userData: User = {
       uid: user.uid,
     //   username: user.username,
