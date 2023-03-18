@@ -1,0 +1,15 @@
+:host ::ng-deep .navbar{
+    min-height: 0px
+}
+:host ::ng-deep .main-nav {
+    padding-top: 0px; 
+}
+:host ::ng-deep .navbar .container {
+    padding-top: 0px;
+}
+:host ::ng-deep .navbar-default .navbar-nav > li > a.active:after {
+    bottom: 0px;
+}
+:host ::ng-deep .navbar-brand {
+    padding:0px;
+}
