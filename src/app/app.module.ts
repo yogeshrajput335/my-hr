@@ -25,6 +25,7 @@ import { AssetComponent } from './components/Asset/asset.component';
 import { CalendarModule} from 'primeng/calendar';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     SidebarModule,
     
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

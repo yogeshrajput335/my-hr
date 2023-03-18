@@ -9,18 +9,19 @@ import { LandingComponent } from './landing/landing.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { AssetComponent } from './components/Asset/asset.component';
+import { AuthGuard } from './services/auth.guard';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: '', component: AppLayoutComponent,
+    path: '', component: AppLayoutComponent, 
     children: [
-      { path: 'dashboard',component: DashboardComponent },
-      { path: 'users',    component: UsersComponent },
-      { path: 'profile',  component: ProfileComponent },
-      { path: 'jobs',     component: JobsComponent },
-      { path: 'candidate', component: CandidateComponent },
-      { path: 'asset',     component:AssetComponent}
+      { path: 'dashboard',component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'users',    component: UsersComponent, canActivate: [AuthGuard] },
+      { path: 'profile',  component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'jobs',     component: JobsComponent, canActivate: [AuthGuard] },
+      { path: 'candidate', component: CandidateComponent, canActivate: [AuthGuard] },
+      { path: 'asset',     component:AssetComponent, canActivate: [AuthGuard]}
     ]
   },
 ];

@@ -13,3 +13,10 @@
 :host ::ng-deep .navbar-brand {
     padding:0px;
 }
+:host ::ng-deep .button.navbar-right {
+    padding: 0px;
+}
+:host ::ng-deep .navbar-btn {
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
