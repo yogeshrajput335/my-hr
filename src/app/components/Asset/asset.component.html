@@ -1,5 +1,4 @@
 <div class="card">
-    
     <p-table  #dt [columns]="cols" [value]="Assets" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
     [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
     selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
@@ -20,7 +19,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Details</th>
-                    <th></th>
+                    <th>Actions</th>
                 </tr> 
             </ng-template>
             <ng-template pTemplate="body" let-Assets>

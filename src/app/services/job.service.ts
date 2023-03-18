@@ -13,6 +13,7 @@ import { Job } from '../models/job';
 export class jobService {
   private dbPath = '/jobs';
   tutorialsRef: AngularFireList<Job>;
+  jobservice: any;
 
   constructor( private db: AngularFireDatabase ) {
      this.tutorialsRef = db.list(this.dbPath);
@@ -33,7 +34,6 @@ export class jobService {
   delete(key: string): Promise<void> {
     return this.tutorialsRef.remove(key);
   }
-
   deleteAll(): Promise<void> {
     return this.tutorialsRef.remove();
   }

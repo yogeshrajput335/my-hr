@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environment/environment';
@@ -18,13 +16,15 @@ import { AppLayoutComponent } from './layout/app-layout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobsComponent } from './components/jobs/jobs.component';
-import {TableModule} from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
+import { TableModule} from 'primeng/table';
+import { ButtonModule} from 'primeng/button';
 import { CandidateComponent } from './components/candidate/candidate.component';
-import {SidebarModule} from 'primeng/sidebar';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SidebarModule} from 'primeng/sidebar';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AssetComponent } from './components/Asset/asset.component';
-
+import { CalendarModule} from 'primeng/calendar';
+import {ToastModule} from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +52,7 @@ import { AssetComponent } from './components/Asset/asset.component';
     TableModule,
     ButtonModule,
     SidebarModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
