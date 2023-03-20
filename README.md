@@ -16,3 +16,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * https://www.c-sharpcorner.com/article/how-to-deploy-and-host-an-angular-application-on-firebase/
 * ng build --configuratio production --aot
 * firebase deploy
+* Project Console: https://console.firebase.google.com/project/myhr-8d34f/overview
+* Hosting URL: https://myhr-8d34f.web.app
