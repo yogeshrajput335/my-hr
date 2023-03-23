@@ -8,7 +8,8 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { LandingComponent } from './landing/landing.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
-import { AssetComponent } from './components/Asset/asset.component';
+import { AssetComponent } from './components/asset/asset.component';
+import { ClientComponent } from './components/client/client.component';
 import { AuthGuard } from './services/auth.guard';
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: 'profile',  component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'jobs',     component: JobsComponent, canActivate: [AuthGuard] },
       { path: 'candidate', component: CandidateComponent, canActivate: [AuthGuard] },
-      { path: 'asset',     component:AssetComponent, canActivate: [AuthGuard]}
+      { path: 'asset',     component:AssetComponent, canActivate: [AuthGuard]},
+      { path: 'client',    component:ClientComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
