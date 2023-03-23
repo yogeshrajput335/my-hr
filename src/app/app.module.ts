@@ -21,7 +21,8 @@ import { ButtonModule} from 'primeng/button';
 import { CandidateComponent } from './components/candidate/candidate.component';
 import { SidebarModule} from 'primeng/sidebar';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AssetComponent } from './components/Asset/asset.component';
+import { AssetComponent } from './components/asset/asset.component';
+import { ClientComponent } from './components/client/client.component';
 import { CalendarModule} from 'primeng/calendar';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
@@ -38,6 +39,7 @@ import { AuthService } from './services/auth.service';
     JobsComponent,
     CandidateComponent,
     AssetComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,
