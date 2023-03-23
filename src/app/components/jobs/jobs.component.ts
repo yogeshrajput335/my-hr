@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { jobService } from 'src/app/services/job.service';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 declare var dataTableInit: any;
 
 @Component({

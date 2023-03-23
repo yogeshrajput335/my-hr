@@ -13,3 +13,9 @@
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
     padding:10px
 }
+:host ::ng-deep .p-datatable .p-datatable-header {
+    padding: 0px;
+}
+:host ::ng-deep .card {
+    margin: 0px 90px;
+}
