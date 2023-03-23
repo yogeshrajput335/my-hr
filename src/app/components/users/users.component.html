@@ -1,12 +1,11 @@
 <div class="card">
-    
-        <p-table #dt [columns]="cols" [value]="Users" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+    <p-table #dt [columns]="cols" [value]="Users" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
         [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
         selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
         <ng-template pTemplate="caption">
           <div style="display: inline-flex;">
-            <h5 style="margin-right: 100px;">Users</h5>
-            <div class="flex">
+            <h5 style="margin-right: 100px; margin-left:20px;">Users</h5>
+            <div class="float:right;margin-top:4px">
                 <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
                 <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
@@ -57,6 +56,5 @@
     <label> mobileNumber</label>
     <input name="mobileNumber" type="text" class="form-control" [(ngModel)]="user.mobileNumber">
   </div>
-  
-    <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
   </p-sidebar>
