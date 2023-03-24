@@ -16,9 +16,9 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
   <ng-template pTemplate="header">
       <tr>
           <th>Name</th>
-          <th>Desc</th>
-          <th>StartDate</th>
-          <th>EndDate</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
           <th></th>
           <th>Actions</th>
       </tr>
@@ -32,9 +32,8 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
           <td>{{Jobs.actions}}</td>
           <td>
             <button (click)="edit(Jobs.key,Jobs)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-            <button (click)="delete(Jobs.key)" pButton pRipple type="button" icon="pi pi-check"  label="Confirm" class="p-button-rounded p-button-danger p-button-text">
-              <!-- <button  pButton  (click)="confirm()"icon="pi pi-check" label="Confirm"></button> -->
-          </button>
+            <button (click)="delete(Jobs.key)" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-danger p-button-text">
+            </button>
           </td>
       </tr>
   </ng-template>
@@ -47,17 +46,15 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
     <input name="name" type="text" class="form-control" [(ngModel)]="job.name">
 </div>
 <div class="form-group">
-  <label> Desc</label>
+  <label> Description</label>
   <input name="desc" type="text" class="form-control" [(ngModel)]="job.desc">
 </div>
 <div class="form-group">
-  <label> startdate</label>
+  <label> Start Date</label>
   <input name="startdate" type="text" class="form-control" [(ngModel)]="job.startdate">
-  <p-calendar [(ngModel)]="date2" locale="es" dateFormat="dd/mm/yy" inputId="spanish"></p-calendar>
-       
 </div>
 <div class="form-group">
-  <label> enddate</label>
+  <label> End Date</label>
   <input name="enddate" type="text" class="form-control" [(ngModel)]="job.enddate">
 </div>
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>

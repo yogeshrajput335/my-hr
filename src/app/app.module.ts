@@ -27,6 +27,7 @@ import { CalendarModule} from 'primeng/calendar';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { AuthService } from './services/auth.service';
+import { EmployeeComponent } from './components/employee/employee.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { AuthService } from './services/auth.service';
     CandidateComponent,
     AssetComponent,
     ClientComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,

@@ -27,26 +27,26 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
+        <th>Candidate Name</th>
         <th>Email</th>
         <th>Tech</th>
         <th>Visa</th>
         <th>Rate</th>
         <th>Date</th>
+        <th>ContactDetails</th>
         <th></th>
         <th>Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-Candidates>
       <tr>
-        <td>{{ Candidates.name }}</td>
-        <td>{{ Candidates.phone }}</td>
+        <td>{{ Candidates.CandidateName }}</td>
         <td>{{ Candidates.email }}</td>
         <td>{{ Candidates.tech }}</td>
         <td>{{ Candidates.visa }}</td>
         <td>{{ Candidates.rate }}</td>
         <td>{{ Candidates.date }}</td>
+        <td>{{ Candidates.contactdetails}}</td>
         <td>{{ Candidates.actions}}</td>
         <td>
           <button (click)="edit(Candidates.key,Candidates)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
@@ -59,14 +59,12 @@
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
   <h3>{{sibebarHeader}}</h3>
+
   <div class="form-group">
-    <label> Name <small>(required)</small></label>
-    <input name="name" type="text" class="form-control" [(ngModel)]="candidate.name">
-</div>
-<div class="form-group">
-  <label> Phone</label>
-  <input name="phone" type="text" class="form-control" [(ngModel)]="candidate.phone">
-</div>
+    <label>Candidate Name <small>(required)</small></label>
+    <input name="CandidateName" type="text" class="form-control" [(ngModel)]="candidate.CandidateName">
+  </div>
+
 <div class="form-group">
   <label> Email</label>
   <input name="email" type="text" class="form-control" [(ngModel)]="candidate.email">
@@ -80,8 +78,16 @@
   <input name="visa" type="text" class="form-control" [(ngModel)]="candidate.visa">
 </div>
 <div class="form-group">
-  <label> rate </label>
+  <label> Rate </label>
   <input name="rate" type="text" class="form-control" [(ngModel)]="candidate.rate">
+</div>
+<div class="form-group">
+  <label> Date </label>
+  <input name="date" type="text" class="form-control" [(ngModel)]="candidate.date">
+</div>
+<div class="form-group">
+  <label> Contact Details </label>
+  <input name="contact details" type="text" class="form-control" [(ngModel)]="candidate.contactdetails">
 </div>
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
 </p-sidebar>

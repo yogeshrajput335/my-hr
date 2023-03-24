@@ -15,7 +15,7 @@ cols:any;
 selectedProducts:candidate[];
 sibebarHeader = "Add Candidate";
 selectedKey=''
-candidate:candidate = {name:'',phone:'',email:'',tech:'',visa:'',rate:'',date:''};
+candidate:candidate = {CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''};
 Candidates: candidate[];
   constructor(
     public candidateService:candidateService
@@ -23,13 +23,14 @@ Candidates: candidate[];
 
   ngOnInit():void {
     this.cols = [
-      { field: 'name', header: 'name', customExportHeader: 'NAME' },
+      { field: 'candidatename', header: 'candidatename', customExportHeader: 'CANDIDATENAME' },
       { field: 'phone', header: 'phone' },
       { field: 'email', header: 'email' },
       { field: 'tech', header: 'tech' },
       { field: 'visa', header: 'visa' },
       { field: 'rate', header: 'rate' },
       { field: 'date', header: 'date' },
+      { field: 'contactdetails', header: 'contactdetails' },
     ];
 
     this.candidateService.getAll().snapshotChanges().pipe(
@@ -47,14 +48,14 @@ Candidates: candidate[];
       this.candidateService.update(this.selectedKey,this.candidate).then(() => {
         console.log('Updated job successfully!');
         this.display = false;
-        this.candidate = {name:'', phone:'',email:'',tech:'',visa:'',rate:'',date:''}
+        this.candidate = {CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
       });
     }
     else{
     this.candidateService.create(this.candidate).then(() => {
       console.log('Created new item successfully!');
       this.display=false;
-      this.candidate={ name:'', phone:'',email:'',tech:'',visa:'',rate:'',date:'' }
+      this.candidate={ CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
     });
     }
   }
