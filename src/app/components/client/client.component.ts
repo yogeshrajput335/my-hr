@@ -10,9 +10,6 @@ declare var dataTableInit: any;
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent {
-    es: any;
-    value: Date;
-    date2: Date;
     Client: Client[];
     cols: any[];
     client:Client = {ClientName:'',Phone:'',Email:'',Address:''};

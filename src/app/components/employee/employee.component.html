@@ -1,0 +1,84 @@
+<div class="card">
+    <p-table  #dt [columns]="cols" [value]="Employee" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+    [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+    selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
+    <ng-template pTemplate="caption">
+        <div style="display: inline-flex;">
+            <h5 style="margin-right: 100px;margin-left:20px">Employee</h5>
+            <div style="float: right;margin-top: 4px">
+                 <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+                <!-- <button style="margin-left:5px" type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button> -->
+                <p-button style="margin-left:5px;" icon="pi pi-plus" (click)="AddEmployee()" icon="pi pi-plus"></p-button>
+            </div>
+        </div>
+    </ng-template> 
+        <ng-template pTemplate="header">
+                <tr>
+                    <th>Employee Type</th>
+                    <th>Employee Name</th>
+                    <th>Phone</th>
+                    <th>DateOfBirth</th>
+                    <th>Personal Email</th>
+                    <th>Company Email</th>
+                    <th>Reporting Manager</th>
+                    <th></th>
+                    <th>Actions</th>
+                </tr> 
+            </ng-template>
+            <ng-template pTemplate="body" let-Employee>
+                <tr>
+                    <td>{{Employee.EmployeeType}}</td>
+                    <td>{{Employee.EmployeeName}}</td>
+                    <td>{{Employee.Phone}}</td>
+                    <td>{{Employee.DateOfBirth}}</td>
+                    <td>{{Employee.PersonalEmail}}</td>
+                    <td>{{Employee.CompanyEmail}}</td>
+                    <td>{{Employee.ReportingManager}}</td>
+                    <td>{{Employee.Actions}}</td>
+
+                    <td>
+                        <button (click)="edit(Employee.key,Employee)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button (click)="delete(Employee.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+       
+</div>
+
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+    <h3>{{sibebarHeader}}</h3>
+
+    <div class="form-group">
+      <label> Employee Type <small>(required)</small></label>
+      <input name="employeetype" type="text" class="form-control" [(ngModel)]="employee.EmployeeType">
+  </div>
+  <div class="form-group">
+    <label> Employee Name </label>
+    <input name="employeename" type="text" class="form-control" [(ngModel)]="employee.EmployeeName">
+  </div>
+  <div class="form-group">
+    <label> Phone</label>
+    <input name="phone" type="text" class="form-control" [(ngModel)]="employee.Phone">
+  </div>
+  <div class="form-group">
+    <label> DateOfBirth</label>
+    <input name="dateofbirth" type="text" class="form-control" [(ngModel)]="employee.DateOfBirth">
+  </div>
+ <div class="form-group">
+    <label> Personal Email</label>
+    <input name="personalemail" type="text" class="form-control" [(ngModel)]="employee.PersonalEmail">
+  </div>
+  <div class="form-group">
+    <label> Company Email</label>
+    <input name="companyemail" type="text" class="form-control" [(ngModel)]="employee.CompanyEmail">
+  </div>
+  <div class="form-group">
+    <label> Reporting Manager</label>
+    <input name="reportingmanager" type="text" class="form-control" [(ngModel)]="employee.ReportingManager">
+  </div>
+
+<p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-sidebar>
