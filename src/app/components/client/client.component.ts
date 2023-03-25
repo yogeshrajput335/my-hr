@@ -9,7 +9,7 @@ declare var dataTableInit: any;
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss']
 })
-export class ClientComponent {
+export class ClientComponent implements OnInit{
     Client: Client[];
     cols: any[];
     client:Client = {ClientName:'',Phone:'',Email:'',Address:''};
