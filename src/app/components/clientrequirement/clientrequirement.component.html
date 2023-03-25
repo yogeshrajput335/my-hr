@@ -1,0 +1,75 @@
+<div class="card">
+    <p-table #dt [columns]="cols" [value]="ClientRequirement" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+        [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+        selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
+        <ng-template pTemplate="caption">
+          <div style="display: inline-flex;">
+            <h5 style="margin-right: 100px; margin-left:20px;">Client Requirement</h5>
+            <div class="float:right;margin-top:4px">
+                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+                <p-button style="margin-left:5px" icon="pi pi-plus" (click)="AddClientRequirement()" icon="pi pi-plus"></p-button>
+            </div>
+            </div>
+        </ng-template>    
+        <ng-template pTemplate="header">
+                <tr>
+                    <th>Client Id</th>
+                    <th>Requirement Heading</th>
+                    <th>Requirement Description</th>
+                    <th>Requirement Date</th>
+                    <th>End Date</th>
+                    <th>Requirement By</th>
+                    <th></th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-ClientRequirements>
+                <tr>
+                    <td>{{ClientRequirements.ClientId}}</td>
+                    <td>{{ClientRequirements.RequirementHeading}}</td>
+                    <td>{{ClientRequirements.RequirementDescription}}</td>
+                    <td>{{ClientRequirements.RequirementDate}}</td>
+                    <td>{{ClientRequirements.EndDate}}</td>
+                    <td>{{ClientRequirements.RequirementBy}}</td>
+                    <td>{{ClientRequirements.Actions}}</td>
+                    <td>
+                        <button (click)="edit(ClientRequirements.key,ClientRequirements)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button (click)="delete(ClientRequirements.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+       
+</div>
+
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+    <h3>{{sibebarHeader}}</h3>
+    <div class="form-group">
+      <label> Client Id <small>(required)</small></label>
+      <input name="clientId" type="text" class="form-control" [(ngModel)]="clientrequirement.ClientId">
+  </div>
+  <div class="form-group">
+    <label> Requirement Heading</label>
+    <input name="requirementheading" type="text" class="form-control" [(ngModel)]="clientrequirement.RequirementHeading">
+  </div>
+  <div class="form-group">
+    <label> Requirement Description</label>
+    <input name="requirementdescription" type="text" class="form-control" [(ngModel)]="clientrequirement.RequirementDescription">
+  </div>
+  <div class="form-group">
+    <label> Requirement Date</label>
+    <input name="requirementdate" type="text" class="form-control" [(ngModel)]="clientrequirement.RequirementDate">
+  </div>
+  <div class="form-group">
+    <label> End Date</label>
+    <input name="enddate" type="text" class="form-control" [(ngModel)]="clientrequirement.EndDate">
+  </div>
+  <div class="form-group">
+    <label> Requirement By</label>
+    <input name="requirementby" type="text" class="form-control" [(ngModel)]="clientrequirement.RequirementBy">
+  </div>
+
+  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-sidebar>
