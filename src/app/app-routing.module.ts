@@ -12,6 +12,7 @@ import { AssetComponent } from './components/asset/asset.component';
 import { ClientComponent } from './components/client/client.component';
 import { AuthGuard } from './services/auth.guard';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'asset',     component:AssetComponent, canActivate: [AuthGuard]},
       { path: 'client',    component:ClientComponent, canActivate: [AuthGuard]},
       { path: 'employee',  component:EmployeeComponent, canActivate: [AuthGuard]},
+      { path: 'clientcontactperson',  component:ClientContactPersonComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
