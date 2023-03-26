@@ -15,7 +15,7 @@
         </ng-template>    
         <ng-template pTemplate="header">
                 <tr>
-                    <th>Client Id</th>
+                    <th>Client</th>
                     <th>Requirement Heading</th>
                     <th>Requirement Description</th>
                     <th>Requirement Date</th>
@@ -47,8 +47,10 @@
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
     <h3>{{sibebarHeader}}</h3>
     <div class="form-group">
-      <label> Client Id <small>(required)</small></label>
-      <input name="clientId" type="text" class="form-control" [(ngModel)]="clientrequirement.ClientId">
+      <label> Client<small>(required)</small></label>
+      <select  [(ngModel)]="clientrequirement.ClientId"  class="form-control">
+        <option *ngFor="let c of Client">{{c.ClientName}}</option>
+      </select>
   </div>
   <div class="form-group">
     <label> Requirement Heading</label>

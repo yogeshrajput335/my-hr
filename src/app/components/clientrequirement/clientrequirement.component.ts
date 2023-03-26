@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { Client } from 'src/app/models/client';
 import { ClientRequirement } from 'src/app/models/clientrequirement';
+import { clientService } from 'src/app/services/client.service';
 import { clientrequirementService } from 'src/app/services/clientrequirement.service';
 declare var dataTableInit:any;
 
@@ -10,6 +12,7 @@ declare var dataTableInit:any;
   styleUrls: ['./clientrequirement.component.scss']
 })
 export class ClientRequirementComponent implements OnInit{
+  Client: Client[];
   ClientRequirement: ClientRequirement[];
   clientrequirement:ClientRequirement = {ClientId:'',RequirementHeading:'',RequirementDescription:'',RequirementDate:'',EndDate:'',RequirementBy:''};
   selectedProducts: ClientRequirement[];
@@ -18,10 +21,20 @@ export class ClientRequirementComponent implements OnInit{
   sibebarHeader = "AddClientRequirement";
   selectedKey=''
   constructor(
-    public clientrequirementservice:clientrequirementService
+    public clientrequirementservice:clientrequirementService,
+    private clientservice:clientService
   ){ }
 
     ngOnInit():void {
+      this.clientservice.getAll().snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({ key: c.payload.key, ...c.payload.val() })
+          )
+        )
+      ).subscribe(data => {
+        this.Client = data;
+      });
       this.cols = [
         { field: 'ClientId', header: 'ClientId', customExportHeader: 'CLIENTID' },
         { field: 'RequirementDescription', header: 'RequirementDescription' },
