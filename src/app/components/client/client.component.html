@@ -15,7 +15,7 @@
   </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>ClientName</th>
+            <th>Client Name</th>
             <th>Phone</th>
             <th>Email</th>
             <th>Address</th>
@@ -33,9 +33,7 @@
   
             <td>
               <button (click)="edit(Client.key,Client)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-              <button (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-check"  label="Confirm" class="p-button-rounded p-button-danger p-button-text">
-                <!-- <button  pButton  (click)="confirm()"icon="pi pi-check" label="Confirm"></button> -->
-            </button>
+              <button (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-times"   class="p-button-rounded p-button-danger p-button-text"></button>
             </td>
         </tr>
     </ng-template>
@@ -44,8 +42,8 @@
   <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
     <h3>{{sibebarHeader}}</h3>
     <div class="form-group">
-      <label> ClientName <small>(required)</small></label>
-      <input name="clientname" type="text" class="form-control" [(ngModel)]="client.ClientName">
+      <label> Client Name <small>(required)</small></label>
+      <input name="client name" type="text" class="form-control" [(ngModel)]="client.ClientName">
   </div>
   <div class="form-group">
     <label> Phone</label>
@@ -54,7 +52,6 @@
   <div class="form-group">
     <label> Email</label>
     <input name="email" type="text" class="form-control" [(ngModel)]="client.Email">
-   
   </div>
   <div class="form-group">
     <label> Address</label>
