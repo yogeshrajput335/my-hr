@@ -16,7 +16,7 @@
      >
        <ng-template pTemplate="caption">
          <div style="display: inline-flex;">
-           <h5 style="margin-right:100px;margin-left:20px">ClientFollowup</h5>
+           <h5 style="margin-right:100px;margin-left:20px">Client Followup</h5>
          <div style="float: right;margin-top:4px">
            <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV"tooltipPosition="bottom"></button>
              <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
@@ -28,9 +28,9 @@
        <ng-template pTemplate="header">
          <tr>
            <th>Client Id</th>
-           <th>FollowUpDate</th>
-           <th>NextFollowUpDate</th>
-           <th>MinuteOfMeetings</th>
+           <th>Follow UpDate</th>
+           <th>Next FollowUpDate</th>
+           <th>Minute OfMeetings</th>
            <th></th>
            <th>Actions</th>
          </tr>
@@ -56,19 +56,19 @@
    
      <div class="form-group">
        <label>Client Id<small>(required)</small></label>
-       <input name="clientid" type="text" class="form-control" [(ngModel)]="clientfollowup.ClientId">
+       <input name="client id" type="text" class="form-control" [(ngModel)]="clientfollowup.ClientId">
      </div>
    
    <div class="form-group">
-     <label> FollowUpDate</label>
+     <label> Follow UpDate</label>
      <input name="followupdate" type="text" class="form-control" [(ngModel)]="clientfollowup.FollowUpDate">
    </div>
    <div class="form-group">
-     <label> NextFollowUpDate</label>
+     <label> Next FollowUpDate</label>
      <input name="nextfollowupdate" type="text" class="form-control" [(ngModel)]="clientfollowup.NextFollowUpDate">
    </div>
    <div class="form-group">
-     <label> MinuteOfMeetings</label>
+     <label> Minute OfMeetings</label>
      <input name="minuteofmeetings" type="text" class="form-control" [(ngModel)]="clientfollowup.MinuteOfMeetings">
    </div>
    <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
