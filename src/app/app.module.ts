@@ -26,7 +26,12 @@ import { ClientComponent } from './components/client/client.component';
 import { CalendarModule} from 'primeng/calendar';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { MenuModule } from 'primeng/menu';
+import { PaginatorModule } from 'primeng/paginator';
 import { AuthService } from './services/auth.service';
+import { ChartModule } from 'primeng/chart';
+import { MenubarModule } from 'primeng/menubar';
+import {StyleClassModule} from 'primeng/styleclass';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientRequirementComponent } from './components/clientrequirement/clientrequirement.component';
 import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
@@ -65,7 +70,11 @@ import { ClientEmployeeDetailsComponent } from './components/clientemployeedetai
     TableModule,
     ButtonModule,
     SidebarModule,
-    
+    MenuModule,
+    PaginatorModule,
+    ChartModule,
+    MenubarModule,
+    StyleClassModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
