@@ -29,6 +29,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { AuthService } from './services/auth.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
+import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { ClientFollowUpComponent } from './components/clientfollowup/clientfollo
     ClientComponent,
     EmployeeComponent,
     ClientFollowUpComponent,
+    ClientContactPersonComponent,
   ],
   imports: [
     BrowserModule,
