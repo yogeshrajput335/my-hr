@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { Client } from 'src/app/models/client';
 import { ClientContactPerson } from 'src/app/models/clientcontactperson';
+import { clientService } from 'src/app/services/client.service';
 import { clientcontactpersonService } from 'src/app/services/clientcontactperson.service';
 declare var dataTableInit:any;
 
@@ -10,6 +12,7 @@ declare var dataTableInit:any;
   styleUrls: ['./clientcontactperson.component.scss']
 })
 export class ClientContactPersonComponent implements OnInit {
+  Client: Client[];
   ClientContactPerson: ClientContactPerson[];
   clientcontactperson:ClientContactPerson = {ClientId:'',ContactPersonName:'',Phone:'',Email:''};
   selectedProducts:ClientContactPerson[];
@@ -18,9 +21,19 @@ export class ClientContactPersonComponent implements OnInit {
   sibebarHeader = "Add ClientContactPerson";
   selectedKey=''
   constructor(
-    public clientcontactpersonservice:clientcontactpersonService
+    public clientcontactpersonservice:clientcontactpersonService,
+    private clientservice:clientService
   ){ }
   ngOnInit():void {
+    this.clientservice.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.Client = data;
+    });
     this.cols = [
       { field: 'ClientId', header: 'ClientId', customExportHeader: 'CLIENTID' },
       { field: 'contactpersonname', header: 'ContactPersoNname' },
