@@ -28,6 +28,7 @@ import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { AuthService } from './services/auth.service';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
 import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ClientContactPersonComponent } from './components/clientcontactperson/c
     AssetComponent,
     ClientComponent,
     EmployeeComponent,
+    ClientFollowUpComponent,
     ClientContactPersonComponent,
   ],
   imports: [
