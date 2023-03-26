@@ -31,6 +31,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientRequirementComponent } from './components/clientrequirement/clientrequirement.component';
 import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
 import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
+import { ClientEmployeeDetailsComponent } from './components/clientemployeedetails/clientemployeedetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { ClientContactPersonComponent } from './components/clientcontactperson/c
     ClientRequirementComponent,
     ClientFollowUpComponent,
     ClientContactPersonComponent,
+    ClientEmployeeDetailsComponent,
   ],
   imports: [
     BrowserModule,
