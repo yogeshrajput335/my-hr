@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { Client } from 'src/app/models/client';
 import { ClientFollowUp } from 'src/app/models/clientfollowup';
+import { clientService } from 'src/app/services/client.service';
 import { clientfollowupService } from 'src/app/services/clientfollowup.service';
 declare var dataTableInit: any;
 
@@ -13,31 +15,43 @@ declare var dataTableInit: any;
 export class ClientFollowUpComponent  implements OnInit{
 display = false;  
 cols:any;
+Client: Client[];
 selectedProducts:ClientFollowUp[];
 sibebarHeader = "Add ClientFollowUp";
 selectedKey=''
 clientfollowup:ClientFollowUp = {ClientId: '', FollowUpDate: '', NextFollowUpDate: '', MinuteOfMeetings: ''};
 ClientFollowUp:ClientFollowUp[];
   constructor(
-    public clientfollowupservice:clientfollowupService
+    public clientfollowupservice:clientfollowupService,
+    private clientservice:clientService
   ){ }
   ngOnInit():void {
-    this.cols = [
-      { field: 'ClientId', header: 'ClientId', customExportHeader: 'CLIENT ID' },
-      { field: 'FollowUpDate', header: 'followupdate' },
-      { field: 'NextFollowUpDate', header: 'NextFollowUpDate' },
-      { field: 'MinuteOfMeetings', header: 'MinuteOfMeetings' },
-   ];
+ 
 
-    this.clientfollowupservice.getAll().snapshotChanges().pipe(
+    this.clientservice.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
     ).subscribe(data => {
-      this.ClientFollowUp = data;
+      this.Client = data;
     });
+    this.cols = [
+      { field: 'ClientId', header: 'ClientId', customExportHeader: 'CLIENT ID' },
+      { field: 'FollowUpDate', header: 'followupdate' },
+      { field: 'NextFollowUpDate', header: 'NextFollowUpDate' },
+      { field: 'MinuteOfMeetings', header: 'MinuteOfMeetings' },
+   ];
+   this.clientfollowupservice.getAll().snapshotChanges().pipe(
+    map(changes =>
+      changes.map(c =>
+        ({ key: c.payload.key, ...c.payload.val() })
+      )
+    )
+  ).subscribe(data => {
+    this.ClientFollowUp = data;
+  });
   }
   create() {   
     if(this.sibebarHeader == 'Edit clientfollowup'){
