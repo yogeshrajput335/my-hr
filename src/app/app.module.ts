@@ -29,6 +29,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { AuthService } from './services/auth.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientRequirementComponent } from './components/clientrequirement/clientrequirement.component';
+import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
+import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,8 @@ import { ClientRequirementComponent } from './components/clientrequirement/clien
     ClientComponent,
     EmployeeComponent,
     ClientRequirementComponent,
+    ClientFollowUpComponent,
+    ClientContactPersonComponent,
   ],
   imports: [
     BrowserModule,

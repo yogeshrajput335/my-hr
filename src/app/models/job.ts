@@ -1,6 +1,6 @@
 export interface Job{
     name?:string;
-    desc?:string;
+    description?:string;
     startdate?:string;
     enddate?:string;
 }

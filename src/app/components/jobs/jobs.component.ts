@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { jobService } from 'src/app/services/job.service';
-import { MenuItem } from 'primeng/api';
 declare var dataTableInit: any;
 
 @Component({
@@ -13,7 +12,7 @@ declare var dataTableInit: any;
 export class JobsComponent implements OnInit {
   Jobs: Job[];
   cols: any[];
-  job:Job = {name:'',desc:'',startdate:'',enddate:''};
+  job:Job = {name:'',description:'',startdate:'',enddate:''};
   selectedProducts: Job[];
   display = false;
   sibebarHeader = "Add Job";
@@ -23,19 +22,12 @@ export class JobsComponent implements OnInit {
   constructor(
     private jobservice: jobService
     ) {}
-    confirm() {
-      this.jobService.confirm({
-          message: 'Are you sure that you want to perform this action?',
-          accept: () => {
-              //Actual logic to perform a confirmation
-          }
-      });
-  }
+ 
 
   ngOnInit():void {
     this.cols = [
       { field: 'name', header: 'name', customExportHeader: 'NAME' },
-      { field: 'desc', header: 'desc' },
+      { field: 'description', header: 'description' },
       { field: 'startdate', header: 'startdate' },
       { field: 'enddate', header: 'enddate' }
   ];
@@ -56,21 +48,21 @@ export class JobsComponent implements OnInit {
       this.jobservice.update(this.selectedKey,this.job).then(() => {
         console.log('Updated job successfully!');
         this.display = false;
-        this.job = {name:'',desc:'',startdate:'',enddate:''}
+        this.job = {name:'',description:'',startdate:'',enddate:''}
       });
     }
     else{
       this.jobservice.create(this.job).then(() => {
         console.log('Created new job successfully!');
         this.display = false;
-        this.job = {name:'',desc:'',startdate:'',enddate:''}
+        this.job = {name:'',description:'',startdate:'',enddate:''}
       });
     }
   }
   delete(key:any){
     this.jobservice.delete(key);
-    message: 'Are you sure that you want to perform this action?'
-  }
+   }
+
   AddJob(){
     this.display = true;
     this.sibebarHeader = 'Add Job'
@@ -86,6 +78,3 @@ export class JobsComponent implements OnInit {
 }
 
 
-let today = new Date();
-let month = today.getMonth();
-let year = today.getFullYear();
