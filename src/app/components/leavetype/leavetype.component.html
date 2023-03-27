@@ -1,0 +1,45 @@
+<div class="card">
+    <p-table  #dt [columns]="cols" [value]="LeaveType" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+    [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+    selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
+    <ng-template pTemplate="caption">
+        <div style="display: inline-flex;">
+            <h5 style="margin-right: 100px;margin-left:20px">Leave Type</h5>
+            <div style="float: right;margin-top: 4px">
+                
+                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+                <!-- <button style="margin-left:5px" type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button> -->
+                <p-button style="margin-left:5px;" icon="pi pi-plus" (click)="AddLeaveType()" icon="pi pi-plus"></p-button>
+            </div>
+        </div>
+    </ng-template> 
+        <ng-template pTemplate="header">
+                <tr>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr> 
+            </ng-template>
+            <ng-template pTemplate="body" let-LeaveType>
+                <tr>
+                    <td>{{LeaveType.Type}}</td>
+                    <td>
+                        <button (click)="edit(LeaveType.key,LeaveType)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button (click)="delete(LeaveType.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+       
+</div>
+
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+    <h3>{{sibebarHeader}}</h3>
+    <div class="form-group">
+      <label> Type <small>(required)</small></label>
+      <input name="type" type="text" class="form-control" [(ngModel)]="leavetype.Type">
+  </div>
+
+<p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-sidebar>

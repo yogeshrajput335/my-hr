@@ -54,7 +54,13 @@ export class AppLayoutComponent {
                   label: 'Employee',
                   icon: 'pi pi-fw pi-align-justify',
                   routerLink: 'employee'
-              }
+              },
+              {
+                label: 'LeaveType',
+                icon: 'pi pi-fw pi-align-justify',
+                routerLink: 'leavetype'
+            },
+
           ]
       },
       {
