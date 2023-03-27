@@ -37,6 +37,7 @@ import { ClientRequirementComponent } from './components/clientrequirement/clien
 import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
 import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 import { ClientEmployeeDetailsComponent } from './components/clientemployeedetails/clientemployeedetails.component';
+import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { ClientEmployeeDetailsComponent } from './components/clientemployeedetai
     ClientFollowUpComponent,
     ClientContactPersonComponent,
     ClientEmployeeDetailsComponent,
+    LeaveTypeComponent,
   ],
   imports: [
     BrowserModule,

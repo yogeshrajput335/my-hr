@@ -16,6 +16,7 @@ import { ClientRequirementComponent } from './components/clientrequirement/clien
 import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
 import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component'; 
 import { ClientEmployeeDetailsComponent } from './components/clientemployeedetails/clientemployeedetails.component';
+import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: 'clientfollowup',  component:ClientFollowUpComponent, canActivate: [AuthGuard]},
       { path: 'clientcontactperson',  component:ClientContactPersonComponent, canActivate: [AuthGuard]},
       { path: 'clientemployeedetails',  component:ClientEmployeeDetailsComponent, canActivate: [AuthGuard]},
+      { path: 'leavetype',           component:LeaveTypeComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
