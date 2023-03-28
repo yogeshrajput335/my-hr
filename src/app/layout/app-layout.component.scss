@@ -20,3 +20,12 @@
     margin-top: 3px;
     margin-bottom: 0px;
 }
+:host ::ng-deep .p-menubar {
+    padding: 0rem;
+    background: white;
+    color: black;
+    border: none;
+}
+:host ::ng-deep .p-component {
+    font-size: 1.5rem;
+}
