@@ -18,16 +18,16 @@ export class AppLayoutComponent {
     this.items = [
         {
           label: 'Home',
-          icon: 'pi pi-fw pi-pencil',
+          icon: 'pi pi-fw pi-home',
           routerLink: 'dashboard'
       },
       {
           label: 'Portal',
-          icon: 'pi pi-fw pi-pencil',
+          icon: 'pi pi-fw pi-desktop',
           items: [
               {
                   label: 'Users',
-                  icon: 'pi pi-fw pi-align-left',
+                  icon: 'pi pi-fw pi-users',
                   routerLink: 'users'
               },
               {
