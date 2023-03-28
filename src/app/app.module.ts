@@ -37,9 +37,9 @@ import { ClientFollowUpComponent } from './components/clientfollowup/clientfollo
 import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 import { ClientEmployeeDetailsComponent } from './components/clientemployeedetails/clientemployeedetails.component';
 import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
-import { LeaveComponent } from './leave/leave.component';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { LeaveComponent } from './components/leave/leave.component';
 @NgModule({
   declarations: [
     AppComponent,
