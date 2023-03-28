@@ -59,7 +59,12 @@ export class AppLayoutComponent {
                 label: 'LeaveType',
                 icon: 'pi pi-fw pi-align-justify',
                 routerLink: 'leavetype'
-            },
+             },
+             {
+                label: 'Leave',
+                icon: 'pi pi-fw pi-align-justify',
+                routerLink: 'leave'
+             },
 
           ]
       },
