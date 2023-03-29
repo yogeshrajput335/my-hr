@@ -32,41 +32,31 @@ export class AppLayoutComponent {
               },
               {
                   label: 'Profile',
-                  icon: 'pi pi-fw pi-align-right',
+                  icon: 'pi pi-fw pi-user',
                   routerLink: 'profile'
               },
               {
                   label: 'Candidate',
-                  icon: 'pi pi-fw pi-align-center',
+                  icon: 'pi pi-fw pi-user-plus',
                   routerLink: 'candidate'
               },
               {
                   label: 'Jobs',
-                  icon: 'pi pi-fw pi-align-justify',
+                  icon: 'pi pi-fw pi-bell',
                   routerLink: 'jobs'
               },
               {
                   label: 'Asset',
-                  icon: 'pi pi-fw pi-align-justify',
+                  icon: 'pi pi-fw pi-globe',
                   routerLink: 'asset'
               },
               {
                   label: 'Employee',
-                  icon: 'pi pi-fw pi-align-justify',
+                  icon: 'pi pi-fw pi-id-card',
                   routerLink: 'employee'
               },
-              {
-                label: 'LeaveType',
-                icon: 'pi pi-fw pi-align-justify',
-                routerLink: 'leavetype'
-             },
-             {
-                label: 'Leave',
-                icon: 'pi pi-fw pi-align-justify',
-                routerLink: 'leave'
-             },
-
-          ]
+          
+           ]
       },
       {
         label: 'Client',
@@ -94,6 +84,35 @@ export class AppLayoutComponent {
             }
         ]
     },
+    {
+        label: 'Leave',
+        icon: 'pi pi-fw pi-th-large',
+        items: [
+            {
+                label: 'Leave',
+                icon: 'pi pi-fw pi-caret-left',
+                routerLink: 'leave'
+             },
+            {
+                label: 'Leave Type',
+                icon: 'pi pi-fw  pi-caret-right',
+                routerLink: 'leavetype'
+            },
+          
+             {
+                label: 'Apply Leave',
+                icon: 'pi pi-fw pi-caret-up',
+                routerLink: 'applyleave'
+             },
+             {
+                label: 'Leave List',
+                icon: 'pi pi-fw pi-caret-down',
+                routerLink: 'leavelist'
+             },
+
+        ]
+    },
+
       {
           label: 'Quit',
           icon: 'pi pi-fw pi-power-off',
