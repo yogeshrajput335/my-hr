@@ -6,4 +6,4 @@ export interface Leave{
     AppliedDate?:string;
     Status?:string;
     Reason?:string;
-}
+} 
