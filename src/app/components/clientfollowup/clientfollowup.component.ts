@@ -26,8 +26,6 @@ ClientFollowUp:ClientFollowUp[];
     private clientservice:clientService
   ){ }
   ngOnInit():void {
- 
-
     this.clientservice.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>

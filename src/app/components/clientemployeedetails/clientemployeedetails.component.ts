@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { ClientEmployeeDetails } from 'src/app/models/clientemployeedetails';
 import { clientemployeedetailsService } from 'src/app/services/clientemployeedetails.service';
-
-
 declare var dataTableInit:any;
 
 @Component({
@@ -11,6 +9,7 @@ declare var dataTableInit:any;
   templateUrl: './clientemployeedetails.component.html',
   styleUrls: ['./clientemployeedetails.component.scss']
 })
+
 export class ClientEmployeeDetailsComponent  implements OnInit{
     ClientEmployeeDetails: ClientEmployeeDetails[];
     clientemployeedetails:ClientEmployeeDetails = {ClientId:'',EmployeeId:'',StartDate:'',EndDate:'',JobDetails:'',PerHourCost:''};
@@ -23,6 +22,7 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
     constructor(
       public clientemployeedetailsservice: clientemployeedetailsService
     ){ }
+
     ngOnInit():void {
         this.cols = [
           { field: 'ClientId', header: 'clientID', customExportHeader: 'CLIENTID' },
@@ -73,5 +73,4 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
       delete(key:any){
         this.clientemployeedetailsservice.delete(key);
       }    
-
 }
