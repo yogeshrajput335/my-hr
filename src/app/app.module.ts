@@ -23,8 +23,8 @@ import { SidebarModule} from 'primeng/sidebar';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AssetComponent } from './components/asset/asset.component';
 import { ClientComponent } from './components/client/client.component';
-import {ToastModule} from 'primeng/toast';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ToastModule} from 'primeng/toast';
+import { ConfirmDialogModule} from 'primeng/confirmdialog';
 import { MenuModule } from 'primeng/menu';
 import { PaginatorModule } from 'primeng/paginator';
 import { AuthService } from './services/auth.service';
@@ -40,6 +40,7 @@ import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LeaveComponent } from './components/leave/leave.component';
+import { LeaveListComponent } from './components/leavelist/leavelist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,7 @@ import { LeaveComponent } from './components/leave/leave.component';
     ClientEmployeeDetailsComponent,
     LeaveTypeComponent,
     LeaveComponent,
+    LeaveListComponent,
   ],
   imports: [
     BrowserModule,
