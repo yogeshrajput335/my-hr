@@ -1,0 +1,62 @@
+<div class="card">
+    <p-table  #dt [columns]="cols" [value]="Attendance" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+    [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+    selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
+    <ng-template pTemplate="caption">
+        <div style="display: inline-flex;">
+            <h5 style="margin-right: 100px;margin-left:20px">Attendance</h5>
+            <div style="float: right;margin-top: 4px">
+                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+                <!-- <button style="margin-left:5px" type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button> -->
+                <p-button style="margin-left:5px;" icon="pi pi-plus" (click)="AddAttendance()" icon="pi pi-plus"></p-button>
+            </div>
+        </div>
+    </ng-template> 
+        <ng-template pTemplate="header">
+                <tr>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Number Of Days</th>
+                    <th>Present Date</th>
+                    <th></th>
+                    <th>Actions</th>
+                </tr> 
+            </ng-template>
+            <ng-template pTemplate="body" let-Attendance>
+                <tr>
+                    <td>{{Attendance.Year}}</td>
+                    <td>{{Attendance.Month}}</td>
+                    <td>{{Attendance.NumberOfDays}}</td>
+                    <td>{{Attendance.PresentDate}}</td>
+                    <td>{{Attendance.Actions}}</td>
+                    <td>
+                        <button (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button (click)="delete(Attendance.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+</div>
+
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+    <h3>{{sibebarHeader}}</h3>
+    <div class="form-group">
+      <label> Year <small>(required)</small></label>
+      <input name="year" type="text" class="form-control" [(ngModel)]="attendance.Year">
+  </div>
+  <div class="form-group">
+    <label> Month</label>
+    <input name="month" type="text" class="form-control" [(ngModel)]="attendance.Month">
+  </div>
+  <div class="form-group">
+    <label> Number Of Days</label>
+    <input name="numberofdays" type="text" class="form-control" [(ngModel)]="attendance.NumberOfDays">
+  </div>
+  <div class="form-group">
+    <label> Present Date</label>
+    <input name="presentdate" type="text" class="form-control" [(ngModel)]="attendance.PresentDate">
+  </div>
+<p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-sidebar>
