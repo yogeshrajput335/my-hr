@@ -41,6 +41,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveListComponent } from './components/leavelist/leavelist.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { CheckboxModule } from 'primeng/checkbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +65,7 @@ import { LeaveListComponent } from './components/leavelist/leavelist.component';
     LeaveTypeComponent,
     LeaveComponent,
     LeaveListComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +87,7 @@ import { LeaveListComponent } from './components/leavelist/leavelist.component';
     MenubarModule,
     StyleClassModule,
     CalendarModule,
+    CheckboxModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

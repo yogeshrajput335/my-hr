@@ -55,6 +55,11 @@ export class AppLayoutComponent {
                   icon: 'pi pi-fw pi-id-card',
                   routerLink: 'employee'
               },
+              {
+                label: 'Notifications',
+                icon: 'pi pi-fw la la-bullhorn',
+                routerLink: 'notifications'
+              },
           
            ]
       },

@@ -19,6 +19,7 @@ import { ClientEmployeeDetailsComponent } from './components/clientemployeedetai
 import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
 import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveListComponent } from './components/leavelist/leavelist.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'leavetype',           component:LeaveTypeComponent, canActivate: [AuthGuard]},
       { path: 'leave',           component:LeaveComponent, canActivate: [AuthGuard]},
       { path: 'leavelist',           component:LeaveListComponent, canActivate: [AuthGuard]},
+      { path: 'notifications',              component:NotificationsComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
