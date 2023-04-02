@@ -21,6 +21,7 @@ import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveListComponent } from './components/leavelist/leavelist.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -39,6 +40,10 @@ const routes: Routes = [
       { path: 'clientfollowup',         component:ClientFollowUpComponent, canActivate: [AuthGuard]},
       { path: 'clientcontactperson',    component:ClientContactPersonComponent, canActivate: [AuthGuard]},
       { path: 'clientemployeedetails',  component:ClientEmployeeDetailsComponent, canActivate: [AuthGuard]},
+      { path: 'leavetype',              component:LeaveTypeComponent, canActivate: [AuthGuard]},
+      { path: 'leave',                  component:LeaveComponent, canActivate: [AuthGuard]},
+      { path: 'leavelist',              component:LeaveListComponent, canActivate: [AuthGuard]},
+      { path: 'notifications',          component:NotificationsComponent, canActivate: [AuthGuard]},
       { path: 'leavetype',              component:LeaveTypeComponent, canActivate: [AuthGuard]},
       { path: 'leave',                  component:LeaveComponent, canActivate: [AuthGuard]},
       { path: 'leavelist',              component:LeaveListComponent, canActivate: [AuthGuard]},

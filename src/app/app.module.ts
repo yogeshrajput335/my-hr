@@ -41,6 +41,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveListComponent } from './components/leavelist/leavelist.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { CheckboxModule } from 'primeng/checkbox';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
 @NgModule({
@@ -64,6 +66,7 @@ import { AttendanceReportComponent } from './components/attendancereport/attenda
     LeaveTypeComponent,
     LeaveComponent,
     LeaveListComponent,
+    NotificationsComponent,
     AttendanceComponent,
     AttendanceReportComponent,
   ],
@@ -87,6 +90,7 @@ import { AttendanceReportComponent } from './components/attendancereport/attenda
     MenubarModule,
     StyleClassModule,
     CalendarModule,
+    CheckboxModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

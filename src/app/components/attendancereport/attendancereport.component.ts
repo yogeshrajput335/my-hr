@@ -20,7 +20,6 @@ export class AttendanceReportComponent {
     display = false;
     sibebarHeader = 'Add AttendanceReport';
     selectedKey = '';
-  
     constructor(public attendancereportservice: attendancereportService) {}
   
     ngOnInit(): void {
