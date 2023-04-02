@@ -41,6 +41,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveListComponent } from './components/leavelist/leavelist.component';
+import { AttendanceComponent } from './components/attendance/attendance.component';
+import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +64,8 @@ import { LeaveListComponent } from './components/leavelist/leavelist.component';
     LeaveTypeComponent,
     LeaveComponent,
     LeaveListComponent,
+    AttendanceComponent,
+    AttendanceReportComponent,
   ],
   imports: [
     BrowserModule,
