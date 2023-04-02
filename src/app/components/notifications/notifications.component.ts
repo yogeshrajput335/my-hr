@@ -31,7 +31,6 @@ export class NotificationsComponent implements OnInit{
         { field: 'Status', header: 'status' },
         { field: 'NotifyAll', header: 'notifyall' },
       ];
-
     this.notificationsservice.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
