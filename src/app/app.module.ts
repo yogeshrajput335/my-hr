@@ -43,7 +43,8 @@ import { LeaveComponent } from './components/leave/leave.component';
 import { LeaveListComponent } from './components/leavelist/leavelist.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { CheckboxModule } from 'primeng/checkbox';
-
+import { AttendanceComponent } from './components/attendance/attendance.component';
+import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     LeaveComponent,
     LeaveListComponent,
     NotificationsComponent,
+    AttendanceComponent,
+    AttendanceReportComponent,
   ],
   imports: [
     BrowserModule,

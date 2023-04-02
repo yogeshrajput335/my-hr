@@ -117,6 +117,22 @@ export class AppLayoutComponent {
 
         ]
     },
+    {
+        label: 'Attendance',
+        icon: 'pi pi-fw pi-microsoft',
+        items: [
+            {
+                label: 'Attendance',
+                icon: 'pi pi-fw pi-check-square',
+                routerLink: 'attendance'
+             },
+            {
+                label: 'Attendance Report',
+                icon: 'pi pi-fw  pi-chart-line',
+                routerLink: 'attendancereport'
+            },
+        ]
+    },
 
       {
           label: 'Quit',
