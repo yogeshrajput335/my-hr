@@ -11,10 +11,10 @@
     padding: 0rem 0.75rem
 }
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-    padding:0px
+    padding:10px
 }
 :host ::ng-deep-datatable .p-datatable-header {
-    padding: 10px;
+    padding: 0px;
 }
 :host ::ng-deep .card {
     margin: 0px 90px;
