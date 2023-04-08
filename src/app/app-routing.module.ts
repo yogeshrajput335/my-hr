@@ -8,7 +8,6 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { LandingComponent } from './landing/landing.component';
 import { AppLayoutComponent } from './layout/app-layout.component';
 import { CandidateComponent } from './components/candidate/candidate.component';
-import { AssetComponent } from './components/asset/asset.component';
 import { ClientComponent } from './components/client/client.component';
 import { AuthGuard } from './services/auth.guard';
 import { EmployeeComponent } from './components/employee/employee.component';
@@ -22,6 +21,8 @@ import { LeaveListComponent } from './components/leavelist/leavelist.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { EmailComponent } from './components/email/email.component';
+import { AssetComponent } from './components/asset/asset.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -33,22 +34,23 @@ const routes: Routes = [
       { path: 'profile',                component: ProfileComponent, canActivate: [AuthGuard] },
       { path: 'jobs',                   component: JobsComponent, canActivate: [AuthGuard] },
       { path: 'candidate',              component: CandidateComponent, canActivate: [AuthGuard] },
-      { path: 'asset',                  component:AssetComponent, canActivate: [AuthGuard]},
-      { path: 'client',                 component:ClientComponent, canActivate: [AuthGuard]},
-      { path: 'employee',               component:EmployeeComponent, canActivate: [AuthGuard]},
-      { path: 'clientrequirement',      component:ClientRequirementComponent, canActivate: [AuthGuard]},
-      { path: 'clientfollowup',         component:ClientFollowUpComponent, canActivate: [AuthGuard]},
-      { path: 'clientcontactperson',    component:ClientContactPersonComponent, canActivate: [AuthGuard]},
-      { path: 'clientemployeedetails',  component:ClientEmployeeDetailsComponent, canActivate: [AuthGuard]},
-      { path: 'leavetype',              component:LeaveTypeComponent, canActivate: [AuthGuard]},
-      { path: 'leave',                  component:LeaveComponent, canActivate: [AuthGuard]},
-      { path: 'leavelist',              component:LeaveListComponent, canActivate: [AuthGuard]},
-      { path: 'notifications',          component:NotificationsComponent, canActivate: [AuthGuard]},
-      { path: 'leavetype',              component:LeaveTypeComponent, canActivate: [AuthGuard]},
-      { path: 'leave',                  component:LeaveComponent, canActivate: [AuthGuard]},
-      { path: 'leavelist',              component:LeaveListComponent, canActivate: [AuthGuard]},
-      { path: 'attendance',             component:AttendanceComponent, canActivate: [AuthGuard]},
-      { path: 'attendancereport',       component:AttendanceReportComponent, canActivate: [AuthGuard]},
+      { path: 'asset',                  component: AssetComponent, canActivate: [AuthGuard]},
+      { path: 'client',                 component: ClientComponent, canActivate: [AuthGuard]},
+      { path: 'employee',               component: EmployeeComponent, canActivate: [AuthGuard]},
+      { path: 'clientrequirement',      component: ClientRequirementComponent, canActivate: [AuthGuard]},
+      { path: 'clientfollowup',         component: ClientFollowUpComponent, canActivate: [AuthGuard]},
+      { path: 'clientcontactperson',    component: ClientContactPersonComponent, canActivate: [AuthGuard]},
+      { path: 'clientemployeedetails',  component: ClientEmployeeDetailsComponent, canActivate: [AuthGuard]},
+      { path: 'leavetype',              component: LeaveTypeComponent, canActivate: [AuthGuard]},
+      { path: 'leave',                  component: LeaveComponent, canActivate: [AuthGuard]},
+      { path: 'leavelist',              component: LeaveListComponent, canActivate: [AuthGuard]},
+      { path: 'notifications',          component: NotificationsComponent, canActivate: [AuthGuard]},
+      { path: 'leavetype',              component: LeaveTypeComponent, canActivate: [AuthGuard]},
+      { path: 'leave',                  component: LeaveComponent, canActivate: [AuthGuard]},
+      { path: 'leavelist',              component: LeaveListComponent, canActivate: [AuthGuard]},
+      { path: 'attendance',             component: AttendanceComponent, canActivate: [AuthGuard]},
+      { path: 'attendancereport',       component: AttendanceReportComponent, canActivate: [AuthGuard]},
+      { path: 'email',                  component: EmailComponent, canActivate: [AuthGuard]},
     ]
   },
 ];

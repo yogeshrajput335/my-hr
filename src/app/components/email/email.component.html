@@ -1,0 +1,81 @@
+<div class="grid">
+  <div class="col-3">
+    <div class="card">
+      <h5>Candidate Details</h5>
+      <div class="field">
+        <label for="recipientEmail">Recipient Email</label>
+        <input id="recipientEmail" [(ngModel)]="candidate.recipientEmail" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+        <label for="subject">Subject</label>
+        <input id="subject" [(ngModel)]="candidate.subject" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+          <label for="name">Name</label>
+          <input id="name" [(ngModel)]="candidate.name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+          <label for="title">Title</label>
+          <input id="title" [(ngModel)]="candidate.title" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+        <label for="experience">Experience</label>
+        <input id="experience" [(ngModel)]="candidate.experience" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+        <label for="availability">Availability</label>
+        <input id="availability" [(ngModel)]="candidate.availability" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+        <label for="relocation">Relocation</label>
+        <input id="relocation" [(ngModel)]="candidate.relocation" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+        <label for="visaType">Visa Type</label>
+        <input id="visaType" [(ngModel)]="candidate.visaType" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input id="city" [(ngModel)]="candidate.city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+      </div>
+      <div>
+        <p-button label="Add" (click)="AddCandidate()"></p-button>
+        <p-button label="Clear" (click)="Clear()" styleClass="p-button-danger"></p-button>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+        <h5>Cadidate List </h5>
+        <hr/>
+        <table class='can-table' style="border-collapse: collapse;">
+          <tr *ngFor="let c of candidates;let i=index">
+            <td>{{c.recipientEmail}}</td>
+            <td>{{c.subject}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.title}}</td>
+            <td>{{c.experience}}</td>
+            <td>{{c.availability}}</td>
+            <td>{{c.relocation}}</td>
+            <td>{{c.visaType}}</td>
+            <td>{{c.city}}</td>
+            <td>
+              <p-button (click)="DeleteCandidate(i)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+              <!-- <p-button (click)="EditCandidate(c)" icon="pi pi-pencil" styleClass="p-button-rounded p-button-success p-button-text"></p-button> -->
+            </td>
+          </tr>
+        </table>
+      <hr/>
+        <h5>Template <p-button *ngIf="candidates.length>0" (click)="GenerateTemplate()" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button></h5>
+        <div *ngIf="finalTemplate !=''" [innerHTML]="finalTemplate"></div>
+        <textarea style="width:100%" rows="6">
+          {{finalTemplate}}
+        </textarea>
+      </div>
+    </div>
+
+
+
+  
+  
+  
+  

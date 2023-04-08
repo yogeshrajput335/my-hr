@@ -26,6 +26,11 @@ export class AppLayoutComponent {
           icon: 'pi pi-fw pi-desktop',
           items: [
               {
+                    label: 'Email',
+                    icon: 'pi pi-fw pi-envelope',
+                    routerLink: 'email'
+              },
+              {
                   label: 'Users',
                   icon: 'pi pi-fw pi-users',
                   routerLink: 'users'

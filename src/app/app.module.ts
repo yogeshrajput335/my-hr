@@ -45,6 +45,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { CheckboxModule } from 'primeng/checkbox';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
+import { EmailComponent } from './components/email/email.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +70,7 @@ import { AttendanceReportComponent } from './components/attendancereport/attenda
     NotificationsComponent,
     AttendanceComponent,
     AttendanceReportComponent,
+    EmailComponent,
   ],
   imports: [
     BrowserModule,
