@@ -15,6 +15,7 @@ export class AppLayoutComponent {
     public authService: AuthService
   ) { 
     this.userDetails = JSON.parse(localStorage.getItem('user')!)
+    if(this.userDetails.isAdmin){
     this.items = [
         {
           label: 'Home',
@@ -146,5 +147,66 @@ export class AppLayoutComponent {
           ,
       }
   ];
+} else{
+    this.items = [
+        {
+          label: 'Home',
+          icon: 'pi pi-fw pi-home',
+          routerLink: 'dashboard'
+      },
+      {
+          label: 'Portal',
+          icon: 'pi pi-fw pi-desktop',
+          items: [
+              {
+                    label: 'Email',
+                    icon: 'pi pi-fw pi-envelope',
+                    routerLink: 'email'
+              },
+              {
+                  label: 'Candidate',
+                  icon: 'pi pi-fw pi-user-plus',
+                  routerLink: 'candidate'
+              },
+              {
+                  label: 'Jobs',
+                  icon: 'pi pi-fw pi-bell',
+                  routerLink: 'jobs'
+              }
+          
+           ]
+      },
+    {
+        label: 'Leave',
+        icon: 'pi pi-fw pi-th-large',
+        items: [
+            {
+                label: 'Leave',
+                icon: 'pi pi-fw pi-caret-left',
+                routerLink: 'leave'
+             }
+
+        ]
+    },
+    {
+        label: 'Attendance',
+        icon: 'pi pi-fw pi-microsoft',
+        items: [
+            {
+                label: 'Attendance',
+                icon: 'pi pi-fw pi-check-square',
+                routerLink: 'attendance'
+             }
+        ]
+    },
+
+      {
+          label: 'Quit',
+          icon: 'pi pi-fw pi-power-off',
+          command: () => this.authService.SignOut()
+          ,
+      }
+  ];
+}
   }
 }

@@ -19,6 +19,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
+                    <th>Is Admin</th>
                     <th>Actions</th>
                 </tr>
             </ng-template>
@@ -28,6 +29,7 @@
                     <td>{{Users.name}}</td>
                     <td>{{Users.email}}</td>
                     <td>{{Users.mobileNumber}}</td>
+                    <td>{{Users.isAdmin}}</td>
                     <td>
                         <button (click)="edit(Users.key,Users)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
                         <button (click)="delete(Users.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
@@ -54,6 +56,10 @@
   <div class="form-group">
     <label> Mobile Number</label>
     <input name="mobileNumber" type="text" class="form-control" [(ngModel)]="user.mobileNumber">
+  </div>
+  <div class="form-group">
+    <label> Is Admin</label>
+    <input name="mobileNumber" type="checkbox" [(ngModel)]="user.isAdmin">
   </div>
   <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
   </p-sidebar>

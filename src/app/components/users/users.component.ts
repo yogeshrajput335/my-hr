@@ -12,7 +12,7 @@ declare var dataTableInit:any;
 
 export class UsersComponent implements OnInit {
   Users: User[];
-  user:User = {username:'',name:'',email:'',mobileNumber:''};
+  user:User = {username:'',name:'',email:'',mobileNumber:'',isAdmin:false};
   selectedProducts: User[];
   cols: any[];
   display = false;
@@ -27,7 +27,8 @@ export class UsersComponent implements OnInit {
         { field: 'username', header: 'Username', customExportHeader: 'USERNAME' },
         { field: 'name', header: 'Name' },
         { field: 'email', header: 'Email' },
-        { field: 'mobileNumber', header: 'Mobile Number' }
+        { field: 'mobileNumber', header: 'Mobile Number' },
+        { field: 'isAdmin', header: 'Is Admin' }
     ];
       this.userService.getAll().snapshotChanges().pipe(
         map(changes =>
@@ -44,14 +45,14 @@ export class UsersComponent implements OnInit {
         this.userService.update(this.selectedKey,this.user).then(() => {
           console.log('Updated job successfully!');
           this.display = false;
-          this.user = {username:'', name:'',email:'',mobileNumber:''}
+          this.user = {username:'', name:'',email:'',mobileNumber:'',isAdmin:false}
         });
       }
       else{
       this.userService.create(this.user).then(() => {
         console.log('Created new item successfully!');
         this.display = false;
-        this.user = {username:'', name:'',email:'',mobileNumber:''}
+        this.user = {username:'', name:'',email:'',mobileNumber:'',isAdmin:false}
       });
     }
     }
