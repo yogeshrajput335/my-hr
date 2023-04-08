@@ -1,5 +1,5 @@
 <div class="grid">
-  <div class="col-3">
+  <div class="col-2">
     <div class="card">
       <h5>Candidate Details</h5>
       <div class="field">
@@ -39,8 +39,8 @@
         <input id="city" [(ngModel)]="candidate.city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
       </div>
       <div>
-        <p-button label="Add" (click)="AddCandidate()"></p-button>
-        <p-button label="Clear" (click)="Clear()" styleClass="p-button-danger"></p-button>
+        <p-button label="Add" (click)="AddCandidate()" styleClass="p-button-raised p-button-text"></p-button>
+        <p-button label="Clear" (click)="Clear()" styleClass="p-button-danger p-button-raised p-button-text"></p-button>
       </div>
     </div>
   </div>
@@ -65,13 +65,40 @@
           </tr>
         </table>
       <hr/>
-        <h5>Template <p-button *ngIf="candidates.length>0" (click)="GenerateTemplate()" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button></h5>
+        <h5>Template 
+          <p-button *ngIf="candidates.length>0" (click)="GenerateTemplate()" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+          <p-button *ngIf="candidates.length>0" (click)="Save()" icon="pi pi-save" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+        </h5>
         <div *ngIf="finalTemplate !=''" [innerHTML]="finalTemplate"></div>
-        <textarea style="width:100%" rows="6">
+        <textarea style="width:100%" rows="3">
           {{finalTemplate}}
         </textarea>
+        <!-- <p-button label="Save" (click)="Save()" styleClass="p-button-raised p-button-text"></p-button> -->
+        <hr/>
+        <div class="card">
+          <h5>Saved Templates</h5>
+          <table>
+            <tr>
+              <td>Date</td>
+              <td>Created By</td>
+              <td></td>
+            </tr>
+            <tr *ngFor="let e of emails">
+              <td>{{e.date}}</td>
+              <td>{{e.createdBy}}</td>
+              <td> 
+                <p-button (click)="View(e.template)" icon="pi pi-external-link" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+                <p-button (click)="DeleteSaved(e.key)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+               
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
+    <hr/>
+    
+
 
 
 

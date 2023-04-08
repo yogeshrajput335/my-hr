@@ -3,6 +3,7 @@ import { map } from 'rxjs';
 import { clientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/models/client';
 import { ColumnFilterFormElement } from 'primeng/table';
+import { emailService } from 'src/app/services/email.service';
 declare var dataTableInit: any;
 @Component({
   selector: 'app-email',
@@ -10,6 +11,8 @@ declare var dataTableInit: any;
   styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit{
+    userDetails:any ;
+    emails:any
     candidate:any={recipientEmail:'',subject:'',name:'',title:'',experience:'',availability:'',relocation:'',visaType:'',city:''}
     candidates:any[]=[]
     finalTemplate='';
@@ -69,9 +72,19 @@ export class EmailComponent implements OnInit{
     <td id="m_4008311415812014809m_-5121554939364801918m_9095447352672925746templateTableDataTdN65631" nowrap="" style="border-color:#a0b4d7;color:#000000;font:12px Verdana" valign="top"><span id="m_4008311415812014809m_-5121554939364801918m_9095447352672925746code"><span id="m_4008311415812014809m_-5121554939364801918m_9095447352672925746gardenheaderCodevalN65631"><u></u> &nbsp;{CITY}<u></u></span></span></td>
   </tr>`;
     constructor(
-        private clientservice:clientService
+        private emailservice:emailService
         ) {}
         ngOnInit():void {
+          this.userDetails = JSON.parse(localStorage.getItem('user')!)
+          this.emailservice.getAll().snapshotChanges().pipe(
+            map(changes =>
+              changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+              )
+            )
+          ).subscribe(data => {
+            this.emails = data;
+          });
         }
     AddCandidate(){
       this.finalTemplate = '';
@@ -125,5 +138,20 @@ export class EmailComponent implements OnInit{
     }
     Clear(){
       this.candidate={recipientEmail:this.candidate.recipientEmail,subject:this.candidate.subject,name:'',title:'',experience:'',availability:'',relocation:'',visaType:'',city:''}
+    }
+    Save(){
+      if(this.finalTemplate != ''){
+        let d = new Date().toLocaleString()
+        let email = {date: d,createdBy:this.userDetails.name,template:this.finalTemplate}
+        this.emailservice.create(email).then(() => {
+          alert('Templated Saved');
+        });
+      }
+    }
+    View(t:any){
+      this.finalTemplate = t;
+    }
+    DeleteSaved(key:any){
+      this.emailservice.delete(key);
     }
 }
