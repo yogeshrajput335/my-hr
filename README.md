@@ -21,3 +21,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Gmail html candidate template
 * https://chrome.google.com/webstore/detail/free-html-editor-for-gmai/ioinaaeeacahcmbgfmeaaofhfkijpdeb/related?hl=en-US
+
+# Sample User JSON Template
+* {"email":"admin@blueversesystems.com","key":"KW8dPhs5k5OutQncJRfhwAVZhqu1","mobileNumber":"000000000","name":"admin","username":"admin,"isAdmin":true}
