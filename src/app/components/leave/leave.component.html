@@ -39,64 +39,33 @@
                     <td>{{Leave.Reason}}</td>
                     <td>{{Leave.Actions}}</td>
   
-                    <td>
-                        <button (click)="edit(Leave.key,Leave)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-                        <button (click)="delete(Leave.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    <td >
+                        <button *ngIf="Leave.Status =='NEW'" (click)="edit(Leave.key,Leave)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="Leave.Status =='NEW'" (click)="delete(Leave.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
   </div>
   
-  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
+  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
     <h3>{{sibebarHeader}}</h3>
-    <div class="form-group">
-      <label> Employee <small>(required)</small></label>
-      <select  [(ngModel)]="leave.Employee"  class="form-control">
-        <option *ngFor="let e of Employee">{{e.EmployeeName}}</option>
-      </select>
-    </div>
-  <div class= "form-group">
-    <label> From Date</label>
-    <div class="card flex justify-content-normal">
-      <p-calendar [(ngModel)]="date" [showTime]="true" [showSeconds]="true">
-    <input name="fromdate" type="text" class="form-control" [(ngModel)]="leave.FromDate">
-  </p-calendar>
-   </div>
-    </div>
-  <div class="form-group">
-    <label> To Date</label>
-    <div class="card flex justify-content-normal">
-      <p-calendar [(ngModel)]="date" [showTime]="true" [showSeconds]="true">
-        <input name="todate" type="text" class="form-control" [(ngModel)]="leave.ToDate">
-  </p-calendar>
-   </div>
-   </div>
-  <div class="form-group">
-    <label> Leave Type</label>
-    <select  [(ngModel)]="leave.LeaveType"  class="form-control">
-      <option *ngFor="let t of LeaveType">{{t.Type}}</option>
-    </select>
-    <input name="leavetype" type="text" class="form-control" [(ngModel)]="leave.LeaveType">
-  </div>
-  <div class="form-group">
-    <label> Applied Date</label>
-    <div class="card flex justify-content-normal">
-      <p-calendar [(ngModel)]="date" [showTime]="true" [showSeconds]="true">
-        <input name="applieddate" type="text" class="form-control" [(ngModel)]="leave.AppliedDate">
-      </p-calendar>
-   </div>
-  </div>
-  <div class="form-group">
-    <label> Status</label>
-    <input name="status" type="text" class="form-control" [(ngModel)]="leave.Status">
-  </div>
-  <div class="form-group">
-    <label> Reason</label>
-    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="value"></textarea>
-    <input name="reason" type="text" class="form-control" [(ngModel)]="leave.Reason">
-  </div>
-  
-  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+    <span class="p-float-label" >
+      <p-calendar [(ngModel)]="leave.FromDate" class="formInput"></p-calendar>
+      <label htmlFor="recipientEmail" class="formLabel">From Date</label>
+    </span>
+    <span class="p-float-label">
+      <p-calendar [(ngModel)]="leave.ToDate"></p-calendar>
+      <label htmlFor="recipientEmail" class="formLabel" class="formInput">To Date</label>
+    </span>
+    <span class="p-float-label">
+      <p-dropdown class="formInput" [options]="LeaveType" [(ngModel)]="leave.LeaveType" placeholder="Select a leave type" optionLabel="Type" optionValue="Type" inputId="float-label"></p-dropdown>
+      <label for="float-label">Leave Type</label>
+    </span>
+    <span class="p-float-label">
+      <textarea rows="3" cols="40" pInputTextarea [(ngModel)]="leave.Reason"></textarea>
+      <label for="float-label">Reason</label>
+    </span>
+  <p-button label="Add" (click)="create()" styleClass="p-button p-button-text"></p-button>
   </p-sidebar>
   

@@ -48,6 +48,7 @@ import { AttendanceReportComponent } from './components/attendancereport/attenda
 import { EmailComponent } from './components/email/email.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +97,8 @@ import { ChipModule } from 'primeng/chip';
     CalendarModule,
     CheckboxModule,
     InputTextModule,
-    ChipModule 
+    ChipModule,
+    DropdownModule 
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -20,12 +20,13 @@ export class LeaveComponent implements OnInit {
   date: Date;
   value: Date;
   Leave:Leave[];
-  leave:Leave={Employee:'',FromDate:'',ToDate:'',LeaveType:'', AppliedDate:'',Status:'',Reason:''}
+  leave:Leave={Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
   selectedProducts: Leave[];
   cols: any[];
   display = false;
   sibebarHeader = "Add Leave";
   selectedKey=''
+  userDetails : any;
 
   constructor(
     public leaveservice:leaveService,
@@ -34,15 +35,8 @@ export class LeaveComponent implements OnInit {
   ){ }
 
     ngOnInit():void {
-      this.employeeservice.getAll().snapshotChanges().pipe(
-        map(changes =>
-          changes.map(c =>
-            ({ key: c.payload.key, ...c.payload.val() })
-          )
-        )
-      ).subscribe(data => {
-        this.Employee = data;
-      });
+      this.userDetails = JSON.parse(localStorage.getItem('user')!)
+      
       this.leavetypeservice.getAll().snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -68,23 +62,27 @@ export class LeaveComponent implements OnInit {
             ({ key: c.payload.key, ...c.payload.val() })
           )
         )
-      ).subscribe(data => {
-        this.Leave = data;
+      ).subscribe((data:any) => {
+        this.Leave = data.filter((x:any)=>x.Employee == this.userDetails.name);
       });
     }
     create() {   
+      debugger
+      this.leave.Employee = this.userDetails.name;
+      this.leave.AppliedDate = new Date().toLocaleDateString();
+      this.leave.Status = 'NEW';
       if(this.sibebarHeader == 'Edit Leave'){
         this.leaveservice.update(this.selectedKey,this.leave).then(() => {
           console.log('Updated job successfully!');
           this.display = false;
-          this.leave = { Employee:'',FromDate:'',ToDate:'',LeaveType:'', AppliedDate:'',Status:'',Reason:''}
+          this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
         });
       }
       else{
       this.leaveservice.create(this.leave).then(() => {
         console.log('Created new item successfully!');
         this.display = false;
-        this.leave = { Employee:'',FromDate:'',ToDate:'',LeaveType:'', AppliedDate:'',Status:'',Reason:''}
+        this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
       });
     }
     }

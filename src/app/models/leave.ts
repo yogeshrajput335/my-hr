@@ -1,7 +1,7 @@
 export interface Leave{
-    Employee?:string;
-    FromDate?:string;
-    ToDate?:string;
+    Employee?:String;
+    FromDate:Date| undefined;
+    ToDate:Date| undefined;
     LeaveType?:string;
     AppliedDate?:string;
     Status?:string;

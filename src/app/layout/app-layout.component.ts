@@ -109,12 +109,6 @@ export class AppLayoutComponent {
                 icon: 'pi pi-fw  pi-caret-right',
                 routerLink: 'leavetype'
             },
-          
-             {
-                label: 'Apply Leave',
-                icon: 'pi pi-fw pi-caret-up',
-                routerLink: 'applyleave'
-             },
              {
                 label: 'Leave List',
                 icon: 'pi pi-fw pi-caret-down',
