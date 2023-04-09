@@ -49,6 +49,7 @@
         <td>{{ Candidates.contactdetails}}</td>
         <td>{{ Candidates.actions}}</td>
         <td>
+          <button (click)="openfollowups(Candidates.key,Candidates.CandidateName)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
           <button (click)="edit(Candidates.key,Candidates)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
           <button (click)="delete(Candidates.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
         </td>
@@ -90,4 +91,29 @@
   <input name="contact details" type="text" class="form-control" [(ngModel)]="candidate.contactdetails">
 </div>
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+</p-sidebar>
+
+<p-sidebar [(visible)]="displayFollowUp" position="right"  [style]="{width:'40em'}">
+  <h4>{{selCandidate}} Follow Ups </h4>
+  <div class="form-group">
+    <label>Description </label>
+    <input name="CandidDescriptionateName" type="text" class="form-control" [(ngModel)]="description">
+  </div>
+  <p-button label="Save" icon="pi pi-check" (click)="createFollowup()"></p-button>
+  <hr/>
+  <table class='can-table' style="border-collapse: collapse;width:100%" *ngIf="followUps && followUps.length>0">
+    <tr>
+      <td>Date</td>
+      <td>By</td>
+      <td>Description</td>
+    </tr>
+    <tr *ngFor="let f of followUps">
+      <td>{{f.followupDate}}</td>
+      <td>{{f.followupBy}}</td>
+      <td>{{f.description}}</td>
+    </tr>
+  </table>
+  <div *ngIf="followUps && followUps.length==0" style="color:red">
+    <label>No followup Added.</label>
+  </div>
 </p-sidebar>

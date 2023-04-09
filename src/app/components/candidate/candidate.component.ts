@@ -10,18 +10,24 @@ declare var dataTableInit: any;
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit{
-display = false;  
+display = false;
+displayFollowUp = false;  
 cols:any;
 selectedProducts:candidate[];
 sibebarHeader = "Add Candidate";
 selectedKey=''
 candidate:candidate = {CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''};
 Candidates: candidate[];
+userDetails:any;
+description ="";
+followUps:any;
+initfollowUps:any
   constructor(
     public candidateService:candidateService
   ){ }
 
   ngOnInit():void {
+    this.userDetails = JSON.parse(localStorage.getItem('user')!)
     this.cols = [
       { field: 'candidatename', header: 'candidatename', customExportHeader: 'CANDIDATENAME' },
       { field: 'phone', header: 'phone' },
@@ -41,6 +47,15 @@ Candidates: candidate[];
       )
     ).subscribe(data => {
       this.Candidates = data;
+    });
+    this.candidateService.getAllFollowUps().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.initfollowUps = data;
     });
   }
   create() {   
@@ -71,5 +86,30 @@ Candidates: candidate[];
   }
   delete(key:any){
     this.candidateService.delete(key);
+  }
+  selKey:any;
+  selCandidate:any;
+  openfollowups(key:any,CandidateName:any){
+    this.selKey = key;
+    this.selCandidate = CandidateName; 
+    this.displayFollowUp = true;
+    this.followUps = this.initfollowUps.filter((x:any)=>x.candidateKey == this.selKey);
+  }
+  createFollowup(){
+    this.candidateService.createFollowUp({candidateKey:this.selKey,followupBy:this.userDetails.name,followupDate:new Date().toLocaleString(),description:this.description}).then(() => {
+      console.log('Created new item successfully!');
+      this.display=false;
+      this.description=''
+      this.candidateService.getAllFollowUps().snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({ key: c.payload.key, ...c.payload.val() })
+          )
+        )
+      ).subscribe(data => {
+        this.initfollowUps = data;
+        this.followUps = this.initfollowUps.filter((x:any)=>x.candidateKey == this.selKey);
+      });
+    });
   }
 }

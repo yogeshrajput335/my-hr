@@ -19,3 +19,8 @@
 :host ::ng-deep .card {
     margin: 0px 90px;
 }
+.can-table, th, td {
+    border: 1px solid;
+    padding-left: 3px;
+    padding-right: 3px;
+  }

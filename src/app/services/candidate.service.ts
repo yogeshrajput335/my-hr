@@ -5,6 +5,7 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { candidate } from '../models/candidate';
+import { candidateFollowUp } from '../models/candidateFollowUp';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +13,14 @@ import { candidate } from '../models/candidate';
 
 export class candidateService {
   private dbPath = '/candidate';
+  private dbFollowUpPath='/candidateFollowUp';
 
   tutorialsRef: AngularFireList<candidate>;
+  followUpsRef: AngularFireList<candidateFollowUp>;
 
   constructor(private db: AngularFireDatabase) {
     this.tutorialsRef = db.list(this.dbPath);
+    this.followUpsRef = db.list(this.dbFollowUpPath);
   }
 
   getAll(): AngularFireList<candidate> {
@@ -37,5 +41,11 @@ export class candidateService {
 
   deleteAll(): Promise<void> {
     return this.tutorialsRef.remove();
+  }
+  createFollowUp(tutorial: candidateFollowUp): any {
+    return this.followUpsRef.push(tutorial);
+  }
+  getAllFollowUps(): AngularFireList<candidateFollowUp> {
+    return this.followUpsRef;
   }
 }
