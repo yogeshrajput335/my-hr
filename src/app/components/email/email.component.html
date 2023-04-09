@@ -1,53 +1,54 @@
 <div class="grid">
   <div class="col-2">
     <div class="card">
-      <h5>Candidate Details</h5>
-      <div class="field">
-        <label for="recipientEmail">Recipient Email</label>
-        <input id="recipientEmail" [(ngModel)]="candidate.recipientEmail" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-        <label for="subject">Subject</label>
-        <input id="subject" [(ngModel)]="candidate.subject" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-          <label for="name">Name</label>
-          <input id="name" [(ngModel)]="candidate.name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-          <label for="title">Title</label>
-          <input id="title" [(ngModel)]="candidate.title" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-        <label for="experience">Experience</label>
-        <input id="experience" [(ngModel)]="candidate.experience" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-        <label for="availability">Availability</label>
-        <input id="availability" [(ngModel)]="candidate.availability" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-        <label for="relocation">Relocation</label>
-        <input id="relocation" [(ngModel)]="candidate.relocation" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-        <label for="visaType">Visa Type</label>
-        <input id="visaType" [(ngModel)]="candidate.visaType" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-      <div class="field">
-        <label for="city">City</label>
-        <input id="city" [(ngModel)]="candidate.city" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
+      <h4>Candidate Details</h4>
+      <p-chip label="Use my email" (click)="candidate.recipientEmail = userDetails.email"></p-chip>
+      <span class="p-float-label">
+        <input pInputText id="recipientEmail" [(ngModel)]="candidate.recipientEmail" class="formInput"/>
+        <label htmlFor="recipientEmail" class="formLabel">Recipient Email</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="subject" [(ngModel)]="candidate.subject" class="formInput"/>
+        <label htmlFor="subject" class="formLabel">Subject</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="name" [(ngModel)]="candidate.name" class="formInput"/>
+        <label htmlFor="name" class="formLabel">Name</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="title" [(ngModel)]="candidate.title" class="formInput"/>
+        <label htmlFor="title" class="formLabel">Title</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="experience" [(ngModel)]="candidate.experience" class="formInput"/>
+        <label htmlFor="experience" class="formLabel">Experience</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="availability" [(ngModel)]="candidate.availability" class="formInput"/>
+        <label htmlFor="availability" class="formLabel">Availability</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="relocation" [(ngModel)]="candidate.relocation" class="formInput"/>
+        <label htmlFor="relocation" class="formLabel">Relocation</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="visaType" [(ngModel)]="candidate.visaType" class="formInput"/>
+        <label htmlFor="visaType" class="formLabel">Visa Type</label>
+      </span>
+      <span class="p-float-label">
+        <input pInputText id="city" [(ngModel)]="candidate.city" class="formInput"/>
+        <label htmlFor="city" class="formLabel">City</label>
+      </span>
       <div>
-        <p-button label="Add" (click)="AddCandidate()" styleClass="p-button-raised p-button-text"></p-button>
-        <p-button label="Clear" (click)="Clear()" styleClass="p-button-danger p-button-raised p-button-text"></p-button>
+        <p-button label="Add" (click)="AddCandidate()" styleClass="p-button p-button-text"></p-button>
+        <p-button label="Clear" (click)="Clear()" styleClass="p-button-danger p-button p-button-text"></p-button>
       </div>
     </div>
   </div>
-  <div class="col">
-        <h5>Cadidate List </h5>
+  <div class="col" >
+        <h4>Cadidate List </h4>
         <hr/>
-        <table class='can-table' style="border-collapse: collapse;">
+        <table class='can-table' style="border-collapse: collapse;" *ngIf="candidates.length>0">
           <tr *ngFor="let c of candidates;let i=index">
             <td>{{c.recipientEmail}}</td>
             <td>{{c.subject}}</td>
@@ -64,20 +65,22 @@
             </td>
           </tr>
         </table>
+        <div *ngIf="candidates.length==0" style="color:red">
+          <label>No Candidate Added.</label>
+        </div>
       <hr/>
-        <h5>Template 
+        <h4>Template 
           <p-button *ngIf="candidates.length>0" (click)="GenerateTemplate()" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
           <p-button *ngIf="candidates.length>0" (click)="Save()" icon="pi pi-save" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-        </h5>
+        </h4>
         <div *ngIf="finalTemplate !=''" [innerHTML]="finalTemplate"></div>
         <textarea style="width:100%" rows="3">
           {{finalTemplate}}
         </textarea>
-        <!-- <p-button label="Save" (click)="Save()" styleClass="p-button-raised p-button-text"></p-button> -->
         <hr/>
-        <div class="card">
-          <h5>Saved Templates</h5>
-          <table>
+        <div class="card" >
+          <h4>Saved Templates</h4>
+          <table *ngIf="emails.length>0">
             <tr>
               <td>Date</td>
               <td>Created By</td>
@@ -93,6 +96,9 @@
               </td>
             </tr>
           </table>
+          <div *ngIf="emails.length==0" style="color:red">
+            <label>No Email Template Saved.</label>
+          </div>
         </div>
       </div>
     </div>

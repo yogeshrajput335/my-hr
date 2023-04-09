@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import { clientService } from 'src/app/services/client.service';
-import { Client } from 'src/app/models/client';
-import { ColumnFilterFormElement } from 'primeng/table';
 import { emailService } from 'src/app/services/email.service';
-declare var dataTableInit: any;
 @Component({
   selector: 'app-email',
   templateUrl: './email.component.html',

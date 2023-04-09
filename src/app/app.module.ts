@@ -46,6 +46,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { AttendanceReportComponent } from './components/attendancereport/attendancereport.component';
 import { EmailComponent } from './components/email/email.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { ChipModule } from 'primeng/chip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,6 +95,8 @@ import { EmailComponent } from './components/email/email.component';
     StyleClassModule,
     CalendarModule,
     CheckboxModule,
+    InputTextModule,
+    ChipModule 
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
