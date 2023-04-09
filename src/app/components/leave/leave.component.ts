@@ -66,11 +66,12 @@ export class LeaveComponent implements OnInit {
         this.Leave = data.filter((x:any)=>x.Employee == this.userDetails.name);
       });
     }
-    create() {   
-      debugger
+    create() {  
       this.leave.Employee = this.userDetails.name;
       this.leave.AppliedDate = new Date().toLocaleDateString();
       this.leave.Status = 'NEW';
+      this.leave.FromDate = this.leave.FromDate.toLocaleDateString();
+      this.leave.ToDate = this.leave.ToDate.toLocaleDateString();
       if(this.sibebarHeader == 'Edit Leave'){
         this.leaveservice.update(this.selectedKey,this.leave).then(() => {
           console.log('Updated job successfully!');
