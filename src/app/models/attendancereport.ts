@@ -1,6 +1,7 @@
 export interface AttendanceReport{
     Year?:string;
     Month?:string;
+    Status?:string;
     NumberOfDays?:string;
-    PresentDate?:string;
+    PresentDate?:any;
 }
