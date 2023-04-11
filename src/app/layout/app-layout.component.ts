@@ -84,11 +84,6 @@ export class AppLayoutComponent {
                 routerLink: 'clientrequirement'
             },
             {
-                label: 'Client Followup',
-                icon: 'pi pi-fw pi-align-right',
-                routerLink: 'clientfollowup'
-            },
-            {
                 label: 'Client Contact Person',
                 icon: 'pi pi-fw pi-align-center',
                 routerLink: 'clientcontactperson'
@@ -97,21 +92,21 @@ export class AppLayoutComponent {
     },
     {
         label: 'Leave',
-        icon: 'pi pi-fw pi-th-large',
+        icon: 'pi pi-fw pi-hourglass',
         items: [
             {
                 label: 'Leave',
-                icon: 'pi pi-fw pi-caret-left',
+                icon: 'pi pi-fw pi-moon',
                 routerLink: 'leave'
              },
             {
                 label: 'Leave Type',
-                icon: 'pi pi-fw  pi-caret-right',
+                icon: 'pi pi-fw  pi-prime',
                 routerLink: 'leavetype'
             },
              {
                 label: 'Leave List',
-                icon: 'pi pi-fw pi-caret-down',
+                icon: 'pi pi-fw pi-palette',
                 routerLink: 'leavelist'
              },
 
@@ -176,7 +171,7 @@ export class AppLayoutComponent {
         items: [
             {
                 label: 'Leave',
-                icon: 'pi pi-fw pi-caret-left',
+                icon: 'pi pi-fw pi-qrcode',
                 routerLink: 'leave'
              }
 

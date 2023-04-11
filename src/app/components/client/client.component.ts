@@ -18,13 +18,19 @@ export class ClientComponent implements OnInit{
     sibebarHeader = "Add Client";
     selectedKey=''
     clientService: any;
-
+    description ="";
+    userDetails:any;
+    followUps:any;
+    displayFollowUp = false;  
+    initfollowUps:any
+   
     constructor(
         private clientservice:clientService
         ) {}
         ngOnInit():void {
+          this.userDetails = JSON.parse(localStorage.getItem('user')!)
             this.cols = [
-              { field: 'ClientName', header: 'ClientName', customExportHeader: 'ClientNAME' },
+              { field: 'ClientName', header: 'ClientName', customExportHeader: 'CLIENTNAME' },
               { field: 'Phone', header: 'Phone' },
               { field: 'Email', header: 'Email' },
               { field: 'Address', header: 'Address' }
@@ -38,6 +44,15 @@ export class ClientComponent implements OnInit{
               )
             ).subscribe(data => {
               this.Client = data;
+            });
+            this.clientservice.getAllFollowUps().snapshotChanges().pipe(
+              map(changes =>
+                changes.map(c =>
+                  ({ key: c.payload.key, ...c.payload.val() })
+                )
+              )
+            ).subscribe(data => {
+              this.initfollowUps = data;
             });
         }
         create() {   
@@ -69,5 +84,30 @@ export class ClientComponent implements OnInit{
             this.sibebarHeader = 'Edit Client'
             this.client = client;
             this.selectedKey = key;
+          }
+          selKey:any;
+          selClient:any;
+          openfollowups(key:any,ClientName:any){
+            this.selKey = key;
+            this.selClient = ClientName; 
+            this.displayFollowUp = true;
+            this.followUps = this.initfollowUps.filter((x:any)=>x.clientKey == this.selKey);
+          }
+          createFollowup(){
+            this.clientservice.createFollowUp({clientKey:this.selKey,followupBy:this.userDetails.name,followupDate:new Date().toLocaleString(),description:this.description}).then(() => {
+              console.log('Created new item successfully!');
+              this.display=false;
+              this.description=''
+              this.clientService.getAllFollowUps().snapshotChanges().pipe(
+                map((changes:any) =>
+                  changes.map((c:any) =>
+                    ({ key: c.payload.key, ...c.payload.val() })
+                  )
+                )
+              ).subscribe((data:any) => {
+                this.initfollowUps = data;
+                this.followUps = this.initfollowUps.filter((x:any)=>x.clientKey == this.selKey);
+              });
+            });
           }
 }

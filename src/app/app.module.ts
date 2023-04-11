@@ -33,7 +33,6 @@ import { MenubarModule } from 'primeng/menubar';
 import {StyleClassModule} from 'primeng/styleclass';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ClientRequirementComponent } from './components/clientrequirement/clientrequirement.component';
-import { ClientFollowUpComponent } from './components/clientfollowup/clientfollowup.component';
 import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 import { ClientEmployeeDetailsComponent } from './components/clientemployeedetails/clientemployeedetails.component';
 import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
@@ -64,7 +63,6 @@ import { DropdownModule } from 'primeng/dropdown';
     ClientComponent,
     EmployeeComponent,
     ClientRequirementComponent,
-    ClientFollowUpComponent,
     ClientContactPersonComponent,
     ClientEmployeeDetailsComponent,
     LeaveTypeComponent,

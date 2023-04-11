@@ -1,6 +1,6 @@
 export class ClientFollowUp{
-    ClientId?:string;
-    FollowUpDate?:string;
-    NextFollowUpDate?:string;
-    MinuteOfMeetings?:string;
-} 
+clientKey?: string | null;
+followupDate?:string;
+followupBy?:string;
+description?:string;
+}
