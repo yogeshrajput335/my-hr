@@ -4,8 +4,8 @@
   selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
   <ng-template pTemplate="caption">
     <div style="display: inline-flex;">
-      <h5 style="margin-right: 100px;">Client</h5>
-    <div class="flex">
+      <h5 style="margin-right: 100px; margin-left:20px">Client</h5>
+    <div style="float:right;margin-top:4px">
         <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
         <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
         <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
@@ -30,8 +30,8 @@
             <td>{{Client.Email}}</td>
             <td>{{Client.Address}}</td>
             <td>{{Client.actions}}</td>
-  
             <td>
+              <button (click)="openfollowups(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
               <button (click)="edit(Client.key,Client)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
               <button (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-times"   class="p-button-rounded p-button-danger p-button-text"></button>
             </td>
@@ -58,6 +58,31 @@
     <input name="address" type="text" class="form-control" [(ngModel)]="client.Address">
   </div>
   <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-sidebar>
+
+  <p-sidebar [(visible)]="displayFollowUp" position="right"  [style]="{width:'40em'}">
+    <h4>{{selClient}} Follow Ups </h4>
+    <div class="form-group">
+      <label>Description </label>
+      <input name="ClientDescriptionateName" type="text" class="form-control" [(ngModel)]="description">
+    </div>
+    <p-button label="Save" icon="pi pi-check" (click)="createFollowup()"></p-button>
+    <hr/>
+    <table class='can-table' style="border-collapse: collapse;width:100%" *ngIf="followUps && followUps.length>0">
+      <tr>
+        <td>Date</td>
+        <td>By</td>
+        <td>Description</td>
+      </tr>
+      <tr *ngFor="let f of followUps">
+        <td>{{f.followupDate}}</td>
+        <td>{{f.followupBy}}</td>
+        <td>{{f.description}}</td>
+      </tr>
+    </table>
+    <div *ngIf="followUps && followUps.length==0" style="color:red">
+      <label>No followup Added.</label>
+    </div>
   </p-sidebar>
   
   
