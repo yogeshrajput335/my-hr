@@ -21,12 +21,21 @@ export class ClientComponent implements OnInit{
     description ="";
     userDetails:any;
     followUps:any;
+    requirements:any;
+    contactperson:any;
     displayFollowUp = false;  
-    initfollowUps:any
-   
-    constructor(
-        private clientservice:clientService
-        ) {}
+    displayRequirement=false;
+    displayContactPerson=false;
+    initfollowUps:any;
+    initrequirements:any;
+    initcontactperson:any;
+    requirementHeading:"";
+    requirementDate:"";
+    requirementBy:"";
+    phone:"";
+    email:"";
+    contactpersonname:"";
+      constructor(private clientservice:clientService) {}
         ngOnInit():void {
           this.userDetails = JSON.parse(localStorage.getItem('user')!)
             this.cols = [
@@ -107,6 +116,52 @@ export class ClientComponent implements OnInit{
               ).subscribe((data:any) => {
                 this.initfollowUps = data;
                 this.followUps = this.initfollowUps.filter((x:any)=>x.clientKey == this.selKey);
+              });
+            });
+          }
+          openrequirements(key:any,ClientName:any){
+            this.selKey = key;
+            this.selClient = ClientName; 
+            this.displayRequirement = true;
+            this.requirements = this.initrequirements.filter((x:any)=>x.clientKey == this.selKey);
+          }
+          createRequirements(){
+            this.clientservice.createRequirement({clientKey:this.selKey, requirementHeading:this.userDetails.name,requirementDate:new Date().toLocaleString(),requirementBy:new Date().toLocaleString(),description:this.description}).then(() => {
+              console.log('Created new item successfully!');
+              this.display=false;
+              this.description=''
+              this.clientService.getAllRequirements().snapshotChanges().pipe(
+                map((changes:any) =>
+                  changes.map((c:any) =>
+                    ({ key: c.payload.key, ...c.payload.val() })
+                  )
+                )
+              ).subscribe((data:any) => {
+                this.initrequirements = data;
+                this.requirements = this.initrequirements.filter((x:any)=>x.clientKey == this.selKey);
+              });
+            });
+          }
+          opencontactperson(key:any,ClientName:any){
+            this.selKey = key;
+            this.selClient = ClientName; 
+            this.displayContactPerson = true;
+            this.contactperson = this.contactperson.filter((x:any)=>x.clientKey == this.selKey);
+          }
+          createContactPerson(){
+            this.clientservice.createContactPerson({clientKey:this.selKey,contactPersonName:this.userDetails.name,phone:'',email:''}).then(() => {
+              console.log('Created new item successfully!');
+              this.display=false;
+              this.description=''
+              this.clientService.getAllContactPerson().snapshotChanges().pipe(
+                map((changes:any) =>
+                  changes.map((c:any) =>
+                    ({ key: c.payload.key, ...c.payload.val() })
+                  )
+                )
+              ).subscribe((data:any) => {
+                this.initcontactperson = data;
+                this.contactperson = this.initcontactperson.filter((x:any)=>x.clientKey == this.selKey);
               });
             });
           }

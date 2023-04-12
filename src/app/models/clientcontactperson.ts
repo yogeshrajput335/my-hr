@@ -1,6 +1,7 @@
 export interface ClientContactPerson{
-    ClientId?:string;
-    ContactPersonName?:string;
-    Phone?:string;
-    Email?:string;
+    clientKey?: string | null;
+    contactPersonName?:string;
+    phone?:string;
+    email?:string;
+    description?:string;
 }

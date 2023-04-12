@@ -72,22 +72,13 @@ export class AppLayoutComponent {
       {
         label: 'Client',
         icon: 'pi pi-fw pi-pencil',
+        
         items: [
             {
                 label: 'Client',
                 icon: 'pi pi-fw pi-align-justify',
                 routerLink: 'client'
             },
-            {
-                label: 'Client Requirement',
-                icon: 'pi pi-fw pi-align-left',
-                routerLink: 'clientrequirement'
-            },
-            {
-                label: 'Client Contact Person',
-                icon: 'pi pi-fw pi-align-center',
-                routerLink: 'clientcontactperson'
-            }
         ]
     },
     {

@@ -32,8 +32,6 @@ import { ChartModule } from 'primeng/chart';
 import { MenubarModule } from 'primeng/menubar';
 import {StyleClassModule} from 'primeng/styleclass';
 import { EmployeeComponent } from './components/employee/employee.component';
-import { ClientRequirementComponent } from './components/clientrequirement/clientrequirement.component';
-import { ClientContactPersonComponent } from './components/clientcontactperson/clientcontactperson.component';
 import { ClientEmployeeDetailsComponent } from './components/clientemployeedetails/clientemployeedetails.component';
 import { LeaveTypeComponent } from './components/leavetype/leavetype.component';
 import { CalendarModule } from 'primeng/calendar';
@@ -62,8 +60,6 @@ import { DropdownModule } from 'primeng/dropdown';
     AssetComponent,
     ClientComponent,
     EmployeeComponent,
-    ClientRequirementComponent,
-    ClientContactPersonComponent,
     ClientEmployeeDetailsComponent,
     LeaveTypeComponent,
     LeaveComponent,
