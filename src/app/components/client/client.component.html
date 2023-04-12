@@ -31,7 +31,9 @@
             <td>{{Client.Address}}</td>
             <td>{{Client.actions}}</td>
             <td>
-              <button (click)="openfollowups(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
+              <button (click)="openfollowups(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
+              <button (click)="openrequirements(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-circle" class="p-button-rounded p-button-text"></button>
+              <button (click)="opencontactperson(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-square" class="p-button-rounded p-button-text"></button>
               <button (click)="edit(Client.key,Client)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
               <button (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-times"   class="p-button-rounded p-button-danger p-button-text"></button>
             </td>
@@ -81,9 +83,90 @@
       </tr>
     </table>
     <div *ngIf="followUps && followUps.length==0" style="color:red">
-      <label>No followup Added.</label>
+      <label>No followUps  Added.</label>
     </div>
   </p-sidebar>
+
+  <p-sidebar [(visible)]="displayRequirement" position="right"  [style]="{width:'40em'}">
+    <h4>{{selClient}} Requirements </h4>
+    <div class="form-group">
+      <label>Requirement Heading </label>
+      <input name="ClientRequirementHeading" type="text" class="form-control" [(ngModel)]="requirementHeading">
+    </div>
+    <div class="form-group">
+      <label>Requirement Date </label>
+      <input name="ClientRequirementDate" type="text" class="form-control" [(ngModel)]="requirementDate">
+    </div>
+    <div class="form-group">
+      <label>Requirement By </label>
+      <input name="ClientRequirementBy" type="text" class="form-control" [(ngModel)]="requirementBy">
+    </div>
+    <div class="form-group">
+      <label>Description </label>
+      <input name="ClientDescriptionName" type="text" class="form-control" [(ngModel)]="description">
+    </div>
+
+    <p-button label="Save" icon="pi pi-check" (click)="createRequirements()"></p-button>
+    <hr/>
+    <table class='can-table' style="border-collapse: collapse;width:100%" *ngIf="requirements && requirements.length>0">
+      <tr>
+        <td>Requirement Heading</td>
+        <td>Requirement Date</td>
+        <td>Requirement By</td>
+        <td>Description</td>
+      </tr>
+      <tr *ngFor="let r of requirements">
+        <td>{{r.requirementHeading}}</td>
+        <td>{{r.requirementDate}}</td>
+        <td>{{r.requirementBy}}</td>
+        <td>{{r.description}}</td>
+      </tr>
+    </table>
+    <div *ngIf="requirements && requirements.length==0" style="color:red">
+      <label>No requirements Added.</label>
+    </div>
+  </p-sidebar>
+
+  <p-sidebar [(visible)]="displayContactPerson" position="right"  [style]="{width:'40em'}">
+    <h4>{{selClient}} Contact Person </h4>
+    <div class="form-group">
+      <label>ContactPersonname </label>
+      <input name="ClientContact PersonName" type="text" class="form-control" [(ngModel)]="contactpersonname">
+    </div>
+    <div class="form-group">
+      <label>Phone </label>
+      <input name="ClientPhone" type="text" class="form-control" [(ngModel)]="phone">
+    </div>
+
+    <div class="form-group">
+      <label>Email </label>
+      <input name="ClientEmail" type="text" class="form-control" [(ngModel)]="email">
+    </div>
+    <div class="form-group">
+      <label>Description </label>
+      <input name="ClientDescriptionName" type="text" class="form-control" [(ngModel)]="description">
+    </div>
+    <p-button label="Save" icon="pi pi-check" (click)="createContactPerson()"></p-button>
+    <hr/>
+    <table class='can-table' style="border-collapse: collapse;width:100%" *ngIf="contactperson && contactperson.length>0">
+      <tr>
+        <td>Contact PersonName</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>Description</td>
+      </tr>
+      <tr *ngFor="let c of contactperson">
+        <td>{{c.contactpersonname}}</td>
+        <td>{{c.phone}}</td>
+        <td>{{c.email}}</td>
+        <td>{{c.description}}</td>
+      </tr>
+    </table>
+    <div *ngIf="contactperson && contactperson.length==0" style="color:red">
+      <label>No contactperson  Added.</label>
+    </div>
+  </p-sidebar>
+
   
   
   

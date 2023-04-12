@@ -1,8 +1,7 @@
 export interface ClientRequirement {
-    ClientId?:string;
-    RequirementHeading?:string;
-    RequirementDescription?:string;
-    RequirementDate?:string;
-    EndDate?:string;
-    RequirementBy?:string;
- }
+    clientKey?: string | null;
+    requirementHeading?:string;
+    requirementDate?:string;
+    requirementBy?:string;
+    description?:string;
+}
