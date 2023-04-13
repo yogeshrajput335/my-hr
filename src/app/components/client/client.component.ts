@@ -3,6 +3,8 @@ import { map } from 'rxjs';
 import { clientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/models/client';
 import { ColumnFilterFormElement } from 'primeng/table';
+import { ClientFollowUp } from 'src/app/models/clientfollowup';
+import { SnapshotAction } from '@angular/fire/compat/database';
 declare var dataTableInit: any;
 @Component({
   selector: 'app-client',
@@ -54,7 +56,7 @@ export class ClientComponent implements OnInit{
             ).subscribe(data => {
               this.Client = data;
             });
-            this.clientservice.getAllFollowUps().snapshotChanges().pipe(
+            this.clientservice.getclientFollowUps().snapshotChanges().pipe(
               map(changes =>
                 changes.map(c =>
                   ({ key: c.payload.key, ...c.payload.val() })
@@ -62,6 +64,24 @@ export class ClientComponent implements OnInit{
               )
             ).subscribe(data => {
               this.initfollowUps = data;
+            });
+            this.clientservice.getAllRequirements().snapshotChanges().pipe(
+              map((changes:any) =>
+                changes.map((c:any) =>
+                  ({ key: c.payload.key, ...c.payload.val() })
+                )
+              )
+            ).subscribe((data:any) => {
+              this.initrequirements = data;
+            });
+            this.clientservice.getAllContactPerson().snapshotChanges().pipe(
+              map((changes:any) =>
+                changes.map((c:any) =>
+                  ({ key: c.payload.key, ...c.payload.val() })
+                )
+              )
+            ).subscribe((data:any) => {
+              this.initcontactperson = data;
             });
         }
         create() {   
@@ -105,19 +125,19 @@ export class ClientComponent implements OnInit{
           createFollowup(){
             this.clientservice.createFollowUp({clientKey:this.selKey,followupBy:this.userDetails.name,followupDate:new Date().toLocaleString(),description:this.description}).then(() => {
               console.log('Created new item successfully!');
-              this.display=false;
-              this.description=''
-              this.clientService.getAllFollowUps().snapshotChanges().pipe(
-                map((changes:any) =>
-                  changes.map((c:any) =>
+              this.displayFollowUp=false;
+              this.description='';
+              this.clientservice.getclientFollowUps().snapshotChanges().pipe(
+                map(changes =>
+                  changes.map(c =>
                     ({ key: c.payload.key, ...c.payload.val() })
                   )
                 )
-              ).subscribe((data:any) => {
+              ).subscribe(data => {
                 this.initfollowUps = data;
                 this.followUps = this.initfollowUps.filter((x:any)=>x.clientKey == this.selKey);
               });
-            });
+             });
           }
           openrequirements(key:any,ClientName:any){
             this.selKey = key;
@@ -126,11 +146,13 @@ export class ClientComponent implements OnInit{
             this.requirements = this.initrequirements.filter((x:any)=>x.clientKey == this.selKey);
           }
           createRequirements(){
-            this.clientservice.createRequirement({clientKey:this.selKey, requirementHeading:this.userDetails.name,requirementDate:new Date().toLocaleString(),requirementBy:new Date().toLocaleString(),description:this.description}).then(() => {
+            this.clientservice.createRequirement({clientKey:this.selKey, requirementHeading:this.requirementHeading,requirementDate:new Date().toLocaleString(),requirementBy:this.requirementBy,description:this.description}).then(() => {
               console.log('Created new item successfully!');
-              this.display=false;
+              this.displayRequirement=false;
               this.description=''
-              this.clientService.getAllRequirements().snapshotChanges().pipe(
+              this.requirementHeading =''
+              this.requirementBy =''
+              this.clientservice.getAllRequirements().snapshotChanges().pipe(
                 map((changes:any) =>
                   changes.map((c:any) =>
                     ({ key: c.payload.key, ...c.payload.val() })
@@ -149,11 +171,13 @@ export class ClientComponent implements OnInit{
             this.contactperson = this.contactperson.filter((x:any)=>x.clientKey == this.selKey);
           }
           createContactPerson(){
-            this.clientservice.createContactPerson({clientKey:this.selKey,contactPersonName:this.userDetails.name,phone:'',email:''}).then(() => {
+            this.clientservice.createContactPerson({clientKey:this.selKey,contactpersonname:this.contactpersonname,phone:this.phone,email:this.email}).then(() => {
               console.log('Created new item successfully!');
               this.display=false;
-              this.description=''
-              this.clientService.getAllContactPerson().snapshotChanges().pipe(
+              this.contactpersonname=''
+              this.phone=''
+              this.email=''
+              this.clientservice.getAllContactPerson().snapshotChanges().pipe(
                 map((changes:any) =>
                   changes.map((c:any) =>
                     ({ key: c.payload.key, ...c.payload.val() })

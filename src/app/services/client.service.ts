@@ -15,12 +15,11 @@ import { ClientContactPerson } from '../models/clientcontactperson';
 
 export class clientService {
   private dbPath = '/client';
-  private dbFollowUpPath='/candidateFollowUp';
+  private dbFollowUpPath='/clientFollowUp';
   private dbRequirementsPath='/clientRequirement';
   private dbContactPersonPath='/clientContactPerson';
 
   tutorialsRef: AngularFireList<Client>;
-  clientService: any;
   followUpsRef: AngularFireList<ClientFollowUp>;
   requirementRef: AngularFireList<ClientRequirement>;
   contactpersonRef: AngularFireList<ClientContactPerson>;
@@ -53,7 +52,7 @@ export class clientService {
   createFollowUp(tutorial: ClientFollowUp): any {
     return this.followUpsRef.push(tutorial);
   }
-  getAllFollowUps(): AngularFireList<ClientFollowUp> {
+  getclientFollowUps(): AngularFireList<ClientFollowUp> {
     return this.followUpsRef;
   }
   createRequirement(tutorial: ClientRequirement): any {

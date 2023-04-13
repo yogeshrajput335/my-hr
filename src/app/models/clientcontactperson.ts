@@ -1,6 +1,6 @@
 export interface ClientContactPerson{
     clientKey?: string | null;
-    contactPersonName?:string;
+    contactpersonname?:string;
     phone?:string;
     email?:string;
     description?:string;

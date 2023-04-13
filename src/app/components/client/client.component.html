@@ -31,11 +31,11 @@
             <td>{{Client.Address}}</td>
             <td>{{Client.actions}}</td>
             <td>
-              <button (click)="openfollowups(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
-              <button (click)="openrequirements(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-circle" class="p-button-rounded p-button-text"></button>
-              <button (click)="opencontactperson(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-square" class="p-button-rounded p-button-text"></button>
-              <button (click)="edit(Client.key,Client)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-              <button (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-times"   class="p-button-rounded p-button-danger p-button-text"></button>
+              <button tooltipPosition="top" pTooltip="Follow Ups" (click)="openfollowups(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
+              <button tooltipPosition="top" pTooltip="Requirements" (click)="openrequirements(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-circle" class="p-button-rounded p-button-text"></button>
+              <button tooltipPosition="top" pTooltip="Contact Persons" (click)="opencontactperson(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-square" class="p-button-rounded p-button-text"></button>
+              <button tooltipPosition="top" pTooltip="Edit" (click)="edit(Client.key,Client)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+              <button tooltipPosition="top" pTooltip="Delete" (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-times"   class="p-button-rounded p-button-danger p-button-text"></button>
             </td>
         </tr>
     </ng-template>
@@ -93,10 +93,10 @@
       <label>Requirement Heading </label>
       <input name="ClientRequirementHeading" type="text" class="form-control" [(ngModel)]="requirementHeading">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Requirement Date </label>
       <input name="ClientRequirementDate" type="text" class="form-control" [(ngModel)]="requirementDate">
-    </div>
+    </div> -->
     <div class="form-group">
       <label>Requirement By </label>
       <input name="ClientRequirementBy" type="text" class="form-control" [(ngModel)]="requirementBy">
@@ -142,10 +142,6 @@
       <label>Email </label>
       <input name="ClientEmail" type="text" class="form-control" [(ngModel)]="email">
     </div>
-    <div class="form-group">
-      <label>Description </label>
-      <input name="ClientDescriptionName" type="text" class="form-control" [(ngModel)]="description">
-    </div>
     <p-button label="Save" icon="pi pi-check" (click)="createContactPerson()"></p-button>
     <hr/>
     <table class='can-table' style="border-collapse: collapse;width:100%" *ngIf="contactperson && contactperson.length>0">
@@ -153,13 +149,11 @@
         <td>Contact PersonName</td>
         <td>Phone</td>
         <td>Email</td>
-        <td>Description</td>
       </tr>
       <tr *ngFor="let c of contactperson">
-        <td>{{c.contactpersonname}}</td>
+        <td>{{c.contactpersonname}}</td> 
         <td>{{c.phone}}</td>
         <td>{{c.email}}</td>
-        <td>{{c.description}}</td>
       </tr>
     </table>
     <div *ngIf="contactperson && contactperson.length==0" style="color:red">

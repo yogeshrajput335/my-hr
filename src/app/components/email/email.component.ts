@@ -88,7 +88,7 @@ export class EmailComponent implements OnInit{
       this.candidate={recipientEmail:this.candidate.recipientEmail,subject:this.candidate.subject,name:'',title:'',experience:'',availability:'',relocation:'',visaType:'',city:''}
     }
     GenerateTemplate(){
-      let rows=[]
+      let rows:any[]=[]
       if(this.candidates && this.candidates.length>0){
         for (let index = 0; index < this.candidates.length; index++) {
           const element = this.candidates[index];

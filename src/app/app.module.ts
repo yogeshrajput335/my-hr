@@ -46,6 +46,7 @@ import { EmailComponent } from './components/email/email.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
 import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,8 @@ import { DropdownModule } from 'primeng/dropdown';
     CheckboxModule,
     InputTextModule,
     ChipModule,
-    DropdownModule 
+    DropdownModule,
+    TooltipModule 
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
