@@ -16,13 +16,11 @@
    >
      <ng-template pTemplate="caption">
        <div style="display: inline-flex;">
-         <h5 style="margin-right:100px;margin-left:20px">Notifications</h5>
-       <div style="float: right;margin-top:4px">
-         <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV"tooltipPosition="bottom"></button>
-           <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
-           <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
-        <p-button style="margin-left:5px" icon="pi pi-plus" (click)="AddNotifications()" icon="pi pi-plus"></p-button>
-         </div>
+         <h5 style="margin-right:50px;margin-left:10px;margin-bottom:0px;">Notifications</h5>
+       <div style="float: right;margin-top:1px">
+         <button  tooltipPosition="top" pTooltip="CSV" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" ></button>
+         <p-button  tooltipPosition="top" pTooltip="AddNotifications" style="margin-left:5px" icon="pi pi-plus" (click)="AddNotifications()" icon="pi pi-plus"></p-button>
+       </div>
        </div>
      </ng-template>
         <ng-template pTemplate="header">
@@ -47,8 +45,8 @@
                     <td>{{Notifications.Status}}</td>
                     <td>{{Notifications.Notifyall}}</td>
                     <td>
-                        <button (click)="edit(Notifications.key,Notifications)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-                        <button (click)="delete(Notifications.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                        <button  tooltipPosition="top" pTooltip="EDIT" (click)="edit(Notifications.key,Notifications)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button  tooltipPosition="top" pTooltip="DELETE" (click)="delete(Notifications.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>

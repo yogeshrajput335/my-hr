@@ -6,7 +6,7 @@
         <div style="display: inline-flex;">
             <h5 style="margin-right: 100px;margin-left:20px">Attendance</h5>
             <div style="float: right;margin-top: 4px">
-                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <button tooltipPosition="top" pTooltip="CSV" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
                 <select (click)="OnStatusChange()" [(ngModel)]="selStatus">
                   <option>NEW</option>
                   <option>APPROVED</option>
@@ -36,7 +36,7 @@
                     <td>{{AttendanceReport.PresentDate}}</td>
                     <td>{{AttendanceReport.Actions}}</td>
                     <td>
-                        <button (click)="edit(AttendanceReport.key,AttendanceReport)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button tooltipPosition="top" pTooltip="EDIT" (click)="edit(AttendanceReport.key,AttendanceReport)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>

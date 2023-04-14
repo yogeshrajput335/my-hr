@@ -71,33 +71,33 @@ export class AppLayoutComponent {
       },
       {
         label: 'Client',
-        icon: 'pi pi-fw pi-pencil',
+        icon: 'pi pi-fw pi-user-plus',
         
         items: [
             {
                 label: 'Client',
-                icon: 'pi pi-fw pi-align-justify',
+                icon: 'pi pi-fw pi-users',
                 routerLink: 'client'
             },
         ]
     },
     {
         label: 'Leave',
-        icon: 'pi pi-fw pi-hourglass',
+        icon: 'pi pi-fw pi-file-edit',
         items: [
             {
                 label: 'Leave',
-                icon: 'pi pi-fw pi-moon',
+                icon: 'pi pi-fw pi-file-edit',
                 routerLink: 'leave'
              },
             {
                 label: 'Leave Type',
-                icon: 'pi pi-fw  pi-prime',
+                icon: 'pi pi-fw pi-file-export',
                 routerLink: 'leavetype'
             },
              {
                 label: 'Leave List',
-                icon: 'pi pi-fw pi-palette',
+                icon: 'pi pi-fw pi-file-import',
                 routerLink: 'leavelist'
              },
 
