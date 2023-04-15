@@ -6,8 +6,8 @@
         <div style="display: inline-flex;">
             <h5 style="margin-right: 100px;margin-left:20px">Attendance</h5>
             <div style="float: right;margin-top: 4px">
-                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
-                <p-button style="margin-left:5px;" icon="pi pi-plus" (click)="AddAttendance()" icon="pi pi-plus"></p-button>
+                <button tooltipPosition="top" pTooltip="CSV" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <p-button tooltipPosition="top" pTooltip="AddAttendance" style="margin-left:5px;" icon="pi pi-plus" (click)="AddAttendance()" icon="pi pi-plus"></p-button>
             </div>
         </div>
     </ng-template> 
@@ -31,9 +31,9 @@
                     <td>{{Attendance.PresentDate}}</td>
                     <td>{{Attendance.Actions}}</td>
                     <td>
-                        <button (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-                        <button (click)="delete(Attendance.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
-                    </td>"
+                        <button tooltipPosition="top" pTooltip="EDIT" (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button tooltipPosition="top" pTooltip="DELETE" (click)="delete(Attendance.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>

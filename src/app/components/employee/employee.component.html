@@ -7,10 +7,7 @@
             <h5 style="margin-right: 100px;margin-left:20px">Employee</h5>
             <div style="float: right;margin-top: 4px">
                  <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
-                <!-- <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
-                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
-                <!-- <button style="margin-left:5px" type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({selectionOnly:true})" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom">Selected Row CSV</button> -->
-                <p-button style="margin-left:5px;" icon="pi pi-plus" (click)="AddEmployee()" icon="pi pi-plus"></p-button>
+                 <p-button tooltipPosition="top" pTooltip="AddEmployee" style="margin-left:5px;" icon="pi pi-plus" (click)="AddEmployee()" icon="pi pi-plus"></p-button>
             </div>
         </div>
     </ng-template> 
@@ -39,8 +36,8 @@
                     <td>{{Employee.Actions}}</td>
 
                     <td>
-                        <button (click)="edit(Employee.key,Employee)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-                        <button (click)="delete(Employee.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                        <button  tooltipPosition="top" pTooltip="EDIT" (click)="edit(Employee.key,Employee)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button  tooltipPosition="top" pTooltip="DELETE" (click)="delete(Employee.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>
