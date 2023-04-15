@@ -141,6 +141,36 @@
                 </div>
                 </div>
             </div>
+            <div class="col-6">
+                <p-table [value]="leaves" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                            Leave Overview
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Employee</th>
+                            <th>Type</th>
+                            <th>From </th>
+                            <th>To</th>
+                            <th>Status</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{ product.Employee }}</td>
+                            <td>{{ product.LeaveType }}</td>
+                            <td>{{ product.FromDate }}</td>
+                            <td>{{ product.ToDate }}</td>
+                            <td>{{ product.Status }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div class="col-6">
+                <!-- EMAIL TEMPLATE -->
+            </div>
         <!-- <div class="col-6">6</div>
         <div class="col-6">6</div> -->
     </div>

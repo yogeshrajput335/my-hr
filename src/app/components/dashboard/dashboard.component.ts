@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
+import { dashboardService } from 'src/app/services/dashboard.service';
+import { leaveService } from 'src/app/services/leave.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
     data: any;
-
+    userDetails:any;
     options: any;
-
+    leaves:any
+    constructor(private service : dashboardService) { 
+        this.userDetails = JSON.parse(localStorage.getItem('user')!)
+        this.service.getLeavesAll().snapshotChanges().pipe(
+            map(changes =>
+              changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+              )
+            )
+          ).subscribe((data:any) => {
+            
+            if(this.userDetails.isAdmin){
+                //ADMIN
+                this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
+            }
+            else{
+                //EMPLOYEE
+                this.leaves = data.filter((x:any)=>x.Employee == this.userDetails.name && new Date(x.FromDate)>new Date());
+            }
+          });
+        
+      }
     ngOnInit() {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
