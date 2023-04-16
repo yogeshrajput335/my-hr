@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { candidateService } from 'src/app/services/candidate.service';
 import { dashboardService } from 'src/app/services/dashboard.service';
 import { emailService } from 'src/app/services/email.service';
 import { leaveService } from 'src/app/services/leave.service';
@@ -16,9 +17,18 @@ export class DashboardComponent implements OnInit {
     options: any;
     leaves:any;
     finalTemplate='';
-    constructor(private service : dashboardService, private emailservice:emailService) { 
+    candidateCount = 0;
+    constructor(private service : dashboardService, private emailservice:emailService, private candidateservice: candidateService) { 
         this.userDetails = JSON.parse(localStorage.getItem('user')!)
-     
+        this.candidateservice.getAll().snapshotChanges().pipe(
+            map(changes =>
+                changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+                )
+            )
+        ).subscribe((data:any) => {
+            this.candidateCount = data.length;
+        });
         this.service.getLeavesAll().snapshotChanges().pipe(
             map(changes =>
               changes.map(c =>
