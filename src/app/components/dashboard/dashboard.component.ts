@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { dashboardService } from 'src/app/services/dashboard.service';
+import { emailService } from 'src/app/services/email.service';
 import { leaveService } from 'src/app/services/leave.service';
 
 @Component({
@@ -11,10 +12,13 @@ import { leaveService } from 'src/app/services/leave.service';
 export class DashboardComponent implements OnInit {
     data: any;
     userDetails:any;
+    emails:any
     options: any;
-    leaves:any
-    constructor(private service : dashboardService) { 
+    leaves:any;
+    finalTemplate='';
+    constructor(private service : dashboardService, private emailservice:emailService) { 
         this.userDetails = JSON.parse(localStorage.getItem('user')!)
+     
         this.service.getLeavesAll().snapshotChanges().pipe(
             map(changes =>
               changes.map(c =>
@@ -31,6 +35,24 @@ export class DashboardComponent implements OnInit {
                 //EMPLOYEE
                 this.leaves = data.filter((x:any)=>x.Employee == this.userDetails.name && new Date(x.FromDate)>new Date());
             }
+          });
+          this.userDetails = JSON.parse(localStorage.getItem('user')!)
+          this.emailservice.getEmailAll().snapshotChanges().pipe(
+            map(changes =>
+              changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+              )
+            )
+          ).subscribe((data:any) => {
+             if(this.userDetails.isAdmin){
+                //ADMIN
+                this.emails = data.filter((x:any)=>new Date(x.Date)>new Date());
+            }
+              else{
+                //EMPLOYEE
+                this.emails = data.filter((x:any)=>x.Employee == this.userDetails.name && new Date(x.Date)>new Date());
+            }
+
           });
         
       }
@@ -94,5 +116,6 @@ export class DashboardComponent implements OnInit {
             }
         };
     }
+  
 }
 

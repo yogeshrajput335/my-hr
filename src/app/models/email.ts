@@ -1,5 +1,5 @@
 export interface Email{
-    date?: string;
-    template?:string;
+    Date?: string;
+    Template?:string;
     createdBy?:string;
 }

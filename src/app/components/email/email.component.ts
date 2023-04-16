@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { Email } from 'src/app/models/email';
 import { emailService } from 'src/app/services/email.service';
 @Component({
   selector: 'app-email',
@@ -8,7 +9,8 @@ import { emailService } from 'src/app/services/email.service';
 })
 export class EmailComponent implements OnInit{
     userDetails:any ;
-    emails:any
+    emails:any;
+    display=false;
     candidate:any={recipientEmail:'',subject:'',name:'',title:'',experience:'',availability:'',relocation:'',visaType:'',city:''}
     candidates:any[]=[]
     finalTemplate='';
@@ -68,25 +70,27 @@ export class EmailComponent implements OnInit{
     <td id="m_4008311415812014809m_-5121554939364801918m_9095447352672925746templateTableDataTdN65631" nowrap="" style="border-color:#a0b4d7;color:#000000;font:12px Verdana" valign="top"><span id="m_4008311415812014809m_-5121554939364801918m_9095447352672925746code"><span id="m_4008311415812014809m_-5121554939364801918m_9095447352672925746gardenheaderCodevalN65631"><u></u> &nbsp;{CITY}<u></u></span></span></td>
   </tr>`;
     constructor(
-        private emailservice:emailService
+        private emailservice:emailService,
         ) {}
         ngOnInit():void {
           this.userDetails = JSON.parse(localStorage.getItem('user')!)
-          this.emailservice.getAll().snapshotChanges().pipe(
+          this.emailservice.getEmailAll().snapshotChanges().pipe(
             map(changes =>
               changes.map(c =>
                 ({ key: c.payload.key, ...c.payload.val() })
               )
             )
-          ).subscribe(data => {
-            this.emails = data;
-          });
+          ).subscribe((data:any) => {
+            this.emails = data.filter((x:any)=>x.Employee == this.userDetails.name );
+         });
         }
+      
     AddCandidate(){
       this.finalTemplate = '';
       this.candidates.push(this.candidate)
       this.candidate={recipientEmail:this.candidate.recipientEmail,subject:this.candidate.subject,name:'',title:'',experience:'',availability:'',relocation:'',visaType:'',city:''}
     }
+
     GenerateTemplate(){
       let rows:any[]=[]
       if(this.candidates && this.candidates.length>0){
