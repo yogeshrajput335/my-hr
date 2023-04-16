@@ -44,14 +44,7 @@ export class DashboardComponent implements OnInit {
               )
             )
           ).subscribe((data:any) => {
-             if(this.userDetails.isAdmin){
-                //ADMIN
-                this.emails = data.filter((x:any)=>new Date(x.Date)>new Date());
-            }
-              else{
-                //EMPLOYEE
-                this.emails = data.filter((x:any)=>x.Employee == this.userDetails.name && new Date(x.Date)>new Date());
-            }
+            this.emails = data.reverse().slice(0, 5);
 
           });
         
