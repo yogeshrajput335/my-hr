@@ -166,12 +166,30 @@
                             <td>{{ product.Status }}</td>
                         </tr>
                     </ng-template>
+                    
                 </p-table>
             </div>
+           
             <div class="col-6">
-                <!-- EMAIL TEMPLATE -->
-            </div>
-        <!-- <div class="col-6">6</div>
-        <div class="col-6">6</div> -->
+                <p-table [value]="emails" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                            Saved Templates
+                        </div>
+                    </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Date</th>
+                        <th>createdBy</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-emails>
+                    <tr>
+                        <td>{{ emails.Date }}</td>
+                        <td>{{ emails.createdBy }}</td>
+                    </tr>
+                </ng-template>
+                </p-table>
+            </div> 
     </div>
 </div>

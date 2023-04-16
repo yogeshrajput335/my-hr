@@ -11,15 +11,17 @@ import { Email } from '../models/email';
 })
 
 export class emailService {
-  private dbPath = '/email';
+
+  private dbemailPath = '/email';
+
   tutorialsRef: AngularFireList<Email>;
   clientService: any;
 
   constructor( private db: AngularFireDatabase ) {
-     this.tutorialsRef = db.list(this.dbPath);
+     this.tutorialsRef = db.list(this.dbemailPath);
   }
 
-  getAll(): AngularFireList<Email> {
+  getEmailAll(): AngularFireList<Email> {
     return this.tutorialsRef;
   }
 
