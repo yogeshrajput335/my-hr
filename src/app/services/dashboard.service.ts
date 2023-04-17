@@ -21,7 +21,4 @@ export class dashboardService {
     getLeavesAll(): AngularFireList<Leave> {
         return this.leavesRef;
     }
-    getEmailAll(): AngularFireList<Email> {
-        return this.emailRef;
-    }
 }

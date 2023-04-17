@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     employeeCount=0;
     constructor(private service : dashboardService, private emailservice:emailService, private candidateservice: candidateService,
         private clientservice:clientService,private jobservice:jobService,
-        private employeeservice:employeeService) { 
+        private employeeservice:employeeService, private leaveservice:leaveService) { 
         this.userDetails = JSON.parse(localStorage.getItem('user')!)
         this.candidateservice.getAll().snapshotChanges().pipe(
             map(changes =>
@@ -63,20 +63,14 @@ export class DashboardComponent implements OnInit {
         ).subscribe((data:any) => {
             this.employeeCount = data.length;
         });
-        this.service.getLeavesAll().snapshotChanges().pipe(
+        this.leaveservice.getDashboardLeaves(this.userDetails.isAdmin,this.userDetails.name).snapshotChanges().pipe(
             map(changes =>
               changes.map(c =>
                 ({ key: c.payload.key, ...c.payload.val() })
               )
             )
           ).subscribe((data:any) => {
-            
-            if(this.userDetails.isAdmin){
-                this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
-            }
-            else{
-                this.leaves = data.filter((x:any)=>x.Employee == this.userDetails.name && new Date(x.FromDate)>new Date());
-            }
+            this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
           });
           this.userDetails = JSON.parse(localStorage.getItem('user')!)
           this.emailservice.getEmailAll().snapshotChanges().pipe(

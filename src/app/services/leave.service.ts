@@ -29,4 +29,12 @@ export class leaveService {
   deleteAll(): Promise<void> {
     return this.leavesRef.remove();
   }
+  getDashboardLeaves(isAdmin,Employee): AngularFireList<Leave> {
+    if(isAdmin){
+      return this.leavesRef;
+    }
+    else{
+      return this.db.list(this.dbPath,ref => ref.orderByChild('Employee').equalTo(Employee));
+    }
+  }
 }
