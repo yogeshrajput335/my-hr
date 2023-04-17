@@ -81,7 +81,7 @@ export class EmailComponent implements OnInit{
               )
             )
           ).subscribe((data:any) => {
-            this.emails = data.filter((x:any)=>x.Employee == this.userDetails.name );
+            this.emails = data.filter((x:any)=>x.createdBy == this.userDetails.name || this.userDetails.name=='admin');
          });
         }
     AddCandidate(){
