@@ -63,7 +63,7 @@ export class AppLayoutComponent {
               },
               {
                 label: 'Notifications',
-                icon: 'pi pi-fw la la-bullhorn',
+                icon: 'pi pi-fw  pi-bell',
                 routerLink: 'notifications'
               },
           
