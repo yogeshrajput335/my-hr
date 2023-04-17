@@ -8,46 +8,38 @@ import { Client } from '../models/client';
 import { ClientFollowUp } from '../models/clientfollowup';
 import { ClientRequirement } from '../models/clientrequirement';
 import { ClientContactPerson } from '../models/clientcontactperson';
-
 @Injectable({
   providedIn: 'root',
 })
-
 export class clientService {
   private dbPath = '/client';
   private dbFollowUpPath='/clientFollowUp';
   private dbRequirementsPath='/clientRequirement';
   private dbContactPersonPath='/clientContactPerson';
-
-  tutorialsRef: AngularFireList<Client>;
+  clientsRef: AngularFireList<Client>;
   followUpsRef: AngularFireList<ClientFollowUp>;
   requirementRef: AngularFireList<ClientRequirement>;
   contactpersonRef: AngularFireList<ClientContactPerson>;
-
   constructor( private db: AngularFireDatabase ) {
-     this.tutorialsRef = db.list(this.dbPath);
+     this.clientsRef = db.list(this.dbPath);
      this.followUpsRef = db.list(this.dbFollowUpPath);
      this.requirementRef = db.list(this.dbRequirementsPath);
      this.contactpersonRef = db.list(this.dbContactPersonPath);
   }
-
   getAll(): AngularFireList<Client> {
-    return this.tutorialsRef;
+    return this.clientsRef;
   }
-
   create(tutorial: Client): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.clientsRef.push(tutorial);
   }
-
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.clientsRef.update(key, value);
   }
-
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.clientsRef.remove(key);
   }
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.clientsRef.remove();
   }
   createFollowUp(tutorial: ClientFollowUp): any {
     return this.followUpsRef.push(tutorial);
@@ -67,5 +59,4 @@ export class clientService {
   getAllContactPerson(): AngularFireList<ClientContactPerson> {
     return this.contactpersonRef;
   }
-
 }

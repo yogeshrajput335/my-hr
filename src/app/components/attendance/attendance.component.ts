@@ -30,7 +30,6 @@ export class AttendanceComponent implements OnInit {
   AttendanceReport: { Year?: string | undefined; Month?: string | undefined; NumberOfDays?: any; PresentDate?: any; key: string | null; }[];
   constructor(public attendanceservice: attendanceService,
     public attendancereportservice: attendancereportService) {}
-
   ngOnInit(): void {
     this.userDetails=JSON.parse(localStorage.getItem('user')!)
     this.attendanceservice
@@ -43,14 +42,12 @@ export class AttendanceComponent implements OnInit {
     ).subscribe((data) => {
       this.AttendanceReport= data;
     });
-    
     this.cols = [
       { field: 'Year', header: 'year', customExportHeader: 'YEAR' },
       { field: 'Month', header: 'month' },
       { field: 'NumberOfDays', header: 'numberofdays' },
       { field: 'PresentDate', header: 'presentdate' },
     ];
-
     this.attendanceservice
       .getAll()
       .snapshotChanges()

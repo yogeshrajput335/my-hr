@@ -6,41 +6,32 @@ import {
 } from '@angular/fire/compat/database';
 import { candidate } from '../models/candidate';
 import { candidateFollowUp } from '../models/candidateFollowUp';
-
 @Injectable({
   providedIn: 'root',
 })
-
 export class candidateService {
   private dbPath = '/candidate';
   private dbFollowUpPath='/candidateFollowUp';
-
-  tutorialsRef: AngularFireList<candidate>;
+  candidatesRef: AngularFireList<candidate>;
   followUpsRef: AngularFireList<candidateFollowUp>;
-
   constructor(private db: AngularFireDatabase) {
-    this.tutorialsRef = db.list(this.dbPath);
+    this.candidatesRef = db.list(this.dbPath);
     this.followUpsRef = db.list(this.dbFollowUpPath);
   }
-
   getAll(): AngularFireList<candidate> {
-    return this.tutorialsRef;
+    return this.candidatesRef;
   }
-
   create(tutorial: candidate): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.candidatesRef.push(tutorial);
   }
-
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.candidatesRef.update(key, value);
   }
-
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.candidatesRef.remove(key);
   }
-
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.candidatesRef.remove();
   }
   createFollowUp(tutorial: candidateFollowUp): any {
     return this.followUpsRef.push(tutorial);

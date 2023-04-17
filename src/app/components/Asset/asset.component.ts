@@ -2,15 +2,12 @@ import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Asset } from 'src/app/models/asset';
 import { assetService } from 'src/app/services/asset.service';
-
 declare var dataTableInit:any;
-
 @Component({
   selector: 'app-asset',
   templateUrl: './asset.component.html',
   styleUrls: ['./asset.component.scss']
 })
-
 export class AssetComponent implements OnInit {
   Assets: Asset[];
   asset:Asset = {name:'',details:''};
@@ -19,17 +16,14 @@ export class AssetComponent implements OnInit {
   display = false;
   sibebarHeader = "Add Asset";
   selectedKey=''
-
   constructor(
     public assetservice: assetService
   ){ }
-
     ngOnInit():void {
       this.cols = [
         { field: 'name', header: 'name', customExportHeader: 'NAME' },
         { field: 'details', header: 'details' }
       ];
-
     this.assetservice.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -65,7 +59,6 @@ export class AssetComponent implements OnInit {
     this.sibebarHeader = 'Edit Asset'
     this.asset = asset;
     this.selectedKey = key;
-
   }
   delete(key:any){
     this.assetservice.delete(key);

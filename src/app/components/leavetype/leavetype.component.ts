@@ -3,7 +3,6 @@ import { map } from 'rxjs';
 import { LeaveType } from 'src/app/models/leavetype';
 import { leavetypeService } from 'src/app/services/leavetype.service';
 declare var dataTableInit:any; 
-
 @Component({
   selector: 'app-leavetype',
   templateUrl: './leavetype.component.html',
@@ -17,11 +16,9 @@ export class LeaveTypeComponent  implements OnInit{
     display = false;
     sibebarHeader = "Add LeaveType";
     selectedKey=''
-  
     constructor(
       public leavetypeservice: leavetypeService
     ){ }
-  
       ngOnInit():void {
         this.cols = [
           { field: 'type', header: 'type', customExportHeader: 'TYPE' },

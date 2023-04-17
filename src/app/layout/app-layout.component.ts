@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
-
 @Component({
   selector: 'app-app-layout',
   templateUrl: './app-layout.component.html',
@@ -66,13 +65,11 @@ export class AppLayoutComponent {
                 icon: 'pi pi-fw  pi-bell',
                 routerLink: 'notifications'
               },
-          
-           ]
+          ]
       },
       {
         label: 'Client',
         icon: 'pi pi-fw pi-user-plus',
-        
         items: [
             {
                 label: 'Client',
@@ -100,7 +97,6 @@ export class AppLayoutComponent {
                 icon: 'pi pi-fw pi-file-import',
                 routerLink: 'leavelist'
              },
-
         ]
     },
     {
@@ -119,7 +115,6 @@ export class AppLayoutComponent {
             },
         ]
     },
-
       {
           label: 'Quit',
           icon: 'pi pi-fw pi-power-off',
@@ -153,8 +148,7 @@ export class AppLayoutComponent {
                   icon: 'pi pi-fw pi-bell',
                   routerLink: 'jobs'
               }
-          
-           ]
+          ]
       },
     {
         label: 'Leave',
@@ -165,7 +159,6 @@ export class AppLayoutComponent {
                 icon: 'pi pi-fw pi-qrcode',
                 routerLink: 'leave'
              }
-
         ]
     },
     {
@@ -179,7 +172,6 @@ export class AppLayoutComponent {
              }
         ]
     },
-
       {
           label: 'Quit',
           icon: 'pi pi-fw pi-power-off',

@@ -9,34 +9,26 @@ import { Email } from '../models/email';
 @Injectable({
   providedIn: 'root',
 })
-
 export class emailService {
-
   private dbemailPath = '/email';
-
-  tutorialsRef: AngularFireList<Email>;
+  emailsRef: AngularFireList<Email>;
   clientService: any;
-
   constructor( private db: AngularFireDatabase ) {
-     this.tutorialsRef = db.list(this.dbemailPath);
+     this.emailsRef = db.list(this.dbemailPath);
   }
-
   getEmailAll(): AngularFireList<Email> {
-    return this.tutorialsRef;
+    return this.emailsRef;
   }
-
   create(tutorial: Email): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.emailsRef.push(tutorial);
   }
-
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.emailsRef.update(key, value);
   }
-
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.emailsRef.remove(key);
   }
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.emailsRef.remove();
   }
 }

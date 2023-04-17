@@ -5,36 +5,28 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { Leave } from '../models/leave';
-
-
 @Injectable({
   providedIn: 'root',
 })
 export class leaveService {
   private dbPath = '/leave';
-  tutorialsRef: AngularFireList<Leave>;
-
+  leavesRef: AngularFireList<Leave>;
   constructor(private db: AngularFireDatabase) {
-    this.tutorialsRef = db.list(this.dbPath);
+    this.leavesRef = db.list(this.dbPath);
   }
-
   getAll(): AngularFireList<Leave> {
-    return this.tutorialsRef;
+    return this.leavesRef;
   }
-
   create(tutorial: Leave): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.leavesRef.push(tutorial);
   }
-
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.leavesRef.update(key, value);
   }
-
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.leavesRef.remove(key);
   }
-
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.leavesRef.remove();
   }
 }

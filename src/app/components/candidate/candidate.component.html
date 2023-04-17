@@ -57,39 +57,36 @@
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
   <h3>{{sibebarHeader}}</h3>
-
   <div class="form-group">
     <label>Candidate Name <small>(required)</small></label>
     <input name="CandidateName" type="text" class="form-control" [(ngModel)]="candidate.CandidateName">
   </div>
-
-<div class="form-group">
-  <label> Email</label>
-  <input name="email" type="text" class="form-control" [(ngModel)]="candidate.email">
-</div>
-<div class="form-group">
-  <label> Tech</label>
-  <input name="tech" type="text" class="form-control" [(ngModel)]="candidate.tech">
-</div>
-<div class="form-group">
-  <label> Visa</label>
-  <input name="visa" type="text" class="form-control" [(ngModel)]="candidate.visa">
-</div>
-<div class="form-group">
-  <label> Rate</label>
-  <input name="rate" type="text" class="form-control" [(ngModel)]="candidate.rate">
-</div>
-<div class="form-group">
-  <label> Date </label>
-  <input name="date" type="text" class="form-control" [(ngModel)]="candidate.date">
-</div>
-<div class="form-group">
-  <label> Contact Details </label>
-  <input name="contact details" type="text" class="form-control" [(ngModel)]="candidate.contactdetails">
-</div>
-<p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  <div class="form-group">
+    <label> Email</label>
+    <input name="email" type="text" class="form-control" [(ngModel)]="candidate.email">
+  </div>
+  <div class="form-group">
+    <label> Tech</label>
+    <input name="tech" type="text" class="form-control" [(ngModel)]="candidate.tech">
+  </div>
+  <div class="form-group">
+    <label> Visa</label>
+    <input name="visa" type="text" class="form-control" [(ngModel)]="candidate.visa">
+  </div>
+  <div class="form-group">
+    <label> Rate</label>
+    <input name="rate" type="text" class="form-control" [(ngModel)]="candidate.rate">
+  </div>
+  <div class="form-group">
+    <label> Date </label>
+    <input name="date" type="text" class="form-control" [(ngModel)]="candidate.date">
+  </div>
+  <div class="form-group">
+    <label> Contact Details </label>
+    <input name="contact details" type="text" class="form-control" [(ngModel)]="candidate.contactdetails">
+  </div>
+  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
 </p-sidebar>
-
 <p-sidebar [(visible)]="displayFollowUp" position="right"  [style]="{width:'40em'}">
   <h4>{{selCandidate}} Follow Ups </h4>
   <div class="form-group">

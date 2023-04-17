@@ -3,7 +3,6 @@ import { map } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { jobService } from 'src/app/services/job.service';
 declare var dataTableInit: any;
-
 @Component({
   selector: 'app-jobs',
   templateUrl: './jobs.component.html',
@@ -18,12 +17,9 @@ export class JobsComponent implements OnInit {
   sibebarHeader = "Add Job";
   selectedKey=''
   jobService: any;
-  
   constructor(
     private jobservice: jobService
     ) {}
- 
-
   ngOnInit():void {
     this.cols = [
       { field: 'name', header: 'name', customExportHeader: 'NAME' },
@@ -31,8 +27,6 @@ export class JobsComponent implements OnInit {
       { field: 'startdate', header: 'startdate' },
       { field: 'enddate', header: 'enddate' }
   ];
-
-
     this.jobservice.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -62,7 +56,6 @@ export class JobsComponent implements OnInit {
   delete(key:any){
     this.jobservice.delete(key);
    }
-
   AddJob(){
     this.display = true;
     this.sibebarHeader = 'Add Job'
@@ -73,8 +66,6 @@ export class JobsComponent implements OnInit {
     this.job = job;
     this.selectedKey = key;
   }
-
-
 }
 
 
