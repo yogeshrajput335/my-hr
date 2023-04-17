@@ -11,29 +11,29 @@ import { Asset } from '../models/asset';
 })
 export class assetService {
   private dbPath = '/asset';
-  tutorialsRef: AngularFireList<Asset>;
+  assetsRef: AngularFireList<Asset>;
 
   constructor(private db: AngularFireDatabase) {
-    this.tutorialsRef = db.list(this.dbPath);
+    this.assetsRef = db.list(this.dbPath);
   }
 
   getAll(): AngularFireList<Asset> {
-    return this.tutorialsRef;
+    return this.assetsRef;
   }
 
   create(tutorial: Asset): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.assetsRef.push(tutorial);
   }
 
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.assetsRef.update(key, value);
   }
 
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.assetsRef.remove(key);
   }
 
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.assetsRef.remove();
   }
 }

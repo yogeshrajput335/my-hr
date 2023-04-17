@@ -2,18 +2,18 @@
 background-repeat:   no-repeat;
 background-position: center center;">
     <div class="container">
-    <div class="col-md-5">
-        <div class="box-for overflow">                         
-            <div class="col-md-12 col-xs-12 login-blocks">
-                <header>
-                    <div class="logo">
-                        <div class="logo-row">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="assets/blueverse_logo.png" alt="logo" class="logo">
-                            </a>
+        <div class="col-md-5">
+            <div class="box-for overflow">                         
+                <div class="col-md-12 col-xs-12 login-blocks">
+                    <header>
+                        <div class="logo">
+                            <div class="logo-row">
+                                <a class="navbar-brand" href="index.html">
+                                    <img src="assets/blueverse_logo.png" alt="logo" class="logo">
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </header>
+                    </header>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -27,19 +27,8 @@ background-position: center center;">
                             <button type="submit" class="btn btn-default" (click)="authService.SignIn(userName.value, userPassword.value)"> Log in</button>
                         </div>
                     </form>
-                    <!-- <br>
-                    
-                    <h2>Social login :  </h2> 
-                    
-                    <p>
-                    <a class="login-social" href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a> 
-                    <a class="login-social" href="#"><i class="fa fa-google-plus" (click)="authService.GoogleAuth()"></i>&nbsp;Gmail</a> 
-                    <a class="login-social" href="#"><i class="fa fa-twitter"></i>&nbsp;Twitter</a>  
-                    </p>  -->
                 </div>
-                
             </div>
         </div>
-
     </div>
 </div>   
