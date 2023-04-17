@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { candidateService } from 'src/app/services/candidate.service';
+import { clientService } from 'src/app/services/client.service';
 import { dashboardService } from 'src/app/services/dashboard.service';
 import { emailService } from 'src/app/services/email.service';
+import { jobService } from 'src/app/services/job.service';
 import { leaveService } from 'src/app/services/leave.service';
-
+import { employeeService } from 'src/app/services/employee.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,8 +20,14 @@ export class DashboardComponent implements OnInit {
     leaves:any;
     finalTemplate='';
     candidateCount = 0;
-    constructor(private service : dashboardService, private emailservice:emailService, private candidateservice: candidateService) { 
+    clientCount = 0;
+    jobCount = 0;
+    employeeCount=0;
+    constructor(private service : dashboardService, private emailservice:emailService, private candidateservice: candidateService,
+        private clientservice:clientService,private jobservice:jobService,
+        private employeeservice:employeeService) { 
         this.userDetails = JSON.parse(localStorage.getItem('user')!)
+
         this.candidateservice.getAll().snapshotChanges().pipe(
             map(changes =>
                 changes.map(c =>
@@ -28,6 +36,33 @@ export class DashboardComponent implements OnInit {
             )
         ).subscribe((data:any) => {
             this.candidateCount = data.length;
+        });
+        this.clientservice.getAll().snapshotChanges().pipe(
+            map(changes =>
+                changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+                )
+            )
+        ).subscribe((data:any) => {
+            this.clientCount = data.length;
+        });
+        this.jobservice.getAll().snapshotChanges().pipe(
+            map(changes =>
+                changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+                )
+            )
+        ).subscribe((data:any) => {
+            this.jobCount = data.length;
+        });
+        this.employeeservice.getAll().snapshotChanges().pipe(
+            map(changes =>
+                changes.map(c =>
+                ({ key: c.payload.key, ...c.payload.val() })
+                )
+            )
+        ).subscribe((data:any) => {
+            this.employeeCount = data.length;
         });
         this.service.getLeavesAll().snapshotChanges().pipe(
             map(changes =>
