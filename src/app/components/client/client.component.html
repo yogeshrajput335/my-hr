@@ -59,7 +59,6 @@
   </div>
   <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
   </p-sidebar>
-
   <p-sidebar [(visible)]="displayFollowUp" position="right"  [style]="{width:'40em'}">
     <h4>{{selClient}} Follow Ups </h4>
     <div class="form-group">
@@ -84,17 +83,12 @@
       <label>No followUps  Added.</label>
     </div>
   </p-sidebar>
-
   <p-sidebar [(visible)]="displayRequirement" position="right"  [style]="{width:'40em'}">
     <h4>{{selClient}} Requirements </h4>
     <div class="form-group">
       <label>Requirement Heading </label>
       <input name="ClientRequirementHeading" type="text" class="form-control" [(ngModel)]="requirementHeading">
     </div>
-    <!-- <div class="form-group">
-      <label>Requirement Date </label>
-      <input name="ClientRequirementDate" type="text" class="form-control" [(ngModel)]="requirementDate">
-    </div> -->
     <div class="form-group">
       <label>Requirement By </label>
       <input name="ClientRequirementBy" type="text" class="form-control" [(ngModel)]="requirementBy">
@@ -103,7 +97,6 @@
       <label>Description </label>
       <input name="ClientDescriptionName" type="text" class="form-control" [(ngModel)]="description">
     </div>
-
     <p-button label="Save" icon="pi pi-check" (click)="createRequirements()"></p-button>
     <hr/>
     <table class='can-table' style="border-collapse: collapse;width:100%" *ngIf="requirements && requirements.length>0">
@@ -124,7 +117,6 @@
       <label>No requirements Added.</label>
     </div>
   </p-sidebar>
-
   <p-sidebar [(visible)]="displayContactPerson" position="right"  [style]="{width:'40em'}">
     <h4>{{selClient}} Contact Person </h4>
     <div class="form-group">
@@ -135,7 +127,6 @@
       <label>Phone </label>
       <input name="ClientPhone" type="text" class="form-control" [(ngModel)]="phone">
     </div>
-
     <div class="form-group">
       <label>Email </label>
       <input name="ClientEmail" type="text" class="form-control" [(ngModel)]="email">

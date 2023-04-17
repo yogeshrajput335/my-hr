@@ -7,7 +7,6 @@ import { Employee } from '../models/employee';
 import { leavetypeService } from '../services/leavetype.service';
 import { LeaveType } from '../models/leavetype';
 declare var dataTableInit:any;
-
 @Component({
   selector: 'app-leave',
   templateUrl: './leave.component.html',
@@ -25,14 +24,12 @@ export class LeaveComponent implements OnInit {
   display = false;
   sibebarHeader = "Add Leave";
   selectedKey=''
-
   constructor(
     public leaveservice:leaveService,
     public employeeservice:employeeService,
     public leavetypeservice:leavetypeService
   ){ }
-
-    ngOnInit():void {
+  ngOnInit():void {
       this.employeeservice.getAll().snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -96,10 +93,8 @@ export class LeaveComponent implements OnInit {
       this.sibebarHeader = 'Edit Leave'
       this.leave = leave;
       this.selectedKey = key;
-  
     }
     delete(key:any){
       this.leaveservice.delete(key);
     }
-
 }

@@ -34,7 +34,6 @@
                     <td>{{Employee.CompanyEmail}}</td>
                     <td>{{Employee.ReportingManager}}</td>
                     <td>{{Employee.Actions}}</td>
-
                     <td>
                         <button  tooltipPosition="top" pTooltip="EDIT" (click)="edit(Employee.key,Employee)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
                         <button  tooltipPosition="top" pTooltip="DELETE" (click)="delete(Employee.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
@@ -42,13 +41,10 @@
                 </tr>
             </ng-template>
         </p-table>
-       
 </div>
-
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
     <h3>{{sibebarHeader}}</h3>
-
-    <div class="form-group">
+  <div class="form-group">
       <label> Employee Type <small>(required)</small></label>
       <input name="employeetype" type="text" class="form-control" [(ngModel)]="employee.EmployeeType">
   </div>
@@ -67,7 +63,7 @@
  <div class="form-group">
     <label> Personal Email</label>
     <input name="personalemail" type="text" class="form-control" [(ngModel)]="employee.PersonalEmail">
-  </div>
+ </div>
   <div class="form-group">
     <label> Company Email</label>
     <input name="companyemail" type="text" class="form-control" [(ngModel)]="employee.CompanyEmail">
@@ -76,6 +72,5 @@
     <label> Reporting Manager</label>
     <input name="reportingmanager" type="text" class="form-control" [(ngModel)]="employee.ReportingManager">
   </div>
-
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
   </p-sidebar>

@@ -20,7 +20,6 @@ export class NotificationsComponent implements OnInit{
   constructor(
     public notificationsservice: notificationsService
   ){ }
-
     ngOnInit():void {
       this.cols = [
         { field: 'Subject', header: 'subject', customExportHeader: 'SUBJECT' },

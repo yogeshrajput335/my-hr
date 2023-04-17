@@ -3,7 +3,6 @@ import { candidateService } from 'src/app/services/candidate.service';
 import { map } from 'rxjs';
 import { candidate } from 'src/app/models/candidate';
 declare var dataTableInit: any;
-
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
@@ -25,7 +24,6 @@ initfollowUps:any
   constructor(
     public candidateService:candidateService
   ){ }
-
   ngOnInit():void {
     this.userDetails = JSON.parse(localStorage.getItem('user')!)
     this.cols = [
@@ -38,8 +36,7 @@ initfollowUps:any
       { field: 'date', header: 'date' },
       { field: 'contactdetails', header: 'contactdetails' },
     ];
-
-    this.candidateService.getAll().snapshotChanges().pipe(
+   this.candidateService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })

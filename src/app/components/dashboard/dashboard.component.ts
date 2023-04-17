@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
         private clientservice:clientService,private jobservice:jobService,
         private employeeservice:employeeService) { 
         this.userDetails = JSON.parse(localStorage.getItem('user')!)
-
         this.candidateservice.getAll().snapshotChanges().pipe(
             map(changes =>
                 changes.map(c =>
@@ -73,11 +72,9 @@ export class DashboardComponent implements OnInit {
           ).subscribe((data:any) => {
             
             if(this.userDetails.isAdmin){
-                //ADMIN
                 this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
             }
             else{
-                //EMPLOYEE
                 this.leaves = data.filter((x:any)=>x.Employee == this.userDetails.name && new Date(x.FromDate)>new Date());
             }
           });
@@ -90,16 +87,13 @@ export class DashboardComponent implements OnInit {
             )
           ).subscribe((data:any) => {
             this.emails = data.reverse().slice(0, 5);
-
-          });
-        
-      }
+           });
+    }
     ngOnInit() {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-        
         this.data = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
@@ -117,7 +111,6 @@ export class DashboardComponent implements OnInit {
                 }
             ]
         };
-
         this.options = {
             maintainAspectRatio: false,
             aspectRatio: 0.8,

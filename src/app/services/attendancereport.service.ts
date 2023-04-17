@@ -5,35 +5,28 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { AttendanceReport } from '../models/attendancereport';
-
 @Injectable({
   providedIn: 'root',
 })
 export class attendancereportService {
   private dbPath = '/attendancereport';
-  tutorialsRef: AngularFireList<AttendanceReport>;
-
+  attendancesRef: AngularFireList<AttendanceReport>;
   constructor(private db: AngularFireDatabase) {
-    this.tutorialsRef = db.list(this.dbPath);
+    this.attendancesRef = db.list(this.dbPath);
   }
-
   getAll(): AngularFireList<AttendanceReport> {
-    return this.tutorialsRef;
+    return this.attendancesRef;
   }
-
   create(tutorial: AttendanceReport): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.attendancesRef.push(tutorial);
   }
-
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.attendancesRef.update(key, value);
   }
-
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.attendancesRef.remove(key);
   }
-
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.attendancesRef.remove();
   }
 }

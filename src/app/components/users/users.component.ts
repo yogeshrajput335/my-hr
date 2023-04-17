@@ -3,13 +3,11 @@ import { map } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/users.service';
 declare var dataTableInit:any;
-
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-
 export class UsersComponent implements OnInit {
   Users: User[];
   user:User = {username:'',name:'',email:'',mobileNumber:'',isAdmin:false};
@@ -21,7 +19,6 @@ export class UsersComponent implements OnInit {
   constructor(
     public userService: UserService
   ){ }
-
     ngOnInit():void {
       this.cols = [
         { field: 'username', header: 'Username', customExportHeader: 'USERNAME' },

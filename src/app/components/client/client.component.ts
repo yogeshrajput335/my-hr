@@ -46,7 +46,6 @@ export class ClientComponent implements OnInit{
               { field: 'Email', header: 'Email' },
               { field: 'Address', header: 'Address' }
           ];
-        
            this.clientservice.getAll().snapshotChanges().pipe(
               map(changes =>
                 changes.map(c =>

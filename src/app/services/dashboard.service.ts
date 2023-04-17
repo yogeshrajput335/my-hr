@@ -6,7 +6,6 @@ import {
 } from '@angular/fire/compat/database';
 import { Leave } from '../models/leave';
 import { Email } from '../models/email';
-
 @Injectable({
     providedIn: 'root',
 })
@@ -15,7 +14,6 @@ export class dashboardService {
     private dbemailPath = '/email';
     leavesRef: AngularFireList<Leave>;
     emailRef: AngularFireList<Email>;
-
     constructor(private db: AngularFireDatabase) {
         this.leavesRef = db.list(this.dbleavePath);
         this.emailRef = db.list(this.dbemailPath);
@@ -26,5 +24,4 @@ export class dashboardService {
     getEmailAll(): AngularFireList<Email> {
         return this.emailRef;
     }
-    
 }

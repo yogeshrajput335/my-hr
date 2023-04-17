@@ -10,29 +10,23 @@ import { Employee } from '../models/employee';
 })
 export class employeeService {
   private dbPath = '/employee';
-  tutorialsRef: AngularFireList<Employee>;
-
+  employeesRef: AngularFireList<Employee>;
   constructor(private db: AngularFireDatabase) {
-    this.tutorialsRef = db.list(this.dbPath);
+    this.employeesRef = db.list(this.dbPath);
   }
-
   getAll(): AngularFireList<Employee> {
-    return this.tutorialsRef;
+    return this.employeesRef;
   }
-
   create(tutorial: Employee): any {
-    return this.tutorialsRef.push(tutorial);
+    return this.employeesRef.push(tutorial);
   }
-
   update(key: string, value: any): Promise<void> {
-    return this.tutorialsRef.update(key, value);
+    return this.employeesRef.update(key, value);
   }
-
   delete(key: string): Promise<void> {
-    return this.tutorialsRef.remove(key);
+    return this.employeesRef.remove(key);
   }
-
   deleteAll(): Promise<void> {
-    return this.tutorialsRef.remove();
+    return this.employeesRef.remove();
   }
 }

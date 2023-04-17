@@ -5,7 +5,6 @@ import { map } from 'rxjs';
 import { attendanceService } from 'src/app/services/attendance.service';
 import { Attendance } from 'src/app/models/attendance';
 declare var dataTableInit:any;
-
 @Component({
   selector: 'app-attendancereport',
   templateUrl: './attendancereport.component.html',
@@ -30,10 +29,8 @@ export class AttendanceReportComponent implements OnInit {
     sibebarHeader = 'Add AttendanceReport';
     selectedKey = '';
     userDetails:any;
-  
     constructor(public attendancereportservice: attendancereportService,
       public attendanceservice:attendanceService) {}
-  
     ngOnInit(): void {
       this.userDetails=JSON.parse(localStorage.getItem('user')!)
       this.attendancereportservice
@@ -53,7 +50,6 @@ export class AttendanceReportComponent implements OnInit {
         { field: 'NumberOfDays', header: 'numberofdays' },
         { field: 'PresentDate', header: 'presentdate' },
       ];
-      
       this.attendancereportservice
       .getAll()
       .snapshotChanges()

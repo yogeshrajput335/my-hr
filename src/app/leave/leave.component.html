@@ -42,7 +42,6 @@
           </ng-template>
       </p-table>
 </div>
-
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
   <h3>{{sibebarHeader}}</h3>
   <div class="form-group">
@@ -91,6 +90,5 @@
   <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="value"></textarea>
   <input name="reason" type="text" class="form-control" [(ngModel)]="leave.Reason">
 </div>
-
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
 </p-sidebar>

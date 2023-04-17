@@ -21,7 +21,7 @@
                     <th></th>
                     <th>Actions</th>
                 </tr> 
-            </ng-template>
+        </ng-template>
             <ng-template pTemplate="body" let-Attendance>
                 <tr>
                     <td>{{Attendance.Year}}</td>
@@ -48,14 +48,9 @@
         <p-calendar view="month" dateFormat="mm" [readonlyInput]="true"></p-calendar>
         <label htmlFor="recipientEmail" class="formLabel" class="formInput">Month</label>
     </span>
-    <!-- <span class="p-float-label">
-        <p-calendar [(ngModel)]="attendance.NumberOfDays"></p-calendar>
-        <label htmlFor="recipientEmail" class="formLabel" class="formInput">NumberOfDays</label>
-    </span> -->
-    <span class="p-float-label">
+   <span class="p-float-label">
         <p-calendar [(ngModel)]="attendance.PresentDate"></p-calendar>
         <label htmlFor="recipientEmail" class="formLabel" class="formInput">PresentDate</label>
     </span>
- 
-    <p-button label="Add" (click)="create()" styleClass="p-button p-button-text"></p-button>
-  </p-sidebar>
+        <p-button label="Add" (click)="create()" styleClass="p-button p-button-text"></p-button>
+</p-sidebar>

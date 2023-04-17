@@ -3,13 +3,11 @@ import { map } from 'rxjs';
 import { ClientEmployeeDetails } from 'src/app/models/clientemployeedetails';
 import { clientemployeedetailsService } from 'src/app/services/clientemployeedetails.service';
 declare var dataTableInit:any;
-
 @Component({
   selector: 'app-clientemployeedetails',
   templateUrl: './clientemployeedetails.component.html',
   styleUrls: ['./clientemployeedetails.component.scss']
 })
-
 export class ClientEmployeeDetailsComponent  implements OnInit{
     ClientEmployeeDetails: ClientEmployeeDetails[];
     clientemployeedetails:ClientEmployeeDetails = {ClientId:'',EmployeeId:'',StartDate:'',EndDate:'',JobDetails:'',PerHourCost:''};
@@ -18,11 +16,9 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
     display = false;
     sibebarHeader = "Add ClientEmployeeDetails";
     selectedKey=''
-  
     constructor(
       public clientemployeedetailsservice: clientemployeedetailsService
     ){ }
-
     ngOnInit():void {
         this.cols = [
           { field: 'ClientId', header: 'clientID', customExportHeader: 'CLIENTID' },
@@ -32,7 +28,6 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
           { field: 'JobDetails', header: 'jobdetails' },
           { field: 'PerHourCost', header: 'perhourcost' },
         ];
-  
       this.clientemployeedetailsservice.getAll().snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
