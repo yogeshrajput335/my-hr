@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
         private clientservice:clientService,private jobservice:jobService,
         private employeeservice:employeeService) { 
         this.userDetails = JSON.parse(localStorage.getItem('user')!)
+
         this.candidateservice.getAll().snapshotChanges().pipe(
             map(changes =>
                 changes.map(c =>
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit {
                 )
             )
         ).subscribe((data:any) => {
-            this.clientCount = data.length;
+            this.candidateCount = data.length;
         });
         this.clientservice.getAll().snapshotChanges().pipe(
             map(changes =>
