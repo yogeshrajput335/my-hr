@@ -3,8 +3,8 @@
     [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
     selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
     <ng-template pTemplate="caption">
-        <div style="display: inline-flex;">
-            <h5 style="margin-right: 100px;margin-left:20px">Attendance</h5>
+        <div style="display:inline-flex;">
+            <h5 style="margin-right:100px;margin-left:20px">Attendance</h5>
             <div style="float: right;margin-top: 4px">
                 <button tooltipPosition="top" pTooltip="CSV" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
                 <p-button tooltipPosition="top" pTooltip="AddAttendance" style="margin-left:5px;" icon="pi pi-plus" (click)="AddAttendance()" icon="pi pi-plus"></p-button>
@@ -40,12 +40,12 @@
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
     <h3>{{sibebarHeader}}</h3>
-    <span class="p-float-label" >
-        <p-calendar [(ngModel)]="date" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
+    <span class="p-float-label">
+        <p-calendar [(ngModel)]="attendance.Year"  view="year" class="formInput" dateFormat="yy" inputId="yearpicker"></p-calendar>
         <label htmlFor="recipientEmail" class="formLabel">Year</label>
     </span>
     <span class="p-float-label">
-        <p-calendar view="month" dateFormat="mm" [readonlyInput]="true"></p-calendar>
+        <p-calendar [(ngModel)]="attendance.Month" view="month" class="formInput" dateFormat="mm" ></p-calendar>
         <label htmlFor="recipientEmail" class="formLabel" class="formInput">Month</label>
     </span>
    <span class="p-float-label">

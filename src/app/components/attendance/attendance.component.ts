@@ -4,7 +4,6 @@ import { attendanceService } from 'src/app/services/attendance.service';
 import { AttendanceReport } from 'src/app/models/attendancereport';
 import { map } from 'rxjs';
 import { attendancereportService } from 'src/app/services/attendancereport.service';
-import { getLocaleMonthNames } from '@angular/common';
 declare var dataTableInit:any;
 @Component({
   selector: 'app-attendance',
@@ -43,20 +42,20 @@ export class AttendanceComponent implements OnInit {
       this.AttendanceReport= data;
     });
     this.cols = [
-      { field: 'Year', header: 'year', customExportHeader: 'YEAR' },
-      { field: 'Month', header: 'month' },
-      { field: 'NumberOfDays', header: 'numberofdays' },
-      { field: 'PresentDate', header: 'presentdate' },
+      { field: 'Year', header: 'Year', customExportHeader: 'YEAR' },
+      { field: 'Month', header: 'Month' },
+      { field: 'NumberOfDays', header: 'NumberOfDays' },
+      { field: 'PresentDate', header: 'PresentDate' },
     ];
     this.attendanceservice
       .getAll()
       .snapshotChanges()
       .pipe(
-        map((changes) =>
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
       ).subscribe((data:any) => {
-        this.Attendance = data.filter((x:any)=>x.Year ==this.userDetails);
+        this.Attendance = data.filter((x:any)=>x.Year ==this.userDetails.name);
       });
   }
   create() {
@@ -64,14 +63,14 @@ export class AttendanceComponent implements OnInit {
     this.attendance.Month=this.userDetails.month;
     this.attendance.NumberOfDays = '12';
     this.attendance.PresentDate=this.attendance.PresentDate.toLocaleDateString();
-    if (this.sibebarHeader == 'Edit Attendance') {
+    if(this.sibebarHeader == 'Edit Attendance') {
       this.attendanceservice
         .update(this.selectedKey, this.attendance)
         .then(() => {
           console.log('Updated job successfully!');
           this.display = false;
           this.attendance = {
-            Year: '',
+            Year:'',
             Month: '',
             NumberOfDays:'',
             PresentDate: new Date(),
