@@ -3,5 +3,5 @@ export interface Attendance{
     Month?:string;
     Status?:string;
     NumberOfDays?:any;
-    PresentDate:any;
+    PresentDate?:any;
 }

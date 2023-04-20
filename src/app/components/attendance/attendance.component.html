@@ -5,9 +5,9 @@
     <ng-template pTemplate="caption">
         <div style="display: inline-flex;">
             <h5 style="margin-right: 100px;margin-left:20px">Attendance</h5>
-            <div style="float: right;margin-top: 4px">
+            <div style="float: right;margin-top:4px">
                 <button tooltipPosition="top" pTooltip="CSV" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
-                <p-button tooltipPosition="top" pTooltip="AddAttendance" style="margin-left:5px;" icon="pi pi-plus" (click)="AddAttendance()" icon="pi pi-plus"></p-button>
+                <p-button tooltipPosition="top" pTooltip="AddAttendance" icon="pi pi-plus" (click)="AddAttendance()" icon="pi pi-plus"></p-button>
             </div>
         </div>
     </ng-template> 
@@ -31,8 +31,8 @@
                     <td>{{Attendance.PresentDate}}</td>
                     <td>{{Attendance.Actions}}</td>
                     <td>
-                        <button tooltipPosition="top" pTooltip="EDIT" (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-                        <button tooltipPosition="top" pTooltip="DELETE" (click)="delete(Attendance.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+                        <button  *ngIf="Attendance.Status == 'NEW'" tooltipPosition="top" pTooltip="EDIT" (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                        <button  *ngIf="Attendance.Status == 'NEW'" tooltipPosition="top" pTooltip="DELETE" (click)="delete(Attendance.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -41,16 +41,16 @@
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
     <h3>{{sibebarHeader}}</h3>
     <span class="p-float-label" >
-        <p-calendar [(ngModel)]="date" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
+        <p-calendar [(ngModel)]="attendance.Year" class="formInput" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
         <label htmlFor="recipientEmail" class="formLabel">Year</label>
     </span>
     <span class="p-float-label">
-        <p-calendar view="month" dateFormat="mm" [readonlyInput]="true"></p-calendar>
+        <p-calendar [(ngModel)]="attendance.Month" class="formInput" view="month" dateFormat="MM" [readonlyInput]="true"></p-calendar>
         <label htmlFor="recipientEmail" class="formLabel" class="formInput">Month</label>
     </span>
    <span class="p-float-label">
-        <p-calendar [(ngModel)]="attendance.PresentDate"></p-calendar>
-        <label htmlFor="recipientEmail" class="formLabel" class="formInput">PresentDate</label>
+        <p-calendar [(ngModel)]="attendance.PresentDate" class="formInput"></p-calendar>
+        <label htmlFor="recipientEmail" class="formLabel">Present Date</label>
     </span>
         <p-button label="Add" (click)="create()" styleClass="p-button p-button-text"></p-button>
 </p-sidebar>

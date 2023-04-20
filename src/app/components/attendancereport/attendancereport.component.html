@@ -43,14 +43,14 @@
         </p-table>
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
-  <div class="card">
+  <div class="card justify-content-center">
     <h3>{{sibebarHeader}}</h3>
-    <span class="p-float-label" >
+    <span class="p-float-label">
       <p-calendar [(ngModel)]="date" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">Year</label>
     </span>
     <span class="p-float-label">
-      <p-calendar view="month" dateFormat="mm" [readonlyInput]="true"></p-calendar>
+      <p-calendar  [(ngModel)]="date" view="month" dateFormat="mm/yy"  inputId="datepicker"  [readonlyInput]="true"></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel" class="formInput">Month</label>
     </span>
     <span class="p-float-label">

@@ -4,7 +4,7 @@ import { attendanceService } from 'src/app/services/attendance.service';
 import { AttendanceReport } from 'src/app/models/attendancereport';
 import { map } from 'rxjs';
 import { attendancereportService } from 'src/app/services/attendancereport.service';
-import { getLocaleMonthNames } from '@angular/common';
+// import { getLocaleMonthNames } from '@angular/common';
 declare var dataTableInit:any;
 @Component({
   selector: 'app-attendance',
@@ -17,7 +17,7 @@ export class AttendanceComponent implements OnInit {
     Year: '',
     Month: '',
     NumberOfDays: '',
-    PresentDate: new Date(),
+    PresentDate: new Date()
   };
   date:Date;
   value:Date;
@@ -27,7 +27,7 @@ export class AttendanceComponent implements OnInit {
   sibebarHeader = 'Add Attendance';
   selectedKey = '';
   userDetails:any;
-  AttendanceReport: { Year?: string | undefined; Month?: string | undefined; NumberOfDays?: any; PresentDate?: any; key: string | null; }[];
+   
   constructor(public attendanceservice: attendanceService,
     public attendancereportservice: attendancereportService) {}
   ngOnInit(): void {
@@ -36,34 +36,37 @@ export class AttendanceComponent implements OnInit {
     .getAll()
     .snapshotChanges()
     .pipe(
-      map((changes) =>
-        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     ).subscribe((data) => {
-      this.AttendanceReport= data;
+      this.Attendance= data;
     });
     this.cols = [
-      { field: 'Year', header: 'year', customExportHeader: 'YEAR' },
-      { field: 'Month', header: 'month' },
-      { field: 'NumberOfDays', header: 'numberofdays' },
-      { field: 'PresentDate', header: 'presentdate' },
+      { field: 'Year', header: 'Year', customExportHeader: 'YEAR' },
+      { field: 'Month', header: 'Month' },
+      { field: 'Status', header: 'Status' },
+      { field: 'NumberOfDays', header: 'NumberOfDays' },
+      { field: 'PresentDate', header: 'PresentDate' },
     ];
     this.attendanceservice
       .getAll()
       .snapshotChanges()
       .pipe(
         map((changes) =>
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
-      ).subscribe((data:any) => {
-        this.Attendance = data.filter((x:any)=>x.Year ==this.userDetails);
+      ).subscribe(data => {
+        this.Attendance = data.filter((x:any)=>x.Year ==this.userDetails.year);
       });
   }
   create() {
-    this.attendance.Year=this.userDetails.year;
-    this.attendance.Month=this.userDetails.month;
+    debugger;
+    this.attendance.Year=this.attendance.Year;
+    this.attendance.Month=this.attendance.Month;
+    this.attendance.Status='NEW';
     this.attendance.NumberOfDays = '12';
-    this.attendance.PresentDate=this.attendance.PresentDate.toLocaleDateString();
+    this.attendance.PresentDate=this.attendance.PresentDate;
     if (this.sibebarHeader == 'Edit Attendance') {
       this.attendanceservice
         .update(this.selectedKey, this.attendance)
@@ -74,7 +77,7 @@ export class AttendanceComponent implements OnInit {
             Year: '',
             Month: '',
             NumberOfDays:'',
-            PresentDate: new Date(),
+            PresentDate: new Date()
           };
         });
     } else {
@@ -85,7 +88,7 @@ export class AttendanceComponent implements OnInit {
           Year: '',
           Month: '',
           NumberOfDays: '',
-          PresentDate: new Date(),
+          PresentDate: new Date()
         };
       });
     }
