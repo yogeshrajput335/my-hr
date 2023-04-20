@@ -4,7 +4,7 @@ import { attendanceService } from 'src/app/services/attendance.service';
 import { AttendanceReport } from 'src/app/models/attendancereport';
 import { map } from 'rxjs';
 import { attendancereportService } from 'src/app/services/attendancereport.service';
-// import { getLocaleMonthNames } from '@angular/common';
+
 declare var dataTableInit:any;
 @Component({
   selector: 'app-attendance',
