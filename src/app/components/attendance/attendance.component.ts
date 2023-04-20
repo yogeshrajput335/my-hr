@@ -30,6 +30,7 @@ export class AttendanceComponent implements OnInit {
    
   constructor(public attendanceservice: attendanceService,
     public attendancereportservice: attendancereportService) {}
+
   ngOnInit(): void {
     this.userDetails=JSON.parse(localStorage.getItem('user')!)
     this.attendanceservice
@@ -39,7 +40,7 @@ export class AttendanceComponent implements OnInit {
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
-    ).subscribe((data) => {
+    ).subscribe((data:any) => {
       this.Attendance= data;
     });
     this.cols = [
@@ -56,17 +57,17 @@ export class AttendanceComponent implements OnInit {
         map((changes) =>
           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
-      ).subscribe(data => {
+      ).subscribe((data:any) => {
         this.Attendance = data.filter((x:any)=>x.Year ==this.userDetails.year);
       });
   }
+
   create() {
-    debugger;
-    this.attendance.Year=this.attendance.Year;
-    this.attendance.Month=this.attendance.Month;
+    this.attendance.Year=this.attendance.Year.toLocaleDateString();
+    this.attendance.Month=this.attendance.Month.toLocaleDateString();
     this.attendance.Status='NEW';
     this.attendance.NumberOfDays = '12';
-    this.attendance.PresentDate=this.attendance.PresentDate;
+    this.attendance.PresentDate=this.attendance.PresentDate.toLocaleDateString();
     if (this.sibebarHeader == 'Edit Attendance') {
       this.attendanceservice
         .update(this.selectedKey, this.attendance)
@@ -93,16 +94,22 @@ export class AttendanceComponent implements OnInit {
       });
     }
   }
+
   AddAttendance() {
     this.display = true;
     this.sibebarHeader = 'Add Attendance';
   }
+
   edit(key: string, attendance: Attendance) {
     this.display = true;
     this.sibebarHeader = 'Edit Attendance';
+    attendance.Year = new Date(attendance.Year);
+    attendance.Month = new Date(attendance.Month);
+    attendance.PresentDate = new Date(attendance.PresentDate);
     this.attendance = attendance;
     this.selectedKey = key;
   }
+
   delete(key: any) {
     this.attendanceservice.delete(key);
   }
