@@ -5,7 +5,7 @@
     <ng-template pTemplate="caption">
         <div style="display: inline-flex;">
             <h5 style="margin-right: 100px;margin-left:20px">Attendance</h5>
-            <div style="float: right;margin-top: 4px">
+            <div style="float:right;margin-top:4px">
                 <button tooltipPosition="top" pTooltip="CSV" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
                 <select (click)="OnStatusChange()" [(ngModel)]="selStatus">
                   <option>NEW</option>
@@ -26,36 +26,36 @@
                     <th></th>
                     <th>Actions</th>
                 </tr> 
-            </ng-template>
-            <ng-template pTemplate="body" let-AttendanceReport>
+        </ng-template>
+            <ng-template pTemplate="body" let-Attendance>
                 <tr>
-                    <td>{{AttendanceReport.Year}}</td>
-                    <td>{{AttendanceReport.Month}}</td>
-                    <td>{{AttendanceReport.Status}}</td>
-                    <td>{{AttendanceReport.NumberOfDays}}</td>
-                    <td>{{AttendanceReport.PresentDate}}</td>
-                    <td>{{AttendanceReport.Actions}}</td>
+                    <td>{{Attendance.Year | date:'yyyy'}}</td>
+                    <td>{{Attendance.Month | date:'MMMM'}}</td>
+                    <td>{{Attendance.Status}}</td>
+                    <td>{{Attendance.NumberOfDays}}</td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+                    <td>{{Attendance.PresentDate}}</td>
+                    <td>{{Attendance.Actions}}</td>
                     <td>
-                        <button tooltipPosition="top" pTooltip="EDIT" (click)="edit(AttendanceReport.key,AttendanceReport)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                         <button  *ngIf="Attendance.Status == 'NEW'" tooltipPosition="top" pTooltip="EDIT" (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
-  <div class="card justify-content-center">
     <h3>{{sibebarHeader}}</h3>
+    <div style="width:100%;height:100vh">
     <span class="p-float-label">
-      <p-calendar [(ngModel)]="date" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
+      <p-calendar [(ngModel)]="attendance.Year"  class="formInput" view="year" dateFormat="yy" inputId="yearpicker"disabled="disabled" ></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">Year</label>
     </span>
     <span class="p-float-label">
-      <p-calendar  [(ngModel)]="date" view="month" dateFormat="mm/yy"  inputId="datepicker"  [readonlyInput]="true"></p-calendar>
-      <label htmlFor="recipientEmail" class="formLabel" class="formInput">Month</label>
+      <p-calendar  [(ngModel)]="attendance.Month"  class="formInput" view="month" dateFormat="mm/yy"  inputId="datepicker"  [readonlyInput]="true" disabled="disabled"></p-calendar>
+      <label htmlFor="recipientEmail" class="formLabel">Month</label>
     </span>
     <span class="p-float-label">
-      <p-calendar [(ngModel)]="attendance.PresentDate"></p-calendar>
-      <label htmlFor="recipientEmail" class="formLabel" class="formInput">PresentDate</label>
+      <p-calendar [(ngModel)]="attendance.PresentDate" class="formInput" disabled="disabled"></p-calendar>
+      <label htmlFor="recipientEmail" class="formLabel">PresentDate</label>
     </span>
     <p-button *ngIf="attendance.Status=='NEW'" label="APPROVE" (click)="approve()" styleClass="p-button p-button-text p-button-success"></p-button>
     <p-button *ngIf="attendance.Status=='NEW'" label="REJECT" (click)="reject()" styleClass="p-button p-button-text p-button-danger"></p-button>
