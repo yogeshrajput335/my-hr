@@ -108,10 +108,7 @@ export class AttendanceReportComponent implements OnInit {
     }
     edit(key: string, attendance: Attendance) {
       this.display = true;
-      this.sibebarHeader = 'View Attendance';  
-      attendance.Year = new Date(attendance.Year);
-      attendance.Month = new Date(attendance.Month);
-      attendance.PresentDate = new Date(attendance.PresentDate);                 
+      this.sibebarHeader = 'View Attendance';              
       this.attendance = attendance;
       this.selectedKey = key;
     }
@@ -119,7 +116,8 @@ export class AttendanceReportComponent implements OnInit {
       this.attendanceservice.delete(key);
     }
     approve(){
-      this.attendance.Status = "APPROVED"
+      debugger
+      this.attendance.Status = "APPROVED";    
       this.attendanceservice.update(this.selectedKey,this.attendance).then(() => {
         console.log('Updated job successfully!');
         this.display = false;
