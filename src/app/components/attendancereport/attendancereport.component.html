@@ -18,6 +18,7 @@
     </ng-template> 
         <ng-template pTemplate="header">
                 <tr>
+                    <th>Employee</th>
                     <th>Year</th>
                     <th>Month</th>
                     <th>Status</th>
@@ -29,6 +30,7 @@
         </ng-template>
             <ng-template pTemplate="body" let-Attendance>
                 <tr>
+                    <td>{{Attendance.Employee}}</td>
                     <td>{{Attendance.Year | date:'yyyy'}}</td>
                     <td>{{Attendance.Month | date:'MMMM'}}</td>
                     <td>{{Attendance.Status}}</td>
@@ -36,7 +38,7 @@
                     <td>{{Attendance.PresentDate}}</td>
                     <td>{{Attendance.Actions}}</td>
                     <td>
-                         <button  *ngIf="Attendance.Status == 'NEW'" tooltipPosition="top" pTooltip="EDIT" (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
+                         <button  *ngIf="Attendance.Status == 'NEW'" (click)="edit(Attendance.key,Attendance)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -45,6 +47,10 @@
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
     <h3>{{sibebarHeader}}</h3>
     <div style="width:100%;height:100vh">
+      <span class="p-float-label" >
+        <input pInputText id="title" [(ngModel)]="attendance.Employee" class="formInput" disabled="disabled"/>
+        <label htmlFor="recipientEmail" class="formLabel">Employee</label>
+      </span>
     <span class="p-float-label">
       <p-calendar [(ngModel)]="attendance.Year"  class="formInput" view="year" dateFormat="yy" inputId="yearpicker"disabled="disabled" ></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">Year</label>

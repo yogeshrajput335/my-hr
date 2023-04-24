@@ -4,6 +4,8 @@ import { attendancereportService } from 'src/app/services/attendancereport.servi
 import { map } from 'rxjs';
 import { attendanceService } from 'src/app/services/attendance.service';
 import { Attendance } from 'src/app/models/attendance';
+import { employeeService } from 'src/app/services/employee.service';
+import { Employee } from 'src/app/models/employee';
 declare var dataTableInit:any;
 
 @Component({
@@ -13,9 +15,11 @@ declare var dataTableInit:any;
 })
 
 export class AttendanceReportComponent implements OnInit {
+    Employee:Employee[];
     Attendance:Attendance[];
     AttendanceReport: AttendanceReport[];
     attendance: Attendance = {
+      Employee:'',
       Year: '',
       Month: '',
       NumberOfDays: '',
@@ -33,7 +37,8 @@ export class AttendanceReportComponent implements OnInit {
     userDetails:any;
 
     constructor(public attendancereportservice: attendancereportService,
-      public attendanceservice:attendanceService) {}
+      public attendanceservice:attendanceService,
+      public employeeservice:employeeService) {}
 
     ngOnInit(): void {
       this.userDetails=JSON.parse(localStorage.getItem('user')!)
@@ -48,7 +53,8 @@ export class AttendanceReportComponent implements OnInit {
         this.AttendanceReport= data;
       });
       this.cols = [
-        { field: 'Year', header: 'Year', customExportHeader: 'YEAR' },
+        { field: 'Employee', header: 'Employee', customExportHeader: 'EMPLOYEE' },
+        { field: 'Year', header: 'Year' },
         { field: 'Month', header: 'Month' },
         { field: 'Status', header: 'Status' },
         { field: 'NumberOfDays', header: 'NumberOfDays' },
@@ -123,7 +129,7 @@ export class AttendanceReportComponent implements OnInit {
       this.attendanceservice.update(this.selectedKey,this.attendance).then(() => {
         console.log('Updated job successfully!');
         this.display = false;
-        this.attendance= { Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date() }
+        this.attendance= { Employee:'', Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date() }
       });
     }
     reject(){
@@ -131,7 +137,7 @@ export class AttendanceReportComponent implements OnInit {
       this.attendanceservice.update(this.selectedKey,this.attendance).then(() => {
         console.log('Updated job successfully!');
         this.display = false;
-        this.attendance = { Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date()}
+        this.attendance = { Employee:'', Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date()}
       });
     }
     OnStatusChange(){
