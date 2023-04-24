@@ -63,10 +63,12 @@ export class AttendanceReportComponent implements OnInit {
         )
       ).subscribe((data:any) => {
         this.InitAttendance=data;
-        this.AttendanceReport= data;
+        this.Attendance= this.selStatus =="ALL" ? this.InitAttendance : this.InitAttendance.filter((x:any)=>x.Status == this.selStatus)
+        // this.AttendanceReport= data;
       });
   }
   create() {
+    debugger
     this.attendance.Year=this.attendance.Year.toLocaleDateString();
     this.attendance.Month=this.attendance.Month.toLocaleDateString();
     this.attendance.Status = 'NEW';
