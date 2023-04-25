@@ -47,6 +47,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
+import { MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,9 +95,10 @@ import { TooltipModule } from 'primeng/tooltip';
     InputTextModule,
     ChipModule,
     DropdownModule,
-    TooltipModule 
+    TooltipModule,
+    ToastModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

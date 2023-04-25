@@ -85,15 +85,15 @@ export class DashboardComponent implements OnInit {
             this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
           });
 
-          this.attendanceservice.getDashboardAttendance(this.attendance.isAdmin,this.userDetails.name).snapshotChanges().pipe(
-            map(changes =>
-              changes.map(c =>
-                ({ key: c.payload.key, ...c.payload.val() })
-              )
-            )
-          ).subscribe((data:any) => {
-            this.attendance= data.filter((x:any)=>new Date(x.PresentDate)>new Date());
-          });
+        //   this.attendanceservice.getDashboardAttendance(this.attendance.isAdmin,this.userDetails.name).snapshotChanges().pipe(
+        //     map(changes =>
+        //       changes.map(c =>
+        //         ({ key: c.payload.key, ...c.payload.val() })
+        //       )
+        //     )
+        //   ).subscribe((data:any) => {
+        //     this.attendance= data.filter((x:any)=>new Date(x.PresentDate)>new Date());
+        //   });
 
 
           this.userDetails = JSON.parse(localStorage.getItem('user')!)
@@ -107,15 +107,15 @@ export class DashboardComponent implements OnInit {
             this.emails = data.reverse().slice(0, 5);
            });
 
-           this.attendanceservice.getAll().snapshotChanges().pipe(
-            map(changes =>
-                changes.map(c =>
-                ({ key: c.payload.key, ...c.payload.val() })
-                )
-            )
-        ).subscribe((data:any) => {
-            this.attendanceCount = data.length;
-        });
+        //    this.attendanceservice.getAll().snapshotChanges().pipe(
+        //     map(changes =>
+        //         changes.map(c =>
+        //         ({ key: c.payload.key, ...c.payload.val() })
+        //         )
+        //     )
+        // ).subscribe((data:any) => {
+        //     this.attendanceCount = data.length;
+        // });
     }
     ngOnInit() {
         const documentStyle = getComputedStyle(document.documentElement);

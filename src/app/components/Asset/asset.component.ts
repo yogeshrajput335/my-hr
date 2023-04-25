@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Asset } from 'src/app/models/asset';
 import { assetService } from 'src/app/services/asset.service';
+import { MessageService } from 'primeng/api';
+
 declare var dataTableInit:any;
 @Component({
   selector: 'app-asset',
@@ -16,9 +18,7 @@ export class AssetComponent implements OnInit {
   display = false;
   sibebarHeader = "Add Asset";
   selectedKey=''
-  constructor(
-    public assetservice: assetService
-  ){ }
+  constructor(public assetservice: assetService, private messageService: MessageService){ }
     ngOnInit():void {
       this.cols = [
         { field: 'name', header: 'name', customExportHeader: 'NAME' },
@@ -37,14 +37,14 @@ export class AssetComponent implements OnInit {
   create() {   
     if(this.sibebarHeader == 'Edit Asset'){
       this.assetservice.update(this.selectedKey,this.asset).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset is edited succcessfully' });
         this.display = false;
         this.asset = {name:'', details:''}
       });
     }
     else{
     this.assetservice.create(this.asset).then(() => {
-      console.log('Created new item successfully!');
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset is added succcessfully' });
       this.display = false;
       this.asset = {name:'', details:''}
     });
