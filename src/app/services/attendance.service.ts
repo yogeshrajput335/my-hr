@@ -5,15 +5,19 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { Attendance } from '../models/attendance';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class attendanceService {
   private dbPath = '/attendance';
   attendancesRef: AngularFireList<Attendance>;
+
   constructor(private db: AngularFireDatabase) {
     this.attendancesRef = db.list(this.dbPath);
   }
+
   getAll(): AngularFireList<Attendance> {
     return this.attendancesRef;
   }
@@ -28,5 +32,13 @@ export class attendanceService {
   }
   deleteAll(): Promise<void> {
     return this.attendancesRef.remove();
+  }
+  getDashboardAttendance(isAdmin,Employee): AngularFireList<Attendance> {
+    if(isAdmin){
+      return this.attendancesRef;
+    }
+    else{
+      return this.db.list(this.dbPath,ref => ref.orderByChild('Employee').equalTo(Employee));
+    }
   }
 }

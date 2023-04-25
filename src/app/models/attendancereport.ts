@@ -1,4 +1,5 @@
 export interface AttendanceReport{
+    Employee?:string;
     Year:any;
     Month:any;
     Status?:string;
