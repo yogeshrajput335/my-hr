@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { jobService } from 'src/app/services/job.service';
@@ -18,7 +19,8 @@ export class JobsComponent implements OnInit {
   selectedKey=''
   jobService: any;
   constructor(
-    private jobservice: jobService
+    private jobservice: jobService,
+    private messageService: MessageService,
     ) {}
   ngOnInit():void {
     this.cols = [
@@ -40,7 +42,7 @@ export class JobsComponent implements OnInit {
   create() {   
     if(this.sibebarHeader == 'Edit Job'){
       this.jobservice.update(this.selectedKey,this.job).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'Job is edited succcessfully' });
         this.display = false;
         this.job = {name:'',description:'',startdate:'',enddate:''}
       });

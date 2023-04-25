@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { LeaveType } from 'src/app/models/leavetype';
 import { leavetypeService } from 'src/app/services/leavetype.service';
@@ -17,7 +18,8 @@ export class LeaveTypeComponent  implements OnInit{
     sibebarHeader = "Add LeaveType";
     selectedKey=''
     constructor(
-      public leavetypeservice: leavetypeService
+      public leavetypeservice: leavetypeService,
+      private messageService: MessageService,
     ){ }
       ngOnInit():void {
         this.cols = [
@@ -36,14 +38,14 @@ export class LeaveTypeComponent  implements OnInit{
         create() {   
           if(this.sibebarHeader == 'Edit LeaveType'){
             this.leavetypeservice.update(this.selectedKey,this.leavetype).then(() => {
-              console.log('Updated job successfully!');
+              this.messageService.add({ severity: 'success', summary: 'Success', detail:'Leavetype is edited succcessfully' });
               this.display = false;
               this.leavetype = {Type:''}
             });
           }
           else{
             this.leavetypeservice.create(this.leavetype).then(() => {
-              console.log('Created new item successfully!');
+              this.messageService.add({ severity: 'success', summary: 'Success', detail:'Leavetype is edited succcessfully' });
               this.display = false;
               this.leavetype = {Type:''}
             });

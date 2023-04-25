@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 import { attendancereportService } from 'src/app/services/attendancereport.service';
 import { employeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employee';
+import { MessageService } from 'primeng/api';
 declare var dataTableInit:any;
 
 @Component({
@@ -37,7 +38,8 @@ export class AttendanceComponent implements OnInit {
   constructor(
     public attendanceservice: attendanceService,
     public attendancereportservice: attendancereportService,
-    public employeeservice:employeeService
+    public employeeservice:employeeService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -81,7 +83,7 @@ export class AttendanceComponent implements OnInit {
         )
       ).subscribe((data:any) => {
         this.Attendance = data.filter((x:any)=>x.Employee ==this.userDetails.name);
-        // this.Attendance=data;
+        this.Attendance=data;
       });
   }
 
@@ -96,7 +98,8 @@ export class AttendanceComponent implements OnInit {
       this.attendanceservice
         .update(this.selectedKey, this.attendance)
         .then(() => {
-          console.log('Updated job successfully!');
+           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Attendance is edited succcessfully' });
+         
           this.display = false;
           this.attendance = {
             Employee:'',
@@ -108,7 +111,7 @@ export class AttendanceComponent implements OnInit {
         });
     } else {
       this.attendanceservice.create(this.attendance).then(() => {
-        console.log('Created new item successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Attendance is edited succcessfully' });
         this.display = false;
         this.attendance = {
           Employee:'',
