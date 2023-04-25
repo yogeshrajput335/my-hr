@@ -2,12 +2,15 @@ import { Component,OnInit } from '@angular/core';
 import { candidateService } from 'src/app/services/candidate.service';
 import { map } from 'rxjs';
 import { candidate } from 'src/app/models/candidate';
+import { MessageService } from 'primeng/api';
 declare var dataTableInit: any;
+
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
   styleUrls: ['./candidate.component.scss']
 })
+
 export class CandidateComponent implements OnInit{
 display = false;
 displayFollowUp = false;  
@@ -22,7 +25,8 @@ description ="";
 followUps:any;
 initfollowUps:any
   constructor(
-    public candidateService:candidateService
+    public candidateService:candidateService,
+    private messageService: MessageService,
   ){ }
   ngOnInit():void {
     this.userDetails = JSON.parse(localStorage.getItem('user')!)
@@ -58,14 +62,14 @@ initfollowUps:any
   create() {   
     if(this.sibebarHeader == 'Edit Candidate'){
       this.candidateService.update(this.selectedKey,this.candidate).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Candidate is edited succcessfully' });
         this.display = false;
         this.candidate = {CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
       });
     }
     else{
     this.candidateService.create(this.candidate).then(() => {
-      console.log('Created new item successfully!');
+      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Candidate is edited succcessfully' });
       this.display=false;
       this.candidate={ CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
     });

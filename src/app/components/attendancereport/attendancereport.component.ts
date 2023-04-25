@@ -6,6 +6,7 @@ import { attendanceService } from 'src/app/services/attendance.service';
 import { Attendance } from 'src/app/models/attendance';
 import { employeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employee';
+import { MessageService } from 'primeng/api';
 declare var dataTableInit:any;
 
 @Component({
@@ -38,7 +39,9 @@ export class AttendanceReportComponent implements OnInit {
 
     constructor(public attendancereportservice: attendancereportService,
       public attendanceservice:attendanceService,
-      public employeeservice:employeeService) {}
+      public employeeservice:employeeService,
+      private messageService: MessageService
+      ) {}
 
     ngOnInit(): void {
       this.userDetails=JSON.parse(localStorage.getItem('user')!)
@@ -75,6 +78,7 @@ export class AttendanceReportComponent implements OnInit {
   }
   create() {
     debugger
+    this.attendance.Employee=this.userDetails.name;
     this.attendance.Year=this.attendance.Year.toLocaleDateString();
     this.attendance.Month=this.attendance.Month.toLocaleDateString();
     this.attendance.Status = 'NEW';
@@ -84,9 +88,10 @@ export class AttendanceReportComponent implements OnInit {
       this.attendanceservice
         .update(this.selectedKey, this.attendance)
         .then(() => {
-          console.log('Updated job successfully!');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'AttendanceReport is edited succcessfully' });
           this.display = false;
           this.attendance = {
+            Employee:'',
             Year: '',
             Month: '',
             Status:'',
@@ -96,9 +101,10 @@ export class AttendanceReportComponent implements OnInit {
         });
     } else {
         this.attendanceservice.create(this.attendance).then(() => {
-          console.log('Created new item successfully!');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'AttendanceReport  is edited succcessfully' });
           this.display = false;
           this.attendance = {
+            Employee:'',
             Year: '',
             Month: '',
             Status:'',
@@ -114,7 +120,10 @@ export class AttendanceReportComponent implements OnInit {
     }
     edit(key: string, attendance: Attendance) {
       this.display = true;
-      this.sibebarHeader = 'View Attendance';              
+      this.sibebarHeader = 'View Attendance';   
+      attendance.Year = new Date(attendance.Year);
+      attendance.Month = new Date(attendance.Month);
+      attendance.PresentDate = new Date(attendance.PresentDate);           
       this.attendance = attendance;
       this.selectedKey = key;
     }

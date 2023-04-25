@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Employee } from 'src/app/models/employee';
 import { Leave } from 'src/app/models/leave';
@@ -30,7 +31,8 @@ export class LeaveListComponent implements OnInit {
   constructor(
     public leaveservice:leaveService,
     public employeeservice:employeeService,
-    public leavetypeservice:leavetypeService
+    public leavetypeservice:leavetypeService,
+    private messageService: MessageService,
   ){ }
     ngOnInit():void {
       this.userDetails = JSON.parse(localStorage.getItem('user')!)
@@ -70,13 +72,14 @@ export class LeaveListComponent implements OnInit {
       this.leave.Status = 'NEW';
       if(this.sibebarHeader == 'Edit Leave'){
         this.leaveservice.update(this.selectedKey,this.leave).then(() => {
-          console.log('Updated job successfully!');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail:'leavelist is edited succcessfully' });
           this.display = false;
           this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
         });
       }
       else{
       this.leaveservice.create(this.leave).then(() => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'leavelist is edited succcessfully' });
         console.log('Created new item successfully!');
         this.display = false;
         this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}

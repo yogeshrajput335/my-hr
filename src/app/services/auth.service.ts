@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   userData: any; 
   usersRef: AngularFireList<User>;
@@ -55,8 +57,8 @@ export class AuthService {
                   ({...c.payload.val() })
                 )
               )
-            ).subscribe(data => {
-              localStorage.setItem('user', JSON.stringify(data.filter(x=>x.key==user.uid)[0]));
+            ).subscribe((data:any) => {
+              localStorage.setItem('user', JSON.stringify(data.filter(x=>x.key==user.uid)));
             });;
             
             this.router.navigate(['dashboard']);

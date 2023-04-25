@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/users.service';
@@ -17,7 +18,8 @@ export class UsersComponent implements OnInit {
   sibebarHeader = "Add Job";
   selectedKey=''
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    private messageService: MessageService,
   ){ }
     ngOnInit():void {
       this.cols = [
@@ -40,14 +42,14 @@ export class UsersComponent implements OnInit {
     create() {   
       if(this.sibebarHeader == 'Edit User'){
         this.userService.update(this.selectedKey,this.user).then(() => {
-          console.log('Updated job successfully!');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
           this.display = false;
           this.user = {username:'', name:'',email:'',mobileNumber:'',isAdmin:false}
         });
       }
       else{
       this.userService.create(this.user).then(() => {
-        console.log('Created new item successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
         this.display = false;
         this.user = {username:'', name:'',email:'',mobileNumber:'',isAdmin:false}
       });

@@ -40,7 +40,7 @@
                     <td>{{Leave.Reason}}</td>
                     <td>{{Leave.Actions}}</td>
                     <td>
-                        <button (click)="edit(Leave.key,Leave)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
+                        <button  *ngIf="Leave.Status =='NEW'" (click)="edit(Leave.key,Leave)" pButton pRipple type="button" icon="pi pi-file-o" class="p-button-rounded p-button-text"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -49,26 +49,27 @@
   <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
     <h3>{{sibebarHeader}}</h3>
     <span class="p-float-label" >
-        <input pInputText id="title" [(ngModel)]="leave.Employee" class="formInput" disabled="disabled"/>
+        <input pInputText id="title" [(ngModel)]="leave.Employee" class="formInput">
         <label htmlFor="recipientEmail" class="formLabel">Employee</label>
       </span>
     <span class="p-float-label" >
-      <p-calendar [(ngModel)]="leave.FromDate" class="formInput"  disabled="disabled"></p-calendar>
+      <p-calendar [(ngModel)]="leave.FromDate" class="formInput"  ></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">From Date</label>
     </span>
     <span class="p-float-label">
-      <p-calendar [(ngModel)]="leave.ToDate"  disabled="disabled"></p-calendar>
+      <p-calendar [(ngModel)]="leave.ToDate"  ></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel" class="formInput">To Date</label>
     </span>
     <span class="p-float-label">
-      <p-dropdown [disabled]="true" class="formInput" [options]="LeaveType" [(ngModel)]="leave.LeaveType" placeholder="Select a leave type" optionLabel="Type" optionValue="Type" inputId="float-label"></p-dropdown>
+      <p-dropdown  class="formInput" [options]="LeaveType" [(ngModel)]="leave.LeaveType" placeholder="Select a leave type" optionLabel="Type" optionValue="Type" inputId="float-label"></p-dropdown>
       <label for="float-label">Leave Type</label>
     </span>
     <span class="p-float-label">
-      <textarea rows="3" cols="40" pInputTextarea [(ngModel)]="leave.Reason"  disabled="disabled"></textarea>
+      <textarea rows="3" cols="40" pInputTextarea [(ngModel)]="leave.Reason"  ></textarea>
       <label for="float-label">Reason</label>
     </span>
     <p-button *ngIf="leave.Status=='NEW'" label="APPROVE" (click)="approve()" styleClass="p-button p-button-text p-button-success"></p-button>
     <p-button *ngIf="leave.Status=='NEW'" label="REJECT" (click)="reject()" styleClass="p-button p-button-text p-button-danger"></p-button>
   </p-sidebar>
+  <p-toast></p-toast>
   

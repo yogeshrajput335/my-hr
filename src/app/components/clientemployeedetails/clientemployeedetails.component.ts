@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { ClientEmployeeDetails } from 'src/app/models/clientemployeedetails';
 import { clientemployeedetailsService } from 'src/app/services/clientemployeedetails.service';
@@ -16,9 +17,12 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
     display = false;
     sibebarHeader = "Add ClientEmployeeDetails";
     selectedKey=''
+
     constructor(
-      public clientemployeedetailsservice: clientemployeedetailsService
+      public clientemployeedetailsservice: clientemployeedetailsService,
+      private messageService: MessageService,
     ){ }
+
     ngOnInit():void {
         this.cols = [
           { field: 'ClientId', header: 'clientID', customExportHeader: 'CLIENTID' },
@@ -41,14 +45,14 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
     create() {   
         if(this.sibebarHeader == 'Edit ClientEmployeeDetails'){
           this.clientemployeedetailsservice.update(this.selectedKey,this.clientemployeedetails).then(() => {
-            console.log('Updated job successfully!');
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is edited succcessfully' });
             this.display = false;
             this.clientemployeedetails = { ClientId:'',EmployeeId:'',StartDate:'',EndDate:'',JobDetails:'',PerHourCost:''}
           });
         }
         else{
         this.clientemployeedetailsservice.create(this.clientemployeedetails).then(() => {
-          console.log('Created new item successfully!');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is edited succcessfully' });
           this.display = false;
           this.clientemployeedetails = {ClientId:'',EmployeeId:'',StartDate:'',EndDate:'',JobDetails:'',PerHourCost:''}
         });

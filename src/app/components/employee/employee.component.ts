@@ -2,11 +2,14 @@ import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Employee } from 'src/app/models/employee';
 import { employeeService } from 'src/app/services/employee.service';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
+
 export class EmployeeComponent implements OnInit{
   Employee: Employee[];
   employee:Employee = {EmployeeType:'',EmployeeName:'',Phone:'',DateOfBirth:'', PersonalEmail:'',CompanyEmail:'',ReportingManager:''};
@@ -16,7 +19,8 @@ export class EmployeeComponent implements OnInit{
   sibebarHeader = "Add Employee";
   selectedKey=''
   constructor(
-    public employeeservice:employeeService
+    public employeeservice:employeeService,
+    private messageService: MessageService,
   ){ }
   ngOnInit():void {
     this.cols = [
@@ -41,14 +45,14 @@ export class EmployeeComponent implements OnInit{
 create() {   
     if(this.sibebarHeader == 'Edit Employee'){
       this.employeeservice.update(this.selectedKey,this.employee).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'Employee is edited succcessfully' });
         this.display = false;
         this.employee = { EmployeeType:'',EmployeeName:'',Phone:'',DateOfBirth:'', PersonalEmail:'',CompanyEmail:'',ReportingManager:''}
       });
     }
     else{
     this.employeeservice.create(this.employee).then(() => {
-      console.log('Created new item successfully!');
+      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Employee is edited succcessfully' });
       this.display = false;
       this.employee = { EmployeeType:'',EmployeeName:'',Phone:'',DateOfBirth:'', PersonalEmail:'',CompanyEmail:'',ReportingManager:''}
     });

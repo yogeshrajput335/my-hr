@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Notifications } from 'src/app/models/notifications';
 import { notificationsService } from 'src/app/services/notifications.service';
@@ -18,7 +19,8 @@ export class NotificationsComponent implements OnInit{
   selectedKey=''
   checked:boolean;
   constructor(
-    public notificationsservice: notificationsService
+    public notificationsservice: notificationsService,
+    private messageService: MessageService,
   ){ }
     ngOnInit():void {
       this.cols = [
@@ -43,14 +45,14 @@ export class NotificationsComponent implements OnInit{
   create() {   
     if(this.sibebarHeader == 'Edit Notifications'){
       this.notificationsservice.update(this.selectedKey,this.notification).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'Notification is edited succcessfully' });
         this.display = false;
         this.notification = { Subject:'',Description:'',NotifyTo:'',Startdate:'',Enddate:'',Status:'',Notifyall:''}
       });
     }
     else{
     this.notificationsservice.create(this.notification).then(() => {
-      console.log('Created new item successfully!');
+      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Notification is edited succcessfully' });
       this.display = false;
       this.notification = {Subject:'',Description:'',NotifyTo:'',Startdate:'',Enddate:'',Status:'',Notifyall:''}
     });

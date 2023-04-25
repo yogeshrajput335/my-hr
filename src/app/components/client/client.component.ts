@@ -5,6 +5,7 @@ import { Client } from 'src/app/models/client';
 import { ColumnFilterFormElement } from 'primeng/table';
 import { ClientFollowUp } from 'src/app/models/clientfollowup';
 import { SnapshotAction } from '@angular/fire/compat/database';
+import { MessageService } from 'primeng/api';
 declare var dataTableInit: any;
 @Component({
   selector: 'app-client',
@@ -37,7 +38,11 @@ export class ClientComponent implements OnInit{
     phone:"";
     email:"";
     contactpersonname:"";
-      constructor(private clientservice:clientService) {}
+
+      constructor(private clientservice:clientService,
+        private messageService: MessageService
+      ) {}
+
         ngOnInit():void {
           this.userDetails = JSON.parse(localStorage.getItem('user')!)
             this.cols = [
@@ -86,14 +91,14 @@ export class ClientComponent implements OnInit{
         create() {   
             if(this.sibebarHeader == 'Edit Client'){
               this.clientservice.update(this.selectedKey,this.client).then(() => {
-                console.log('Updated job successfully!');
+                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is edited succcessfully' });
                 this.display = false;
                 this.client = {ClientName:'',Phone:'',Email:'',Address:''}
               });
             }
             else{
               this.clientservice.create(this.client).then(() => {
-                console.log('Created new job successfully!');
+                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is edited succcessfully' });
                 this.display = false;
                 this.client = {ClientName:'',Phone:'',Email:'',Address:''}
               });

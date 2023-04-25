@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table  #dt [columns]="cols" [value]="AttendanceReport" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+    <p-table  #dt [columns]="cols" [value]="Attendance" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
     [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
     selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
     <ng-template pTemplate="caption">
@@ -48,22 +48,23 @@
     <h3>{{sibebarHeader}}</h3>
     <div style="width:100%;height:100vh">
       <span class="p-float-label" >
-        <input pInputText id="title" [(ngModel)]="attendance.Employee" class="formInput" disabled="disabled"/>
+        <input pInputText id="title" [(ngModel)]="attendance.Employee" class="formInput">
         <label htmlFor="recipientEmail" class="formLabel">Employee</label>
       </span>
     <span class="p-float-label">
-      <p-calendar [(ngModel)]="attendance.Year"  class="formInput" view="year" dateFormat="yy" inputId="yearpicker"disabled="disabled" ></p-calendar>
+      <p-calendar [(ngModel)]="attendance.Year"  class="formInput" view="year" dateFormat="yy" inputId="yearpicker" ></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">Year</label>
     </span>
     <span class="p-float-label">
-      <p-calendar  [(ngModel)]="attendance.Month"  class="formInput" view="month" dateFormat="mm/yy"  inputId="datepicker"  [readonlyInput]="true" disabled="disabled"></p-calendar>
+      <p-calendar  [(ngModel)]="attendance.Month"  class="formInput" view="month" dateFormat="mm/yy"  inputId="datepicker"  [readonlyInput]="true"></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">Month</label>
     </span>
     <span class="p-float-label">
-      <p-calendar [(ngModel)]="attendance.PresentDate" class="formInput" disabled="disabled"></p-calendar>
+      <p-calendar [(ngModel)]="attendance.PresentDate" class="formInput"></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">PresentDate</label>
     </span>
     <p-button *ngIf="attendance.Status=='NEW'" label="APPROVE" (click)="approve()" styleClass="p-button p-button-text p-button-success"></p-button>
     <p-button *ngIf="attendance.Status=='NEW'" label="REJECT" (click)="reject()" styleClass="p-button p-button-text p-button-danger"></p-button>
   </div>
 </p-sidebar>
+<p-toast></p-toast>
