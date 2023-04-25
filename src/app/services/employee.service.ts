@@ -5,15 +5,18 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { Employee } from '../models/employee';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class employeeService {
   private dbPath = '/employee';
   employeesRef: AngularFireList<Employee>;
   constructor(private db: AngularFireDatabase) {
     this.employeesRef = db.list(this.dbPath);
   }
+  
   getAll(): AngularFireList<Employee> {
     return this.employeesRef;
   }
