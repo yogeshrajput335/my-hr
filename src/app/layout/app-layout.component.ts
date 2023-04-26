@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
 @Component({
@@ -6,13 +6,16 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss']
 })
-export class AppLayoutComponent {
+export class AppLayoutComponent implements OnInit  {
   title = 'my-hr';
   userDetails:any ;
   items: MenuItem[];
   constructor(
     public authService: AuthService
   ) { 
+  }
+
+  ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem('user')!)
     if(this.userDetails.isAdmin){
     this.items = [
