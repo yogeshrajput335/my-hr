@@ -175,7 +175,7 @@
                     <img src="assets/blueverse_logo.png" style="width:43px;height:43px;"  />
                 </ng-template>
                 <ng-template pTemplate="end">
-                    <strong>{{userDetails.name | uppercase}}</strong>
+                    <a routerLink="profile" routerLinkActive="active">{{userDetails.name | uppercase}}</a>
                     <sub *ngIf="userDetails.isAdmin" style="color:red;padding:5px">Admin</sub>
                 </ng-template>
             </p-menubar>
