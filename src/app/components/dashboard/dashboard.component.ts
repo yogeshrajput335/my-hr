@@ -74,29 +74,18 @@ export class DashboardComponent implements OnInit {
         ).subscribe((data:any) => {
             this.employeeCount = data.length;
         });
+        if(this.userDetails){
+            this.leaveservice.getDashboardLeaves(this.userDetails.isAdmin,this.userDetails.name).snapshotChanges().pipe(
+                map(changes =>
+                changes.map(c =>
+                    ({ key: c.payload.key, ...c.payload.val() })
+                )
+                )
+            ).subscribe((data:any) => {
+                this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
+            });
+        }
 
-        this.leaveservice.getDashboardLeaves(this.userDetails.isAdmin,this.userDetails.name).snapshotChanges().pipe(
-            map(changes =>
-              changes.map(c =>
-                ({ key: c.payload.key, ...c.payload.val() })
-              )
-            )
-          ).subscribe((data:any) => {
-            this.leaves = data.filter((x:any)=>new Date(x.FromDate)>new Date());
-          });
-
-        //   this.attendanceservice.getDashboardAttendance(this.attendance.isAdmin,this.userDetails.name).snapshotChanges().pipe(
-        //     map(changes =>
-        //       changes.map(c =>
-        //         ({ key: c.payload.key, ...c.payload.val() })
-        //       )
-        //     )
-        //   ).subscribe((data:any) => {
-        //     this.attendance= data.filter((x:any)=>new Date(x.PresentDate)>new Date());
-        //   });
-
-
-          this.userDetails = JSON.parse(localStorage.getItem('user')!)
           this.emailservice.getEmailAll().snapshotChanges().pipe(
             map(changes =>
               changes.map(c =>
@@ -106,16 +95,6 @@ export class DashboardComponent implements OnInit {
           ).subscribe((data:any) => {
             this.emails = data.reverse().slice(0, 5);
            });
-
-        //    this.attendanceservice.getAll().snapshotChanges().pipe(
-        //     map(changes =>
-        //         changes.map(c =>
-        //         ({ key: c.payload.key, ...c.payload.val() })
-        //         )
-        //     )
-        // ).subscribe((data:any) => {
-        //     this.attendanceCount = data.length;
-        // });
     }
     ngOnInit() {
         const documentStyle = getComputedStyle(document.documentElement);
