@@ -25,24 +25,6 @@ export class AuthService {
     private db: AngularFireDatabase 
   ) {
     this.usersRef = db.list('/users');
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-        this.usersRef.snapshotChanges().pipe(
-          map(changes =>
-            changes.map(c =>
-              ({...c.payload.val() })
-            )
-          )
-        ).subscribe(data => {
-          localStorage.setItem('user', JSON.stringify(data.filter(x=>x.key==user.uid)[0]));
-        });
-        JSON.parse(localStorage.getItem('user')!);
-      } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
-      }
-    });
   }
   SignIn(email: string, password: string) {
     return this.afAuth
@@ -58,10 +40,10 @@ export class AuthService {
                 )
               )
             ).subscribe((data:any) => {
-              localStorage.setItem('user', JSON.stringify(data.filter(x=>x.key==user.uid)));
+              localStorage.setItem('user', JSON.stringify(data.filter(x=>x.key==user.uid)[0]));
+              this.router.navigate(['dashboard']);
             });;
-            
-            this.router.navigate(['dashboard']);
+              
           }
         });
       })
