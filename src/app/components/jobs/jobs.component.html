@@ -37,12 +37,13 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
   </ng-template>
 </p-table>
 </div>
-<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
-  <h3>{{sibebarHeader}}</h3>
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}" (onHide)="sidenavjobClosed()">
+  <p-fieldset [legend]="sibebarHeader">
+ 
   <div class="form-group">
     <label> Name <small>(required)</small></label>
     <input name="name" type="text" class="form-control" [(ngModel)]="job.name">
-</div>
+  </div>
 <div class="form-group">
   <label> Description</label>
   <input name="description" type="text" class="form-control" [(ngModel)]="job.description">
@@ -56,8 +57,9 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
   <input name="enddate" type="text" class="form-control" [(ngModel)]="job.enddate">
 </div>
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+</p-fieldset>
 </p-sidebar>
 <p-toast></p-toast>
-
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 

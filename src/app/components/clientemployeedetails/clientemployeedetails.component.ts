@@ -52,7 +52,7 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
         }
         else{
         this.clientemployeedetailsservice.create(this.clientemployeedetails).then(() => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is edited succcessfully' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is created succcessfully' });
           this.display = false;
           this.clientemployeedetails = {ClientId:'',EmployeeId:'',StartDate:'',EndDate:'',JobDetails:'',PerHourCost:''}
         });
@@ -71,5 +71,8 @@ export class ClientEmployeeDetailsComponent  implements OnInit{
       }
       delete(key:any){
         this.clientemployeedetailsservice.delete(key);
-      }    
+      }   
+      sidenavClosed(){
+        this.clientemployeedetails = {ClientId:'',EmployeeId:'',StartDate:'',EndDate:'',JobDetails:'',PerHourCost:''}
+      } 
 }

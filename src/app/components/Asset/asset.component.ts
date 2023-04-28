@@ -2,14 +2,15 @@ import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Asset } from 'src/app/models/asset';
 import { assetService } from 'src/app/services/asset.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+declare var dataTableInit:any; 
 
-declare var dataTableInit:any;
 @Component({
   selector: 'app-asset',
   templateUrl: './asset.component.html',
   styleUrls: ['./asset.component.scss']
 })
+
 export class AssetComponent implements OnInit {
   Assets: Asset[];
   asset:Asset = {name:'',details:''};
@@ -18,7 +19,11 @@ export class AssetComponent implements OnInit {
   display = false;
   sibebarHeader = "Add Asset";
   selectedKey=''
-  constructor(public assetservice: assetService, private messageService: MessageService){ }
+  constructor(public assetservice: assetService,
+     private messageService: MessageService,
+     private confirmationService: ConfirmationService
+  ){ }
+  
     ngOnInit():void {
       this.cols = [
         { field: 'name', header: 'name', customExportHeader: 'NAME' },
@@ -44,7 +49,7 @@ export class AssetComponent implements OnInit {
     }
     else{
     this.assetservice.create(this.asset).then(() => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset is added succcessfully' });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Asset is created succcessfully' });
       this.display = false;
       this.asset = {name:'', details:''}
     });
@@ -61,6 +66,27 @@ export class AssetComponent implements OnInit {
     this.selectedKey = key;
   }
   delete(key:any){
-    this.assetservice.delete(key);
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.assetservice.delete(key);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+      },
+      reject: (type) => {
+          switch (type) {
+              case ConfirmEventType.REJECT:
+                  this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                  break;
+              case ConfirmEventType.CANCEL:
+                  this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                  break;
+          }
+      }
+  });
+  }
+  sidenavClosed(){
+    this.asset = {name:'', details:''}
   }
 }

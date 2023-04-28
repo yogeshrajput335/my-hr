@@ -42,8 +42,9 @@
             </ng-template>
         </p-table>
 </div>
-<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
-    <h3>{{sibebarHeader}}</h3>
+<p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}" (onHide)="sidenavClosed()">
+  <p-fieldset [legend]="sibebarHeader">
+  
   <div class="form-group">
       <label> Employee Type <small>(required)</small></label>
       <input name="employeetype" type="text" class="form-control" [(ngModel)]="employee.EmployeeType">
@@ -73,5 +74,7 @@
     <input name="reportingmanager" type="text" class="form-control" [(ngModel)]="employee.ReportingManager">
   </div>
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+</p-fieldset>
   </p-sidebar>
 <p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

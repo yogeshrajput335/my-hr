@@ -6,7 +6,7 @@ import { attendanceService } from 'src/app/services/attendance.service';
 import { Attendance } from 'src/app/models/attendance';
 import { employeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employee';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 declare var dataTableInit:any;
 
 @Component({
@@ -40,7 +40,8 @@ export class AttendanceReportComponent implements OnInit {
     constructor(public attendancereportservice: attendancereportService,
       public attendanceservice:attendanceService,
       public employeeservice:employeeService,
-      private messageService: MessageService
+      private messageService: MessageService,
+      private confirmationService:ConfirmationService
       ) {}
 
     ngOnInit(): void {
@@ -73,7 +74,7 @@ export class AttendanceReportComponent implements OnInit {
       ).subscribe((data:any) => {
         this.InitAttendance=data;
         this.Attendance= this.selStatus =="ALL" ? this.InitAttendance : this.InitAttendance.filter((x:any)=>x.Status == this.selStatus)
-        // this.AttendanceReport= data;
+        this.AttendanceReport= data;
       });
   }
   create() {
@@ -100,7 +101,7 @@ export class AttendanceReportComponent implements OnInit {
         });
     } else {
         this.attendanceservice.create(this.attendance).then(() => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'AttendanceReport  is edited succcessfully' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'AttendanceReport  is created succcessfully' });
           this.display = false;
           this.attendance = {
             Employee:'',
@@ -127,12 +128,32 @@ export class AttendanceReportComponent implements OnInit {
       this.selectedKey = key;
     }
     delete(key: any) {
-      this.attendanceservice.delete(key);
+     
+        this.confirmationService.confirm({
+          message: 'Do you want to delete this record?',
+          header: 'Delete Confirmation',
+          icon: 'pi pi-info-circle',
+          accept: () => {
+            this.attendanceservice.delete(key);
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+          },
+          reject: (type) => {
+              switch (type) {
+                  case ConfirmEventType.REJECT:
+                      this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                      break;
+                  case ConfirmEventType.CANCEL:
+                      this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                      break;
+              }
+            }
+          });    
+      
     }
     approve(){
       this.attendance.Status = "APPROVED";    
       this.attendanceservice.update(this.selectedKey,this.attendance).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'AttendanceReport  is approved succcessfully' });
         this.display = false;
         this.attendance= { Employee:'', Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date() }
       });
@@ -140,12 +161,15 @@ export class AttendanceReportComponent implements OnInit {
     reject(){
       this.attendance.Status = "REJECTED"
       this.attendanceservice.update(this.selectedKey,this.attendance).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'AttendanceReport  is rejected succcessfully' });
         this.display = false;
         this.attendance = { Employee:'', Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date()}
       });
     }
     OnStatusChange(){
       this.Attendance = this.selStatus =="ALL" ? this.InitAttendance : this.InitAttendance.filter((x:any)=>x.Status == this.selStatus)
+    }
+    sidenavClosed(){
+      this.attendance = { Employee:'', Year: '', Month: '', Status:'', NumberOfDays: '', PresentDate: new Date()}
     }
 }

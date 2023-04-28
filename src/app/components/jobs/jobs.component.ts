@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Job } from 'src/app/models/job';
 import { jobService } from 'src/app/services/job.service';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 declare var dataTableInit: any;
 @Component({
   selector: 'app-jobs',
@@ -21,6 +21,7 @@ export class JobsComponent implements OnInit {
   constructor(
     private jobservice: jobService,
     private messageService: MessageService,
+    private confirmationService:ConfirmationService
     ) {}
   ngOnInit():void {
     this.cols = [
@@ -49,14 +50,33 @@ export class JobsComponent implements OnInit {
     }
     else{
       this.jobservice.create(this.job).then(() => {
-        console.log('Created new job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created new Job succcessfully' });
         this.display = false;
         this.job = {name:'',description:'',startdate:'',enddate:''}
       });
     }
   }
   delete(key:any){
-    this.jobservice.delete(key);
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.jobservice.delete(key);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+      },
+      reject: (type) => {
+          switch (type) {
+              case ConfirmEventType.REJECT:
+                  this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                  break;
+              case ConfirmEventType.CANCEL:
+                  this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                  break;
+          }
+        }
+      }); 
+   
    }
   AddJob(){
     this.display = true;
@@ -67,6 +87,9 @@ export class JobsComponent implements OnInit {
     this.sibebarHeader = 'Edit Job'
     this.job = job;
     this.selectedKey = key;
+  }
+  sidenavjobClosed(){
+    this.job = {name:'',description:'',startdate:'',enddate:''}
   }
 }
 

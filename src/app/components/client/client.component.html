@@ -33,15 +33,14 @@
               <button tooltipPosition="top" pTooltip="Requirements" (click)="openrequirements(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-circle" class="p-button-rounded p-button-text"></button>
               <button tooltipPosition="top" pTooltip="Contact Persons" (click)="opencontactperson(Client.key,Client.ClientName)" pButton pRipple type="button" icon="pi pi-check-square" class="p-button-rounded p-button-text"></button>
               <button tooltipPosition="top" pTooltip="Edit" (click)="edit(Client.key,Client)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-              <button tooltipPosition="top" pTooltip="Delete" (click)="delete(Client.key)" pButton pRipple type="button" icon="pi pi-times"   class="p-button-rounded p-button-danger p-button-text"></button>
             </td>
         </tr>
     </ng-template>
   </p-table>
   </div>
-  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}">
-    <h3>{{sibebarHeader}}</h3>
-    <div class="form-group">
+  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}" (onHide)="sidenavClosed()">
+    <p-fieldset [legend]="sibebarHeader">
+  <div class="form-group">
       <label> Client Name <small>(required)</small></label>
       <input name="client name" type="text" class="form-control" [(ngModel)]="client.ClientName">
   </div>
@@ -58,9 +57,10 @@
     <input name="address" type="text" class="form-control" [(ngModel)]="client.Address">
   </div>
   <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-fieldset>
   </p-sidebar>
-  <p-sidebar [(visible)]="displayFollowUp" position="right"  [style]="{width:'40em'}">
-    <h4>{{selClient}} Follow Ups </h4>
+  <p-sidebar [(visible)]="displayFollowUp" position="right"  [style]="{width:'40em'}" (onHide)="sidenavClosed()">
+    <p-fieldset [legend]="sibebarHeader">
     <div class="form-group">
       <label>Description </label>
       <input name="ClientDescriptionateName" type="text" class="form-control" [(ngModel)]="description">
@@ -82,8 +82,10 @@
     <div *ngIf="followUps && followUps.length==0" style="color:red">
       <label>No followUps  Added.</label>
     </div>
+    </p-fieldset>
   </p-sidebar>
-  <p-sidebar [(visible)]="displayRequirement" position="right"  [style]="{width:'40em'}">
+  <p-sidebar [(visible)]="displayRequirement" position="right"  [style]="{width:'40em'}" (onHide)="sidenavClosed()">
+    <p-fieldset [legend]="sibebarHeader">
     <h4>{{selClient}} Requirements </h4>
     <div class="form-group">
       <label>Requirement Heading </label>
@@ -116,9 +118,10 @@
     <div *ngIf="requirements && requirements.length==0" style="color:red">
       <label>No requirements Added.</label>
     </div>
+    </p-fieldset>
   </p-sidebar>
-  <p-sidebar [(visible)]="displayContactPerson" position="right"  [style]="{width:'40em'}">
-    <h4>{{selClient}} Contact Person </h4>
+  <p-sidebar [(visible)]="displayContactPerson" position="right"  [style]="{width:'40em'}" (onHide)="sidenavClosed()">
+    <p-fieldset [legend]="sibebarHeader">
     <div class="form-group">
       <label>Contact PersonName </label>
       <input name="ClientContact PersonName" type="text" class="form-control" [(ngModel)]="contactpersonname">
@@ -148,8 +151,10 @@
     <div *ngIf="contactperson && contactperson.length==0" style="color:red">
       <label>No contactperson  Added.</label>
     </div>
+    </p-fieldset>
   </p-sidebar>
 <p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 
   

@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { attendancereportService } from 'src/app/services/attendancereport.service';
 import { employeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employee';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 declare var dataTableInit:any;
 
 @Component({
@@ -39,7 +39,8 @@ export class AttendanceComponent implements OnInit {
     public attendanceservice: attendanceService,
     public attendancereportservice: attendancereportService,
     public employeeservice:employeeService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -111,7 +112,7 @@ export class AttendanceComponent implements OnInit {
         });
     } else {
       this.attendanceservice.create(this.attendance).then(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Attendance is edited succcessfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Attendance is  created succcessfully' });
         this.display = false;
         this.attendance = {
           Employee:'',
@@ -138,8 +139,34 @@ export class AttendanceComponent implements OnInit {
     this.attendance = attendance;
     this.selectedKey = key;
   }
-
   delete(key: any) {
-    this.attendanceservice.delete(key);
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.attendanceservice.delete(key);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+      },
+      reject: (type) => {
+          switch (type) {
+              case ConfirmEventType.REJECT:
+                  this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                  break;
+              case ConfirmEventType.CANCEL:
+                  this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                  break;
+          }
+        }
+      });    
+  }
+  sidenavClosed(){
+    this.attendance = {
+      Employee:'',
+      Year: '',
+      Month: '',
+      NumberOfDays: '',
+      PresentDate: new Date()
+    };
   }
 }

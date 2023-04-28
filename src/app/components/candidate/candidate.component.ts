@@ -62,14 +62,14 @@ initfollowUps:any
   create() {   
     if(this.sibebarHeader == 'Edit Candidate'){
       this.candidateService.update(this.selectedKey,this.candidate).then(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Candidate is edited succcessfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Candidate is  edited succcessfully' });
         this.display = false;
         this.candidate = {CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
       });
     }
     else{
     this.candidateService.create(this.candidate).then(() => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Candidate is edited succcessfully' });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Candidate is created succcessfully' });
       this.display=false;
       this.candidate={ CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
     });
@@ -98,7 +98,7 @@ initfollowUps:any
   }
   createFollowup(){
     this.candidateService.createFollowUp({candidateKey:this.selKey,followupBy:this.userDetails.name,followupDate:new Date().toLocaleString(),description:this.description}).then(() => {
-      console.log('Created new item successfully!');
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: ' created Candidate is  succcessfully' });
       this.display=false;
       this.description=''
       this.candidateService.getAllFollowUps().snapshotChanges().pipe(
@@ -112,5 +112,8 @@ initfollowUps:any
         this.followUps = this.initfollowUps.filter((x:any)=>x.candidateKey == this.selKey);
       });
     });
+  }
+  sidenavClosed(){
+    this.candidate={ CandidateName:'',email:'',tech:'',visa:'',rate:'',date:'',contactdetails:''}
   }
 }

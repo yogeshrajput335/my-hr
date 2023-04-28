@@ -66,17 +66,18 @@
           <label>No Candidate Added.</label>
         </div>
    </p-fieldset>
-        <h4>Template 
-          <p-button *ngIf="candidates.length>0" (click)="GenerateTemplate()" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
+   <p-fieldset legend="Template">
+    <p-button *ngIf="candidates.length>0" (click)="GenerateTemplate()" icon="pi pi-check" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
           <p-button *ngIf="candidates.length>0" (click)="Save()" icon="pi pi-save" styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-        </h4>
+       
         <div *ngIf="finalTemplate !=''" [innerHTML]="finalTemplate"></div>
         <textarea style="width:100%" rows="3">
           {{finalTemplate}}
         </textarea>
+        </p-fieldset>
         <hr/>
         <div class="card" >
-          <h4>Saved Templates</h4>
+          <p-fieldset legend="Saved Templates">
           <table *ngIf="emails.length>0">
             <tr>
               <td>Date</td>
@@ -95,9 +96,9 @@
           <div *ngIf="emails.length==0" style="color:red">
             <label>No Email Template Saved.</label>
           </div>
+          </p-fieldset>
         </div>
       </div>
-    </div>
     <hr/>
     
 

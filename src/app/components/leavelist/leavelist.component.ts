@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Employee } from 'src/app/models/employee';
 import { Leave } from 'src/app/models/leave';
@@ -33,6 +33,7 @@ export class LeaveListComponent implements OnInit {
     public employeeservice:employeeService,
     public leavetypeservice:leavetypeService,
     private messageService: MessageService,
+    private confirmationService:ConfirmationService
   ){ }
     ngOnInit():void {
       this.userDetails = JSON.parse(localStorage.getItem('user')!)
@@ -78,8 +79,7 @@ export class LeaveListComponent implements OnInit {
       }
       else{
       this.leaveservice.create(this.leave).then(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail:'leavelist is edited succcessfully' });
-        console.log('Created new item successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'leavelist is created succcessfully' });
         this.display = false;
         this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
       });
@@ -96,12 +96,29 @@ export class LeaveListComponent implements OnInit {
       this.selectedKey = key;
     }
     delete(key:any){
-      this.leaveservice.delete(key);
+      this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.leaveservice.delete(key);
+          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+        },
+        reject: (type) => {
+            switch (type) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                    break;
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                    break;
+            }
+          }
+        }); 
     }
     approve(){
       this.leave.Status = "APPROVED"
       this.leaveservice.update(this.selectedKey,this.leave).then(() => {
-        console.log('Updated job successfully!');
         this.display = false;
         this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
       });
@@ -109,12 +126,15 @@ export class LeaveListComponent implements OnInit {
     reject(){
       this.leave.Status = "REJECTED"
       this.leaveservice.update(this.selectedKey,this.leave).then(() => {
-        console.log('Updated job successfully!');
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'leavelist rejected succcessfully' });
         this.display = false;
         this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
       });
     }
     OnStatusChange(){
       this.Leave = this.selStatus =="ALL" ? this.InitLeave : this.InitLeave.filter((x:any)=>x.Status == this.selStatus)
+    }
+    sidenavClosed(){
+      this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
     }
 }

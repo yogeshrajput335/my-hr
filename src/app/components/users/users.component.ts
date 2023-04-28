@@ -53,7 +53,7 @@ export class UsersComponent implements OnInit {
       }
       else{
       this.userService.create(this.user).then(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is created succcessfully' });
         this.display = false;
         this.user = {key:'',username:'', name:'',email:'', personalEmail:'',mobileNumber:'',isAdmin:false}
       });

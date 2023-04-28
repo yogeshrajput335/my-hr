@@ -98,15 +98,11 @@ export class ClientComponent implements OnInit{
             }
             else{
               this.clientservice.create(this.client).then(() => {
-                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is edited succcessfully' });
+                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Client is created succcessfully' });
                 this.display = false;
                 this.client = {ClientName:'',Phone:'',Email:'',Address:''}
               });
             }
-          }
-          delete(key:any){
-            this.clientservice.delete(key);
-            message: 'Are you sure that you want to perform this action?'
           }
           AddClient(){
             this.display = true;
@@ -128,7 +124,7 @@ export class ClientComponent implements OnInit{
           }
           createFollowup(){
             this.clientservice.createFollowUp({clientKey:this.selKey,followupBy:this.userDetails.name,followupDate:new Date().toLocaleString(),description:this.description}).then(() => {
-              console.log('Created new item successfully!');
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created new client succcessfully' });
               this.displayFollowUp=false;
               this.description='';
               this.clientservice.getclientFollowUps().snapshotChanges().pipe(
@@ -151,7 +147,7 @@ export class ClientComponent implements OnInit{
           }
           createRequirements(){
             this.clientservice.createRequirement({clientKey:this.selKey, requirementHeading:this.requirementHeading,requirementDate:new Date().toLocaleString(),requirementBy:this.requirementBy,description:this.description}).then(() => {
-              console.log('Created new item successfully!');
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created new client succcessfully' });
               this.displayRequirement=false;
               this.description=''
               this.requirementHeading =''
@@ -176,7 +172,7 @@ export class ClientComponent implements OnInit{
           }
           createContactPerson(){
             this.clientservice.createContactPerson({clientKey:this.selKey,contactpersonname:this.contactpersonname,phone:this.phone,email:this.email}).then(() => {
-              console.log('Created new item successfully!');
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created new client succcessfully' });
               this.display=false;
               this.contactpersonname=''
               this.phone=''
@@ -192,5 +188,8 @@ export class ClientComponent implements OnInit{
                 this.contactperson = this.initcontactperson.filter((x:any)=>x.clientKey == this.selKey);
               });
             });
+          }
+          sidenavClosed(){
+            this.client = {ClientName:'',Phone:'',Email:'',Address:''}
           }
 }
