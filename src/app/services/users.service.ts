@@ -5,12 +5,13 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { User } from '../models/user';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class UserService {
   private dbPath = '/users';
-  private dbPath1='/profile';
   usersRef: AngularFireList<User>;
   constructor(private db: AngularFireDatabase) {
     this.usersRef = db.list(this.dbPath);

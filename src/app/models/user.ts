@@ -4,6 +4,7 @@ export interface User {
     username?: string;
     name?: string;
     email?: string;
+    personalEmail?:string;
     mobileNumber?: string;
     isAdmin?:boolean;
  }

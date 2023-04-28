@@ -11,12 +11,14 @@ declare var dataTableInit:any;
 })
 export class UsersComponent implements OnInit {
   Users: User[];
-  user:User = {username:'',name:'',email:'',mobileNumber:'',isAdmin:false};
+  user:User = {username:'',name:'',email:'', personalEmail:'', mobileNumber:'',isAdmin:false};
   selectedProducts: User[];
   cols: any[];
   display = false;
   sibebarHeader = "Add Job";
   selectedKey=''
+  userdetails: any;
+  email:any
   constructor(
     public userService: UserService,
     private messageService: MessageService,
@@ -26,6 +28,7 @@ export class UsersComponent implements OnInit {
         { field: 'username', header: 'Username', customExportHeader: 'USERNAME' },
         { field: 'name', header: 'Name' },
         { field: 'email', header: 'Email' },
+        { field: 'personalEmail', header: 'Personal Email' },
         { field: 'mobileNumber', header: 'Mobile Number' },
         { field: 'isAdmin', header: 'Is Admin' }
     ];
@@ -40,18 +43,19 @@ export class UsersComponent implements OnInit {
       });
     }
     create() {   
+      // this.user.personalEmail = this.userdetails.personalEmail.toLocaleDateString();
       if(this.sibebarHeader == 'Edit User'){
         this.userService.update(this.selectedKey,this.user).then(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
           this.display = false;
-          this.user = {username:'', name:'',email:'',mobileNumber:'',isAdmin:false}
+          this.user = {username:'', name:'',email:'', personalEmail:'', mobileNumber:'',isAdmin:false}
         });
       }
       else{
       this.userService.create(this.user).then(() => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
         this.display = false;
-        this.user = {username:'', name:'',email:'',mobileNumber:'',isAdmin:false}
+        this.user = {username:'', name:'',email:'', personalEmail:'',mobileNumber:'',isAdmin:false}
       });
     }
     }
