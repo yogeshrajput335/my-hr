@@ -6,9 +6,11 @@ import {
 } from '@angular/fire/compat/database';
 import { Client } from '../models/client';
 import { Email } from '../models/email';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class emailService {
   private dbemailPath = '/email';
   emailsRef: AngularFireList<Email>;
