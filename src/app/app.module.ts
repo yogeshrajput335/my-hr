@@ -47,7 +47,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { FieldsetModule } from 'primeng/fieldset';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,9 +98,11 @@ import { MessageService } from 'primeng/api';
     ChipModule,
     DropdownModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
+    FieldsetModule,
+    ConfirmDialogModule
   ],
-  providers: [AuthService, MessageService],
+  providers: [AuthService, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

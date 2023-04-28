@@ -66,7 +66,6 @@ export class LeaveListComponent implements OnInit {
       });
     }
     create() {   
-      debugger
       this.leave.Employee = this.userDetails.name;
       this.leave.AppliedDate = new Date().toLocaleDateString();
       this.leave.Status = 'NEW';

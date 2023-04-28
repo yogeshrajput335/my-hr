@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/users.service';
@@ -11,7 +11,7 @@ declare var dataTableInit:any;
 })
 export class UsersComponent implements OnInit {
   Users: User[];
-  user:User = {username:'',name:'',email:'', personalEmail:'', mobileNumber:'',isAdmin:false};
+  user:User = {key:'',username:'',name:'',email:'', personalEmail:'', mobileNumber:'',isAdmin:false};
   selectedProducts: User[];
   cols: any[];
   display = false;
@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit {
   constructor(
     public userService: UserService,
     private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ){ }
     ngOnInit():void {
       this.cols = [
@@ -35,7 +36,7 @@ export class UsersComponent implements OnInit {
       this.userService.getAll().snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
-            ({ key: c.payload.key, ...c.payload.val() })
+            ({ uid: c.payload.key, ...c.payload.val() })
           )
         )
       ).subscribe(data => {
@@ -43,19 +44,18 @@ export class UsersComponent implements OnInit {
       });
     }
     create() {   
-      // this.user.personalEmail = this.userdetails.personalEmail.toLocaleDateString();
       if(this.sibebarHeader == 'Edit User'){
         this.userService.update(this.selectedKey,this.user).then(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
           this.display = false;
-          this.user = {username:'', name:'',email:'', personalEmail:'', mobileNumber:'',isAdmin:false}
+          this.user = {key:'',username:'', name:'',email:'', personalEmail:'', mobileNumber:'',isAdmin:false}
         });
       }
       else{
       this.userService.create(this.user).then(() => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail:'User is edited succcessfully' });
         this.display = false;
-        this.user = {username:'', name:'',email:'', personalEmail:'',mobileNumber:'',isAdmin:false}
+        this.user = {key:'',username:'', name:'',email:'', personalEmail:'',mobileNumber:'',isAdmin:false}
       });
     }
     }
@@ -70,6 +70,27 @@ export class UsersComponent implements OnInit {
       this.selectedKey = key;
     }
     delete(key:any){
-      this.userService.delete(key);
+      this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.userService.delete(key);
+          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+        },
+        reject: (type) => {
+            switch (type) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                    break;
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                    break;
+            }
+        }
+    });
+    }
+    sidenavClosed(){
+      this.user = {key:'',username:'', name:'',email:'', personalEmail:'',mobileNumber:'',isAdmin:false}
     }
 }

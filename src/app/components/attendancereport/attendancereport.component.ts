@@ -77,7 +77,6 @@ export class AttendanceReportComponent implements OnInit {
       });
   }
   create() {
-    debugger
     this.attendance.Employee=this.userDetails.name;
     this.attendance.Year=this.attendance.Year.toLocaleDateString();
     this.attendance.Month=this.attendance.Month.toLocaleDateString();
@@ -131,7 +130,6 @@ export class AttendanceReportComponent implements OnInit {
       this.attendanceservice.delete(key);
     }
     approve(){
-      debugger
       this.attendance.Status = "APPROVED";    
       this.attendanceservice.update(this.selectedKey,this.attendance).then(() => {
         console.log('Updated job successfully!');
