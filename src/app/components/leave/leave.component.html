@@ -42,8 +42,8 @@
             </ng-template>
         </p-table>
   </div>
-  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
-    <h3>{{sibebarHeader}}</h3>
+  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}" (onHide)="sidenavClosed()">
+    <p-fieldset [legend]="sibebarHeader">
     <span class="p-float-label" >
       <p-calendar [(ngModel)]="leave.FromDate" class="formInput"></p-calendar>
       <label htmlFor="recipientEmail" class="formLabel">From Date</label>
@@ -61,6 +61,7 @@
       <label for="float-label">Reason</label>
     </span>
   <p-button label="Add" (click)="create()" styleClass="p-button p-button-text"></p-button>
+  </p-fieldset>
   </p-sidebar>
   <p-toast></p-toast>
-  
+  <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

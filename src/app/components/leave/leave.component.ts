@@ -1,5 +1,4 @@
 import { Component,OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Employee } from 'src/app/models/employee';
 import { Leave } from 'src/app/models/leave';
@@ -7,7 +6,9 @@ import { LeaveType } from 'src/app/models/leavetype';
 import { employeeService } from 'src/app/services/employee.service';
 import { leaveService } from 'src/app/services/leave.service';
 import { leavetypeService } from 'src/app/services/leavetype.service';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 declare var dataTableInit:any;
+
 @Component({
   selector: 'app-leave',
   templateUrl: './leave.component.html',
@@ -31,6 +32,7 @@ export class LeaveComponent implements OnInit {
     public employeeservice:employeeService,
     public leavetypeservice:leavetypeService,
     private messageService: MessageService,
+    private confirmationService:ConfirmationService
   ){ }
     ngOnInit():void {
       this.userDetails = JSON.parse(localStorage.getItem('user')!)
@@ -77,7 +79,7 @@ export class LeaveComponent implements OnInit {
       }
       else{
       this.leaveservice.create(this.leave).then(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail:'leave is edited succcessfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail:'leave is created succcessfully' });
         this.display = false;
         this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
       });
@@ -95,6 +97,27 @@ export class LeaveComponent implements OnInit {
   
     }
     delete(key:any){
-      this.leaveservice.delete(key);
+      this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.leaveservice.delete(key);
+          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+        },
+        reject: (type) => {
+            switch (type) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                    break;
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                    break;
+            }
+          }
+        }); 
+    }
+    sidenavClosed(){
+      this.leave = { Employee:'',FromDate:new Date(),ToDate:new Date(),LeaveType:'', AppliedDate:'',Status:'',Reason:''}
     }
 }

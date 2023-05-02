@@ -46,8 +46,9 @@
             </ng-template>
         </p-table>
   </div>
-  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}">
-    <h3>{{sibebarHeader}}</h3>
+  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'25em'}" (onHide)="sidenavClosed()">
+    <p-fieldset [legend]="sibebarHeader">
+
     <span class="p-float-label" >
         <input pInputText id="title" [(ngModel)]="leave.Employee" class="formInput">
         <label htmlFor="recipientEmail" class="formLabel">Employee</label>
@@ -70,6 +71,8 @@
     </span>
     <p-button *ngIf="leave.Status=='NEW'" label="APPROVE" (click)="approve()" styleClass="p-button p-button-text p-button-success"></p-button>
     <p-button *ngIf="leave.Status=='NEW'" label="REJECT" (click)="reject()" styleClass="p-button p-button-text p-button-danger"></p-button>
+    </p-fieldset>
   </p-sidebar>
   <p-toast></p-toast>
+  <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
   

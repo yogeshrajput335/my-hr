@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { Notifications } from 'src/app/models/notifications';
 import { notificationsService } from 'src/app/services/notifications.service';
@@ -21,6 +21,7 @@ export class NotificationsComponent implements OnInit{
   constructor(
     public notificationsservice: notificationsService,
     private messageService: MessageService,
+    private confirmationService:ConfirmationService
   ){ }
     ngOnInit():void {
       this.cols = [
@@ -69,6 +70,27 @@ export class NotificationsComponent implements OnInit{
     this.selectedKey = key;
   }
   delete(key:any){
-    this.notificationsservice.delete(key);
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.notificationsservice.delete(key);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+      },
+      reject: (type) => {
+          switch (type) {
+              case ConfirmEventType.REJECT:
+                  this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                  break;
+              case ConfirmEventType.CANCEL:
+                  this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                  break;
+          }
+        }
+      }); 
+  }
+  sidenavClosed(){
+    this.notification = {Subject:'',Description:'',NotifyTo:'',Startdate:'',Enddate:'',Status:'',Notifyall:''}
   }
 } 

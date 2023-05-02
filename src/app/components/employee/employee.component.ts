@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Employee } from 'src/app/models/employee';
 import { employeeService } from 'src/app/services/employee.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-employee',
@@ -21,6 +21,7 @@ export class EmployeeComponent implements OnInit{
   constructor(
     public employeeservice:employeeService,
     private messageService: MessageService,
+    private confirmationService:ConfirmationService
   ){ }
   ngOnInit():void {
     this.cols = [
@@ -52,7 +53,7 @@ create() {
     }
     else{
     this.employeeservice.create(this.employee).then(() => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Employee is edited succcessfully' });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail:'Employee is created succcessfully' });
       this.display = false;
       this.employee = { EmployeeType:'',EmployeeName:'',Phone:'',DateOfBirth:'', PersonalEmail:'',CompanyEmail:'',ReportingManager:''}
     });
@@ -68,7 +69,29 @@ create() {
     this.employee = employee;
     this.selectedKey = key;
   }
+  
   delete(key:any){
-    this.employeeservice.delete(key);
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.employeeservice.delete(key);
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+      },
+      reject: (type) => {
+          switch (type) {
+              case ConfirmEventType.REJECT:
+                  this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                  break;
+              case ConfirmEventType.CANCEL:
+                  this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                  break;
+          }
+        }
+      }); 
+  }
+  sidenavClosed(){
+    this.employee = { EmployeeType:'',EmployeeName:'',Phone:'',DateOfBirth:'', PersonalEmail:'',CompanyEmail:'',ReportingManager:''}
   }
 }
