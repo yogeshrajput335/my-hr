@@ -49,6 +49,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FieldsetModule } from 'primeng/fieldset';
+import { KnobModule } from 'primeng/knob';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     TooltipModule,
     ToastModule,
     FieldsetModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    KnobModule
   ],
   providers: [AuthService, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
