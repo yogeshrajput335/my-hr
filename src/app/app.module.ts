@@ -50,6 +50,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FieldsetModule } from 'primeng/fieldset';
 import { KnobModule } from 'primeng/knob';
+import { EmailTemplateComponent } from './components/emailtemplate/emailtemplate.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { KnobModule } from 'primeng/knob';
     AttendanceComponent,
     AttendanceReportComponent,
     EmailComponent,
+    EmailTemplateComponent
   ],
   imports: [
     BrowserModule,

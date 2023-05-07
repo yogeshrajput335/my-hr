@@ -49,7 +49,7 @@ export class ClientComponent implements OnInit{
               { field: 'ClientName', header: 'ClientName', customExportHeader: 'CLIENTNAME' },
               { field: 'Phone', header: 'Phone' },
               { field: 'Email', header: 'Email' },
-              { field: 'Address', header: 'Address' }
+              { field: 'Address', header: 'Address' },
           ];
            this.clientservice.getAll().snapshotChanges().pipe(
               map(changes =>

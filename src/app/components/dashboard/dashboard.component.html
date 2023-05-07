@@ -15,47 +15,35 @@
     <div class="col-12 md:col-6 lg:col-3">
       <div class="surface-card shadow-2 p-3 border-round">
         <div class="flex justify-content-between mb-3">
-          <div>
+          <div style="width:100%;">
             <span class="block text-500 font-medium mb-3">Client Count</span>
-            <div class="text-900 font-medium text-xl">{{ clientCount }}</div>
+            <div style="text-align:center">
+              <p-knob [(ngModel)]="clientCount" [readonly]="true"></p-knob>
           </div>
-          <div
-            class="flex align-items-center justify-content-center bg-blue-100 border-round"
-            style="width: 2.5rem; height: 2.5rem"
-          >
-            <i class="pi pi-users text-blue-500 text-xl"></i>
-          </div>
+        </div>
         </div>
       </div>
     </div>
     <div class="col-12 md:col-6 lg:col-3">
       <div class="surface-card shadow-2 p-3 border-round">
         <div class="flex justify-content-between mb-3">
-          <div>
+          <div style="width:100%;">
             <span class="block text-500 font-medium mb-3">Job Count</span>
-            <div class="text-900 font-medium text-xl">{{ jobCount }}</div>
+            <div style="text-align:center">
+              <p-knob [(ngModel)]="jobCount" [readonly]="true"></p-knob>
           </div>
-          <div
-            class="flex align-items-center justify-content-center bg-orange-100 border-round"
-            style="width: 2.5rem; height: 2.5rem"
-          >
-            <i class="pi pi-shopping-bag text-orange-500 text-xl"></i>
-          </div>
-        </div>
       </div>
+    </div>
+    </div>
     </div>
     <div class="col-12 md:col-6 lg:col-3">
       <div class="surface-card shadow-2 p-3 border-round">
         <div class="flex justify-content-between mb-3">
-          <div>
+          <div style="width:100%">
             <span class="block text-500 font-medium mb-3">Employee Count</span>
-            <div class="text-900 font-medium text-xl">{{ employeeCount }}</div>
+            <div style="text-align:center">
+              <p-knob [(ngModel)]="employeeCount" [readonly]="true"></p-knob>
           </div>
-          <div
-            class="flex align-items-center justify-content-center bg-cyan-100 border-round"
-            style="width: 2.5rem; height: 2.5rem"
-          >
-            <i class="pi pi-inbox text-cyan-500 text-xl"></i>
           </div>
         </div>
       </div>
