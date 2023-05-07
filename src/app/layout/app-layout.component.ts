@@ -34,6 +34,12 @@ export class AppLayoutComponent implements OnInit  {
                     routerLink: 'email'
               },
               {
+                label: 'EmailTemplate',
+                icon: 'pi pi-fw pi-envelope',
+                routerLink:'emailtemplate'
+              },
+              
+              {
                   label: 'Users',
                   icon: 'pi pi-fw pi-users',
                   routerLink: 'users'

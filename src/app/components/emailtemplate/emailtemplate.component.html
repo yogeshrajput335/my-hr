@@ -1,0 +1,65 @@
+<div class="card">
+    <p-table  #dt [columns]="cols" [value]="EmailTemplate" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped"
+  [paginator]="true" [rows]="10" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+  selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'">
+  <ng-template pTemplate="caption">
+    <div style="display: inline-flex;">
+      <h5 style="margin-right: 100px; margin-left:20px">EmailTemplate</h5>
+    <div style="float:right;margin-top:4px">
+        <button  tooltipPosition="top" pTooltip="CSV"  pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" ></button>
+        <p-button tooltipPosition="top" pTooltip="AddEmailTemplate" style="margin-left:5px" icon="pi pi-plus" (click)="AddEmailTemplate()" icon="pi pi-plus"></p-button>
+    </div>
+    </div>
+  </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>created By</th>
+            <th>created Date</th>
+            <th></th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-EmailTemplate>
+        <tr>
+            <td>{{EmailTemplate.name}}</td>
+            <td>{{EmailTemplate.description}}</td>
+            <td>{{EmailTemplate.createdby}}</td>
+            <td>{{EmailTemplate.createddate}}</td>
+            <td>{{EmailTemplate.actions}}</td>
+            <td>
+              <button tooltipPosition="top" pTooltip="EDIT" (click)="edit(EmailTemplate.key,EmailTemplate)" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+              <button tooltipPosition="top" pTooltip="DELETE" (click)="delete(EmailTemplate.key)" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text">
+              </button>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+  </div>
+  <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}"  (onHide)="sidenavjobClosed()">
+    <p-fieldset [legend]="sibebarHeader">
+   <div class="form-group">
+      <label> Name <small>(required)</small></label>
+      <input name="name" type="text" class="form-control" [(ngModel)]="emailtemplate.name">
+    </div>
+  <div class="form-group">
+    <label> Description</label>
+    <input name="description" type="text" class="form-control" [(ngModel)]="emailtemplate.description">
+  </div>
+  <div class="form-group">
+    <label> Created By</label>
+    <p-calendar  name="date" type="text"  [(ngModel)]="emailtemplate.createdby"></p-calendar>
+  </div>
+  <div class="form-group">
+    <label> Created Date</label>
+    <p-calendar  name="date" type="text" class="form-control"  [(ngModel)]="emailtemplate.createddate"></p-calendar>
+  </div>
+  <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
+  </p-fieldset>
+  </p-sidebar>
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+  
+  
+  

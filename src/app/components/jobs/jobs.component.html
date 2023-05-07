@@ -10,7 +10,7 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
       <p-button tooltipPosition="top" pTooltip="AddJob" style="margin-left:5px" icon="pi pi-plus" (click)="AddJob()" icon="pi pi-plus"></p-button>
   </div>
   </div>
-</ng-template>
+</ng-template> 
   <ng-template pTemplate="header">
       <tr>
           <th>Name</th>
@@ -39,8 +39,7 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
 </div>
 <p-sidebar [(visible)]="display" position="right"  [style]="{width:'40em'}" (onHide)="sidenavjobClosed()">
   <p-fieldset [legend]="sibebarHeader">
- 
-  <div class="form-group">
+ <div class="form-group">
     <label> Name <small>(required)</small></label>
     <input name="name" type="text" class="form-control" [(ngModel)]="job.name">
   </div>
@@ -50,11 +49,11 @@ selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'custo
 </div>
 <div class="form-group">
   <label> Start Date</label>
-  <input name="startdate" type="text" class="form-control" [(ngModel)]="job.startdate">
+  <p-calendar  name="date" type="text"  [(ngModel)]="job.startdate"></p-calendar>
 </div>
 <div class="form-group">
   <label> End Date</label>
-  <input name="enddate" type="text" class="form-control" [(ngModel)]="job.enddate">
+  <p-calendar  name="date" type="text"  [(ngModel)]="job.enddate"></p-calendar>
 </div>
 <p-button label="Submit" icon="pi pi-check" (click)="create()"></p-button>
 </p-fieldset>

@@ -20,6 +20,7 @@ import { AttendanceReportComponent } from './components/attendancereport/attenda
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { EmailComponent } from './components/email/email.component';
 import { AssetComponent } from './components/asset/asset.component';
+import { EmailTemplateComponent } from './components/emailtemplate/emailtemplate.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: 'attendance',             component: AttendanceComponent, canActivate: [AuthGuard]},
       { path: 'attendancereport',       component: AttendanceReportComponent, canActivate: [AuthGuard]},
       { path: 'email',                  component: EmailComponent, canActivate: [AuthGuard]},
+      { path: 'emailtemplate',          component: EmailTemplateComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
