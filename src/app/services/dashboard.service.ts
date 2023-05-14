@@ -7,9 +7,11 @@ import {
 import { Leave } from '../models/leave';
 import { Email } from '../models/email';
 import { Attendance } from '../models/attendance';
+
 @Injectable({
     providedIn: 'root',
 })
+
 export class dashboardService {
     private dbleavePath = '/leave';
     private dbemailPath = '/email';
