@@ -5,9 +5,11 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { Leave } from '../models/leave';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class leaveService {
   private dbPath = '/leave';
   leavesRef: AngularFireList<Leave>;

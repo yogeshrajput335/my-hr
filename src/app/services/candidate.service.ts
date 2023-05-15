@@ -6,9 +6,11 @@ import {
 } from '@angular/fire/compat/database';
 import { candidate } from '../models/candidate';
 import { candidateFollowUp } from '../models/candidateFollowUp';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class candidateService {
   private dbPath = '/candidate';
   private dbFollowUpPath='/candidateFollowUp';

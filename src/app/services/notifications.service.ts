@@ -5,9 +5,11 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { Notifications } from '../models/notifications';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class notificationsService {
   private dbPath = '/notifications';
   notificationsRef: AngularFireList<Notifications>;

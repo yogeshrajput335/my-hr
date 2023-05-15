@@ -5,9 +5,11 @@ import {
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { ClientEmployeeDetails } from '../models/clientemployeedetails';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class clientemployeedetailsService {
   private dbPath = '/clientemployeedetails';
   clientemployeedetailsRef: AngularFireList<ClientEmployeeDetails>;
