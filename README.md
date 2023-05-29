@@ -24,3 +24,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Sample User JSON Template
 * {"email":"shruti@blueversesystems.com","key":"9oGC3485yRhn3V46oEuhf2HBMO83","mobileNumber":"000000000","name":"shruti","username":"shruti","isAdmin":false}
+
+# Added New Features
