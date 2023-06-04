@@ -26,3 +26,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * {"email":"shruti@blueversesystems.com","key":"9oGC3485yRhn3V46oEuhf2HBMO83","mobileNumber":"000000000","name":"shruti","username":"shruti","isAdmin":false}
 
 # Added New Features
+
+#1: Recruitment & Hiring
+#2: Employee Portal
+#3: Payroll
+#4: Workflows
+#5: Time Tracking and Leave Entitlement
+#6: Performance Evaluation
+#7: Employee Training
+#8: Employee Benefits Administration
+#9: Talent retention
+#10: Analytics and Data Management
